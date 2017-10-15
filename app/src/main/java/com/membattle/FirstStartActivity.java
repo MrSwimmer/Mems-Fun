@@ -16,35 +16,8 @@ public class FirstStartActivity extends MaterialIntroActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         enableLastSlideAlphaExitTransition(true);
-
-            /*getBackButtonTranslationWrapper()
-                    .setEnterTranslation(new IViewTranslation() {
-                        @Override
-                        public void translate(View view, @FloatRange(from = 0, to = 1.0) float percentage) {
-                            view.setAlpha(percentage);
-                        }
-                    });
-            addSlide(new SlideFragmentBuilder()
-                    .backgroundColor(R.color.first_slide_background)
-                    .buttonsColor(R.color.first_slide_buttons)
-                    .title("Mems Battle")
-                    .description("Текст")
-                    .build());
-            addSlide(new SlideFragmentBuilder()
-                    .backgroundColor(R.color.second_slide_background)
-                    .buttonsColor(R.color.second_slide_buttons)
-                    .title("Заголовок")
-                    .description("Текст")
-                    .build());
-
-            addSlide(new SlideFragmentBuilder()
-                    .backgroundColor(R.color.third_slide_background)
-                    .buttonsColor(R.color.third_slide_buttons)
-                    .title("Заголовк")
-                    .description("Текст")
-                    .build());*/
-        addSlide(new FirstSlide("первый"));
-        addSlide(new FirstSlide("второй"));
+        addSlide(new FirstSlide("Люди, которые заходят в Интернет, чтобы получить удовольствие, тонут в огромном пространстве некачественного и малосмешного контента"));
+        addSlide(new FirstSlide("MemBattle позволяет выбрать наиболее интересные и смешные мемы из популярных сообществ «Вконтакте»"));
     }
 
     @Override

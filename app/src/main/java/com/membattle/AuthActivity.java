@@ -76,7 +76,10 @@ public class AuthActivity extends Activity {
                             if(user.getStatus()==409){
                                 Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
                             }
-                            if(user.getStatus()==200){
+                            else {
+                                Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                            }
+                            /*if(user.getStatus()==200){
                                 Toast.makeText(getApplicationContext(), "Регистрация прошла успешна!", Toast.LENGTH_SHORT).show();
 
                                 SharedPreferences.Editor editor = mSettings.edit();
@@ -86,7 +89,7 @@ public class AuthActivity extends Activity {
 
                                 Intent i = new Intent(AuthActivity.this, NavigationActivity.class);
                                 startActivity(i);
-                            }
+                            }*/
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();

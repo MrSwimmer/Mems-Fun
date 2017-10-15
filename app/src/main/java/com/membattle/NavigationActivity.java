@@ -152,7 +152,15 @@ public class NavigationActivity extends AppCompatActivity
             i = Intent.createChooser(i, "С помощью");
             startActivity(i);
         } else if (id == R.id.settings) {
-
+            fragmentClass = Settings.class;
+            try{
+                fragment = (Fragment) fragmentClass.newInstance();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

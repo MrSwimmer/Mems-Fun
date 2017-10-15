@@ -31,7 +31,7 @@ public class Profile extends Fragment {
         user = mSettings.getString("login", "username");
         c = String.valueOf(mSettings.getInt("coins", 0));
         Countg = String.valueOf(mSettings.getInt("countgames",0));
-        Countw = String.valueOf(mSettings.getInt("countcoins",0));
+        Countw = String.valueOf(mSettings.getInt("countwins",0));
         username.setText(user);
         coins.setText(c);
         countgames.setText(Countg);

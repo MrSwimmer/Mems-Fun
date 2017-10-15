@@ -9,41 +9,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/battletimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="TextView"/>
+            android:text="TextView"
+            android:textColor="@color/colorPrimary"/>
 
         <ImageView
+            android:id="@+id/battlefirstim"
             android:layout_width="250dp"
             android:layout_height="180dp"/>
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/battlecountfirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="TextView"/>
+            android:text="TextView"
+            android:textColor="@color/colorPrimary"/>
 
         <ImageView
+            android:id="@+id/battlesecondim"
             android:layout_width="250dp"
             android:layout_height="180dp"/>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/battlecountsecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"/>
+            android:layout_margin="10dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:id="@+id/battleskip"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/oval_shape"
+            android:text="Пропуск"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
-
-
 
 </RelativeLayout>

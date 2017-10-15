@@ -60,7 +60,8 @@ public class LoginActivity extends Activity {
                             Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Вход выполнен!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
+                            /*Toast.makeText(getApplicationContext(), "Вход выполнен!", Toast.LENGTH_SHORT).show();
 
                             Log.i("code", "coins: "+user.getCoins());
 
@@ -72,7 +73,7 @@ public class LoginActivity extends Activity {
                             Intent i = new Intent(LoginActivity.this, NavigationActivity.class);
                             i.putExtra("login", login.getText().toString());
                             i.putExtra("coins", user.getCoins());
-                            startActivity(i);
+                            startActivity(i);*/
                         }
                         //Log.i("code", user.getMessage());
                     }
