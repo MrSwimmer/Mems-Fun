@@ -169,7 +169,7 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
     private String getNoteReport() {
-        String report = "Присоединяйтесь к memfun!";
+        String report = "Присоединяйтесь к MemBattle!";
         return report;
     }
 }
