@@ -74,13 +74,14 @@ public class LoginActivity extends Activity {
                             i.putExtra("login", login.getText().toString());
                             i.putExtra("coins", user.getCoins());
                             startActivity(i);
+                            finish();
                         }
                         //Log.i("code", user.getMessage());
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-
+                        Log.i("code", t.toString());
                     }
                 });
             }
