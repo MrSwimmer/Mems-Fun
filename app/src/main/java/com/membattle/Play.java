@@ -37,8 +37,7 @@ public class Play extends Fragment{
     static Context context;
     Chronometer mChronometer;
     static ImageView first, second;
-    private int id1, id2;
-
+    private int id1=1, id2=2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,22 +61,24 @@ public class Play extends Fragment{
         countsecond = (TextView) v.findViewById(R.id.battlecountsecond);
         //timer.setText("До новой пары "+3+" cек.");
         client.dispatcher().executorService().shutdown();
+        final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ws.send();
+                ws.send(choose+id1+"}");
+
             }
         });
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ws.send();
+                ws.send(choose+id2+"}");
             }
         });
         Skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ws.send(choose+id1+"}");
             }
         });
         return  v;
