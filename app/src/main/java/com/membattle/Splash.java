@@ -37,13 +37,13 @@ public class Splash extends Activity {
                 Log.i("code", "first: "+login);
                 if(login=="no"){
                     overridePendingTransition(0,0);
-                    overridePendingTransition(0,0);
+                    /*overridePendingTransition(0,0);
                     Intent i = new Intent(Splash.this, NavigationActivity.class);
-                    startActivity(i);
-                    /*TaskStackBuilder.create(getApplicationContext())
+                    startActivity(i);*/
+                    TaskStackBuilder.create(getApplicationContext())
                             .addNextIntentWithParentStack(new Intent(getApplicationContext(), AuthActivity.class))
                             .addNextIntent(new Intent(getApplicationContext(), FirstStartActivity.class))
-                            .startActivities();*/
+                            .startActivities();
 
                 }
                 else {
