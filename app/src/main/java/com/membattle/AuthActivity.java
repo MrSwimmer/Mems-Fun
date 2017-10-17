@@ -60,7 +60,7 @@ public class AuthActivity extends Activity {
 //                editor.apply();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://94.180.119.78:8000/")
+                        .baseUrl("http://mems.fun/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);

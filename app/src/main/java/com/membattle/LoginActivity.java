@@ -44,7 +44,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.0.142:8000/")
+                        .baseUrl("http://mems.fun/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);

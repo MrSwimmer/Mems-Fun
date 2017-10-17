@@ -1,5 +1,6 @@
 package com.membattle;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ public class Settings extends Fragment{
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.settings, container, false);
         Out = (TextView) v.findViewById(R.id.setout);
+        mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Mark = (TextView) v.findViewById(R.id.setmark);
         Clear = (TextView) v.findViewById(R.id.setclear);
         Out.setOnClickListener(new View.OnClickListener() {
@@ -37,10 +39,13 @@ public class Settings extends Fragment{
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SharedPreferences.Editor editor = mSettings.edit();
-                                editor.putString("login", "first");
+                                editor.putString("login", "no");
                                 editor.putInt("coins", 0);
                                 editor.apply();
                                 dialog.cancel();
+                                Intent i = new Intent(getActivity(),AuthActivity.class);
+                                startActivity(i);
+                                getActivity().finish();
                             }
                         }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     @Override
@@ -66,6 +71,7 @@ public class Settings extends Fragment{
                                 editor.putInt("countgames", 0);
                                 editor.apply();
                                 dialog.cancel();
+
                             }
                         }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     @Override

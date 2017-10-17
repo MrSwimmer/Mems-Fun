@@ -11,9 +11,9 @@
             android:icon="@drawable/ic_videogame_asset_black_24dp"
             android:title="Игра"/>
         <item
-            android:id="@+id/history"
-            android:icon="@drawable/ic_collections_black_24dp"
-            android:title="История игр"/>
+            android:id="@+id/shop"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="Магазин"/>
     </group>
 
     <item android:title="Дополнительно">

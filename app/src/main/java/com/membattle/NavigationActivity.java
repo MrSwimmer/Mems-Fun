@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -18,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class NavigationActivity extends AppCompatActivity
@@ -64,6 +61,7 @@ public class NavigationActivity extends AppCompatActivity
         TextView Coins = (TextView) headerLayout.findViewById(R.id.coins);
         String login = mSettings.getString("login", "username");
         int coins = mSettings.getInt("coins", 0);
+
         String intcoins = coins+"";
         Coins.setText(intcoins);
         title.setText(login);
@@ -162,7 +160,18 @@ public class NavigationActivity extends AppCompatActivity
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        } else if (id== R.id.shop){
+            fragmentClass = ShopSkins.class;
+            try{
+                fragment = (Fragment) fragmentClass.newInstance();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -170,7 +179,7 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
     private String getNoteReport() {
-        String report = "Присоединяйтесь к MemBattle!";
+        String report = "Присоединяйтесь к MemBattle на mems.fun!";
         return report;
     }
 }

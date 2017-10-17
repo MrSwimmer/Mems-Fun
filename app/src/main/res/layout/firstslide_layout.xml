@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:text="Mems Fun"
+        android:text="MemBattle"
         android:textColor="@color/colorPrimary"
         android:textSize="38sp"/>
 

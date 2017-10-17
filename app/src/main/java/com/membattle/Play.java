@@ -2,6 +2,7 @@ package com.membattle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
@@ -34,6 +35,7 @@ import okio.ByteString;
 
 public class Play extends Fragment{
     private OkHttpClient client;
+    WebSocket ws;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
     int tick=5;
@@ -48,6 +50,7 @@ public class Play extends Fragment{
     private int id1=1, id2=2;
     private Realm mRealm;
     boolean voice = true;
+    Drawable skin1, skin2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class Play extends Fragment{
         mHandler = new Handler();
         //mRealm = MyApp.getInstance().mainRealm;
         int count=3;
+
         client = new OkHttpClient();
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -62,9 +66,9 @@ public class Play extends Fragment{
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
         context = getActivity();
-        Request request = new Request.Builder().url("http://94.180.119.78:8000/ws").build();
+        Request request = new Request.Builder().url("ws://mems.fun/ws").build();
         EchoWebSocketListener listener = new EchoWebSocketListener();
-        final WebSocket ws = client.newWebSocket(request, listener);
+        ws = client.newWebSocket(request, listener);
         timer = (TextView) v.findViewById(R.id.textcount);
         Skip = (Button) v.findViewById(R.id.battleskip);
         first = (ImageView) v.findViewById(R.id.battlefirstim);
@@ -176,11 +180,10 @@ public class Play extends Fragment{
         }
 
     }
-
     void setim(String url, ImageView imageView){
         Picasso.with(getActivity())
                 .load(url)
-                .placeholder(R.drawable.mem1)
+                .placeholder(skin1)
                 .error(R.drawable.mem2)
                 .into(imageView);
     }
@@ -249,7 +252,7 @@ public class Play extends Fragment{
             editor.putInt("countgames", games);
             if(voice){
                 wins++;
-                coins+=2;
+                coins+=1;
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
                 editor.apply();
@@ -264,7 +267,7 @@ public class Play extends Fragment{
             editor.putInt("countgames", games);
             if(!voice){
                 wins++;
-                coins+=2;
+                coins+=1;
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
                 editor.apply();
@@ -318,6 +321,7 @@ public class Play extends Fragment{
 
     @Override
     public void onDestroyView() {
+        ws.cancel();
         super.onDestroyView();
     }
 }
