@@ -60,46 +60,48 @@ public class AuthActivity extends Activity {
 //                editor.apply();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://mems.fun/")
+                        .baseUrl("https://mems.fun/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);
 
-                RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString());
-                Call<User> call = service.registration(user);
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Log.i("code", response.code()+"");
-                        User user = response.body();
-                        if(Pass.getText().toString().equals(Repeat.getText().toString())){
-                            if(user.getStatus()==409){
-                                Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                    RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString());
+                    Call<User> call = service.registration(user);
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            Log.i("code", response.code()+"");
+                            User user = response.body();
+
+                            if(Pass.getText().toString().equals(Repeat.getText().toString())){
+                                if(user.getStatus()==409){
+                                    Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                                }
+                                if(user.getStatus()==200){
+                                    Toast.makeText(getApplicationContext(), "Регистрация прошла успешна!", Toast.LENGTH_SHORT).show();
+
+                                    SharedPreferences.Editor editor = mSettings.edit();
+                                    editor.putString("login", Login.getText().toString());
+                                    editor.putInt("coins", 0);
+                                    editor.apply();
+
+                                    Intent i = new Intent(AuthActivity.this, NavigationActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
                             }
-                            if(user.getStatus()==200){
-                                Toast.makeText(getApplicationContext(), "Регистрация прошла успешна!", Toast.LENGTH_SHORT).show();
-
-                                SharedPreferences.Editor editor = mSettings.edit();
-                                editor.putString("login", Login.getText().toString());
-                                editor.putInt("coins", 0);
-                                editor.apply();
-
-                                Intent i = new Intent(AuthActivity.this, NavigationActivity.class);
-                                startActivity(i);
-                                finish();
+                            else {
+                                Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();
+
                         }
 
-                    }
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                        }
+                    });
 
-                    }
-                });
 
 //                Intent i = new Intent(AuthActivity.this, NavigationActivity.class);
 //                startActivity(i);

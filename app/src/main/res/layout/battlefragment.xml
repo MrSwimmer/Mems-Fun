@@ -72,7 +72,7 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/like1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -102,10 +102,10 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/like2"
                 android:layout_width="30dp"
-                android:layout_gravity="center"
                 android:layout_height="30dp"
+                android:layout_gravity="center"
                 app:srcCompat="@drawable/like"/>
         </LinearLayout>
 

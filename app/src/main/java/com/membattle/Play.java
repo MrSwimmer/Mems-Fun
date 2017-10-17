@@ -35,6 +35,7 @@ import okio.ByteString;
 
 public class Play extends Fragment{
     private OkHttpClient client;
+    ImageView like1, like2;
     WebSocket ws;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
@@ -56,6 +57,9 @@ public class Play extends Fragment{
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         mHandler = new Handler();
+        like1 = (ImageView) v.findViewById(R.id.like1);
+        like2 = (ImageView) v.findViewById(R.id.like2);
+
         //mRealm = MyApp.getInstance().mainRealm;
         int count=3;
 
@@ -76,7 +80,7 @@ public class Play extends Fragment{
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
         context = getActivity();
-        Request request = new Request.Builder().url("ws://mems.fun/ws").build();
+        Request request = new Request.Builder().url("wss://mems.fun/ws").build();
         EchoWebSocketListener listener = new EchoWebSocketListener();
         ws = client.newWebSocket(request, listener);
         timer = (TextView) v.findViewById(R.id.textcount);
@@ -94,6 +98,7 @@ public class Play extends Fragment{
                     ws.send(choose+id1+"}");
                     click = true;
                     voice = true;
+                    like1.setImageResource(R.drawable.trulike);
                 }
             }
         });
@@ -101,9 +106,10 @@ public class Play extends Fragment{
             @Override
             public void onClick(View v) {
                 if(!click){
-                ws.send(choose+id2+"}");
-                click = true;
+                    ws.send(choose+id2+"}");
+                    click = true;
                     voice = false;
+                    like2.setImageResource(R.drawable.trulike);
                 }
             }
         });
@@ -200,6 +206,8 @@ public class Play extends Fragment{
 
     void getOnUI(String[] parameter){
         timer.setText("5");
+        like1.setImageResource(R.drawable.like);
+        like2.setImageResource(R.drawable.like);
         mChronometer.start();
         mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override

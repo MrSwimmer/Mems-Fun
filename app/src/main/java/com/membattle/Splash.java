@@ -35,7 +35,7 @@ public class Splash extends Activity {
                 mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
                 String login = mSettings.getString("login", "no");
                 Log.i("code", "first: "+login);
-                if(login=="no"){
+                if(login.equals("no")){
                     overridePendingTransition(0,0);
                     /*overridePendingTransition(0,0);
                     Intent i = new Intent(Splash.this, NavigationActivity.class);

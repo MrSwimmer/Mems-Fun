@@ -44,46 +44,46 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://mems.fun/")
+                        .baseUrl("https://mems.fun/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);
+                    RegistrationUser user = new RegistrationUser(login.getText().toString(), password.getText().toString());
+                    Call<User> call = service.auth(user);
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            Log.i("code", response.code()+"");
+                            User user = response.body();
+                            if(response.code()==403){
+                                Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                //Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Вход выполнен!", Toast.LENGTH_SHORT).show();
 
-                RegistrationUser user = new RegistrationUser(login.getText().toString(), password.getText().toString());
-                Call<User> call = service.auth(user);
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Log.i("code", response.code()+"");
-                        User user = response.body();
-                        if(response.code()==403){
-                            Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
+                                Log.i("code", "coins: "+user.getCoins());
+
+                                SharedPreferences.Editor editor = mSettings.edit();
+                                editor.putString("login", login.getText().toString());
+                                editor.putInt("coins", user.getCoins());
+                                editor.apply();
+
+                                Intent i = new Intent(LoginActivity.this, NavigationActivity.class);
+                                i.putExtra("login", login.getText().toString());
+                                i.putExtra("coins", user.getCoins());
+                                startActivity(i);
+                                finish();
+                            }
+                            //Log.i("code", user.getMessage());
                         }
-                        else {
-                            //Toast.makeText(getApplicationContext(), "Ошибка входа!", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "Вход выполнен!", Toast.LENGTH_SHORT).show();
 
-                            Log.i("code", "coins: "+user.getCoins());
-
-                            SharedPreferences.Editor editor = mSettings.edit();
-                            editor.putString("login", login.getText().toString());
-                            editor.putInt("coins", user.getCoins());
-                            editor.apply();
-
-                            Intent i = new Intent(LoginActivity.this, NavigationActivity.class);
-                            i.putExtra("login", login.getText().toString());
-                            i.putExtra("coins", user.getCoins());
-                            startActivity(i);
-                            finish();
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            Log.i("code", t.toString());
                         }
-                        //Log.i("code", user.getMessage());
-                    }
+                    });
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Log.i("code", t.toString());
-                    }
-                });
             }
         });
     }
