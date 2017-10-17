@@ -50,7 +50,7 @@ public class Play extends Fragment{
     private int id1=1, id2=2;
     private Realm mRealm;
     boolean voice = true;
-    Drawable skin1, skin2;
+    int skin1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +61,17 @@ public class Play extends Fragment{
 
         client = new OkHttpClient();
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        int chooseskin = mSettings.getInt("skin1", 0);
+        switch (chooseskin){
+            case 0: skin1 = R.drawable.mem1; break;
+            case 1: skin1 = R.drawable.pay1; break;
+            case 2: skin1 = R.drawable.pay2; break;
+            case 3: skin1 = R.drawable.pay3; break;
+            case 4: skin1 = R.drawable.pay4; break;
+            case 5: skin1 = R.drawable.pay5; break;
+            case 6: skin1 = R.drawable.pay6; break;
 
+        }
         firstlikes = (LinearLayout) v.findViewById(R.id.battlefirstlike);
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
