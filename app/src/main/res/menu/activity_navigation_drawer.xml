@@ -14,6 +14,10 @@
             android:id="@+id/shop"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
             android:title="Магазин"/>
+        <item
+            android:id="@+id/rules"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Правила"/>
     </group>
 
     <item android:title="Дополнительно">

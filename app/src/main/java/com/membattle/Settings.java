@@ -21,6 +21,7 @@ public class Settings extends Fragment{
     TextView Out, Mark, Clear;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class Settings extends Fragment{
                                 SharedPreferences.Editor editor = mSettings.edit();
                                 editor.putString("login", "no");
                                 editor.putInt("coins", 0);
+                                editor.putInt("countwins", 0);
+                                editor.putInt("countgames", 0);
                                 editor.apply();
                                 dialog.cancel();
                                 Intent i = new Intent(getActivity(),AuthActivity.class);

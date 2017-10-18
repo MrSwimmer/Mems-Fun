@@ -44,24 +44,19 @@ public class Play extends Fragment{
     Button Skip;
     boolean click = false;
     LinearLayout firstlikes, secondlikes;
-    static Context context;
     private Handler mHandler;
     Chronometer mChronometer;
     static ImageView first, second;
     private int id1=1, id2=2;
-    private Realm mRealm;
     boolean voice = true;
-    int skin1;
+    Request request;
+    EchoWebSocketListener listener;
+    int skin1 = R.drawable.mem1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         mHandler = new Handler();
-        like1 = (ImageView) v.findViewById(R.id.like1);
-        like2 = (ImageView) v.findViewById(R.id.like2);
-
-        //mRealm = MyApp.getInstance().mainRealm;
-        int count=3;
 
         client = new OkHttpClient();
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
@@ -74,22 +69,25 @@ public class Play extends Fragment{
             case 4: skin1 = R.drawable.pay4; break;
             case 5: skin1 = R.drawable.pay5; break;
             case 6: skin1 = R.drawable.pay6; break;
-
         }
+
+        request = new Request.Builder().url("wss://mems.fun/ws").build();
+        listener = new EchoWebSocketListener();
+        /*ws = client.newWebSocket(request, listener);
+        client.dispatcher().executorService().shutdown();*/
+
+        like1 = (ImageView) v.findViewById(R.id.like1);
+        like2 = (ImageView) v.findViewById(R.id.like2);
         firstlikes = (LinearLayout) v.findViewById(R.id.battlefirstlike);
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
-        context = getActivity();
-        Request request = new Request.Builder().url("wss://mems.fun/ws").build();
-        EchoWebSocketListener listener = new EchoWebSocketListener();
-        ws = client.newWebSocket(request, listener);
         timer = (TextView) v.findViewById(R.id.textcount);
         Skip = (Button) v.findViewById(R.id.battleskip);
         first = (ImageView) v.findViewById(R.id.battlefirstim);
         second = (ImageView) v.findViewById(R.id.battlesecondim);
         countfirst = (TextView) v.findViewById(R.id.battlecountfirst);
         countsecond = (TextView) v.findViewById(R.id.battlecountsecond);
-        client.dispatcher().executorService().shutdown();
+
         final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
         first.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +126,6 @@ public class Play extends Fragment{
     class EchoWebSocketListener extends WebSocketListener {
         private static final int NORMAL_CLOSURE_STATUS = 1000;
 
-
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
             Log.i("code", "open");
@@ -136,7 +133,7 @@ public class Play extends Fragment{
 
         @Override
         public void onMessage(WebSocket webSocket, String text) {
-            Log.i("code", text);
+            //Log.i("code", text);
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(text);
@@ -203,7 +200,6 @@ public class Play extends Fragment{
                 .error(R.drawable.mem2)
                 .into(imageView);
     }
-
     void getOnUI(String[] parameter){
         timer.setText("5");
         like1.setImageResource(R.drawable.like);
@@ -227,10 +223,8 @@ public class Play extends Fragment{
             }
         });
         countfirst.setText("");
-        Log.i("code", "start2");
         countsecond.setText("");
         setim(parameter[0], first);
-        Log.i("code", "start3");
         setim(parameter[1], second);
         firstlikes.setVisibility(View.INVISIBLE);
         secondlikes.setVisibility(View.INVISIBLE);
@@ -238,8 +232,7 @@ public class Play extends Fragment{
     private class getWinnerMemAsync extends AsyncTask<Boolean, Integer, Void> {
         @Override
         protected void onProgressUpdate(Integer... progress) {
-            // [... Обновите индикатор хода выполнения, уведомления или другой
-            // элемент пользовательского интерфейса ...]
+
         }
 
         @Override
@@ -260,43 +253,56 @@ public class Play extends Fragment{
         int coins = mSettings.getInt("coins", 0);
         int wins = mSettings.getInt("countwins", 0);
         int games = mSettings.getInt("countgames", 0);
+        int strik = mSettings.getInt("winstrik",1);
         games++;
+        Log.i("code", parameter[0]+" "+voice);
         if(parameter[0]){
             try{
-                Toast.makeText(getActivity(), "Победа первого мема!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Победа первого мема! Винстрик х"+strik, Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 e.printStackTrace();
             }
             editor.putInt("countgames", games);
             if(voice){
                 wins++;
-                coins+=1;
+                coins+=strik;
+                if(strik<5){
+                    strik++;
+                }
+                editor.putInt("winstrik", strik);
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
-                editor.apply();
+
             }
+            editor.apply();
         }
         else {
             try{
-                Toast.makeText(getActivity(), "Победа второго мема!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Победа второго мема! Винстрик х"+strik, Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 e.printStackTrace();
             }
             editor.putInt("countgames", games);
             if(!voice){
+
                 wins++;
-                coins+=1;
+                coins+=strik;
+                if(strik<5){
+                    strik++;
+                }
+                editor.putInt("winstrik", strik);
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
-                editor.apply();
+
             }
+            editor.apply();
         }
+        Log.i("code", "work!");
     }
     private class getMemesAsync extends AsyncTask<String, Integer, Void> {
         @Override
         protected void onProgressUpdate(Integer... progress) {
-            // [... Обновите индикатор хода выполнения, уведомления или другой
-            // элемент пользовательского интерфейса ...]
+
         }
 
         @Override
@@ -341,5 +347,23 @@ public class Play extends Fragment{
     public void onDestroyView() {
         ws.cancel();
         super.onDestroyView();
+    }
+
+    @Override
+    public void onPause() {
+        ws.cancel();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        request = new Request.Builder().url("wss://mems.fun/ws").build();
+        listener = new EchoWebSocketListener();
+        ws = client.newWebSocket(request, listener);
+        client.dispatcher().executorService().shutdown();
+        SharedPreferences.Editor editor = mSettings.edit();
+        int games = mSettings.getInt("countgames", 0);
+        editor.putInt("countgames", games-1);
+        super.onResume();
     }
 }

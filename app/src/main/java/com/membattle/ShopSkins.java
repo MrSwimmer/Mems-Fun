@@ -23,10 +23,18 @@ public class ShopSkins extends Fragment{
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
     int coins;
+    void choosefor(){
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        ///
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putInt("coins", 10000);
+        editor.apply();
+        ///
         View v = inflater.inflate(R.layout.shop_activity, container, false);
         title = (TextView) v.findViewById(R.id.title_shop);
         String custom_font = "fonts/Mr_Lonely.otf";

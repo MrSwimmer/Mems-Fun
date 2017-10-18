@@ -15,7 +15,7 @@ import android.widget.TextView;
  */
 
 public class Profile extends Fragment {
-    TextView username, coins, countgames, countwins;
+    TextView username, coins, countgames, countwins, winstrik, winrate;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
     @Override
@@ -27,15 +27,25 @@ public class Profile extends Fragment {
         coins = (TextView) v.findViewById(R.id.profilecoins);
         countgames = (TextView) v.findViewById(R.id.countgames);
         countwins = (TextView) v.findViewById(R.id.countwins);
+        winstrik = (TextView) v.findViewById(R.id.profwinstr);
+        winrate = (TextView) v.findViewById(R.id.profwinrate);
         String user, c, Countg, Countw;
         user = mSettings.getString("login", "username");
         c = String.valueOf(mSettings.getInt("coins", 0));
         Countg = String.valueOf(mSettings.getInt("countgames",0));
         Countw = String.valueOf(mSettings.getInt("countwins",0));
+        int cg = mSettings.getInt("countgames",0);
+        int cw = mSettings.getInt("countwins",0);
+        float rate = 100*(cw/cg);
+        String Rate = String.format("%.2f", rate);
+        int strik = mSettings.getInt("winstrik",1);
+        winstrik.setText(String.valueOf(strik));
+        winrate.setText(Rate+"%");
         username.setText(user);
         coins.setText(c);
         countgames.setText(Countg);
         countwins.setText(Countw);
         return  v;
     }
+
 }

@@ -53,7 +53,7 @@
                         android:paddingRight="5dp"
                         android:text="1000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:layout_width="25dp"
@@ -92,7 +92,7 @@
                         android:paddingRight="5dp"
                         android:text="2000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:layout_width="25dp"
@@ -131,7 +131,7 @@
                         android:paddingRight="5dp"
                         android:text="3000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:layout_width="25dp"
@@ -170,7 +170,7 @@
                         android:paddingRight="5dp"
                         android:text="4000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
 
@@ -211,7 +211,7 @@
                         android:paddingRight="5dp"
                         android:text="5000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:layout_width="25dp"
@@ -250,7 +250,7 @@
                         android:paddingRight="5dp"
                         android:text="100000"
                         android:textColor="@color/title"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:layout_width="25dp"

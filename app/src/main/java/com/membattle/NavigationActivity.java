@@ -142,6 +142,17 @@ public class NavigationActivity extends AppCompatActivity
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }   else if (id == R.id.share) {
+            fragmentClass = Rules.class;
+            try{
+                fragment = (Fragment) fragmentClass.newInstance();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        }
+        else if (id == R.id.share) {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_TEXT, getNoteReport());
