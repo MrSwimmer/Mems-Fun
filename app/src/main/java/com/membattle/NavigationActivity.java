@@ -141,7 +141,7 @@ public class NavigationActivity extends AppCompatActivity
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-        }   else if (id == R.id.share) {
+        }   else if (id == R.id.rules) {
             fragmentClass = Rules.class;
             try{
                 fragment = (Fragment) fragmentClass.newInstance();

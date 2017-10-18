@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 
 public class Settings extends Fragment{
-    TextView Out, Mark, Clear;
+    TextView Out, Mark, Clear, About;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
 
@@ -30,6 +30,21 @@ public class Settings extends Fragment{
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Mark = (TextView) v.findViewById(R.id.setmark);
         Clear = (TextView) v.findViewById(R.id.setclear);
+        About = (TextView) v.findViewById(R.id.aboutv);
+        About.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("О версии").setMessage("Что нового?\nДобавили статистику игр, правила(а то говорят, что ничего не понятно), еще МЕМОВ!\nЧто ожидать в следующих версиях?\nАватарки для профиля и что-нибудь еще(пока не придумали)").setPositiveButton("Неплохо", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
         Out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +57,8 @@ public class Settings extends Fragment{
                                 SharedPreferences.Editor editor = mSettings.edit();
                                 editor.putString("login", "no");
                                 editor.putInt("coins", 0);
-                                editor.putInt("countwins", 0);
-                                editor.putInt("countgames", 0);
+                                editor.putInt("countwins", 1);
+                                editor.putInt("countgames", 1);
                                 editor.apply();
                                 dialog.cancel();
                                 Intent i = new Intent(getActivity(),AuthActivity.class);

@@ -34,9 +34,9 @@ public class Profile extends Fragment {
         c = String.valueOf(mSettings.getInt("coins", 0));
         Countg = String.valueOf(mSettings.getInt("countgames",0));
         Countw = String.valueOf(mSettings.getInt("countwins",0));
-        int cg = mSettings.getInt("countgames",0);
-        int cw = mSettings.getInt("countwins",0);
-        float rate = 100*(cw/cg);
+        int cg = mSettings.getInt("countgames",1);
+        int cw = mSettings.getInt("countwins",1);
+        float rate = 100*((float)cw/(float)cg);
         String Rate = String.format("%.2f", rate);
         int strik = mSettings.getInt("winstrik",1);
         winstrik.setText(String.valueOf(strik));

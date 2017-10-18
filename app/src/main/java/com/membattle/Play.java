@@ -252,7 +252,7 @@ public class Play extends Fragment{
         SharedPreferences.Editor editor = mSettings.edit();
         int coins = mSettings.getInt("coins", 0);
         int wins = mSettings.getInt("countwins", 0);
-        int games = mSettings.getInt("countgames", 0);
+        int games = mSettings.getInt("countgames", 1);
         int strik = mSettings.getInt("winstrik",1);
         games++;
         Log.i("code", parameter[0]+" "+voice);
@@ -274,6 +274,10 @@ public class Play extends Fragment{
                 editor.putInt("countwins", wins);
 
             }
+            else {
+                strik=1;
+                editor.putInt("winstrik", strik);
+            }
             editor.apply();
         }
         else {
@@ -294,6 +298,10 @@ public class Play extends Fragment{
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
 
+            }
+            else {
+                strik=1;
+                editor.putInt("winstrik", strik);
             }
             editor.apply();
         }
