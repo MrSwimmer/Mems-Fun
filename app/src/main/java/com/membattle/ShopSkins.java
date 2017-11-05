@@ -77,6 +77,7 @@ public class ShopSkins extends Fragment{
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(!buy1&&coins>1000){
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putInt("coins", coins-1000);
