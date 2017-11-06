@@ -5,11 +5,12 @@ package com.membattle;
  */
 
 public class RegistrationUser {
-    private String username, password;
+    private String username, password, email;
 
-    public RegistrationUser(String s, String s1) {
-        username = s;
-        password = s1;
+    public RegistrationUser(String UserName, String Password, String EMail) {
+        username = UserName;
+        password = Password;
+        email = EMail;
     }
 
     public String getUsername() {

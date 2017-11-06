@@ -14,8 +14,8 @@ import retrofit2.http.PUT;
 /* Retrofit 2.0 */
 
 public interface APIService {
-    @PUT("auth")
-    Call<User> registration(@Body RegistrationUser user);
+    @POST("auth/signup")
+    Call<Exres> registration(@Body RegistrationUser user);
     @POST("auth")
     Call<User> auth(@Body RegistrationUser user);
 }

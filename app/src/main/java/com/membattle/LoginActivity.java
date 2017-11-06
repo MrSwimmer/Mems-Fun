@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);
-                    RegistrationUser user = new RegistrationUser(login.getText().toString(), password.getText().toString());
+                    RegistrationUser user = new RegistrationUser(login.getText().toString(), password.getText().toString(), "mem");
                     Call<User> call = service.auth(user);
                     call.enqueue(new Callback<User>() {
                         @Override

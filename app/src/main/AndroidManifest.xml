@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TestJWT"
+            android:name=".Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -43,7 +43,7 @@
             android:name=".FirstStartActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Splash">
+        <activity android:name=".TestJWT">
         </activity>
     </application>
 

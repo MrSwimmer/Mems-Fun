@@ -60,20 +60,25 @@ public class AuthActivity extends Activity {
 //                editor.apply();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.0.150:8000/")
+                        .baseUrl("http://78.24.223.212:3080/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 service = retrofit.create(APIService.class);
 
-                    RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString());
-                    Call<User> call = service.registration(user);
-                    call.enqueue(new Callback<User>() {
+                    RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString(), Login.getText().toString());
+                    Call<Exres> call = service.registration(user);
+                    call.enqueue(new Callback<Exres>() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            Log.i("code", response.code()+"");
-                            User user = response.body();
+                        public void onResponse(Call<Exres> call, Response<Exres> response) {
+                            Exres exres = response.body();
+                            if(!exres.getSuccess()){
+                                Log.i("code", exres.getError());
+                            } else {
+                                Log.i("code", exres.getSuccess().toString());
+                            }
+                            /*User user = response.body();
 
-                            if(Pass.getText().toString().equals(Repeat.getText().toString())){
+                            *//*if(Pass.getText().toString().equals(Repeat.getText().toString())){
                                 if(user.getStatus()==409){
                                     Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
                                 }
@@ -92,12 +97,12 @@ public class AuthActivity extends Activity {
                             }
                             else {
                                 Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
 
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
+                        public void onFailure(Call<Exres> call, Throwable t) {
 
                         }
                     });
