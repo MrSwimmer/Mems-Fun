@@ -41,7 +41,7 @@ public class Splash extends Activity {
                     Intent i = new Intent(Splash.this, NavigationActivity.class);
                     startActivity(i);*/
                     TaskStackBuilder.create(getApplicationContext())
-                            .addNextIntentWithParentStack(new Intent(getApplicationContext(), AuthActivity.class))
+                            .addNextIntentWithParentStack(new Intent(getApplicationContext(), LoginActivity.class))
                             .addNextIntent(new Intent(getApplicationContext(), FirstStartActivity.class))
                             .startActivities();
 

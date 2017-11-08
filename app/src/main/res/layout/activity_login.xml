@@ -36,14 +36,15 @@
             android:id="@+id/loginenter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_edittext"
             android:ems="10"
             android:hint="Логин"
             android:inputType="textPersonName"
-            android:shadowColor="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHighlight="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textColorLink="@android:color/white"/>
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -56,14 +57,15 @@
             android:id="@+id/passlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_edittext"
             android:ems="10"
             android:hint="Пароль"
             android:inputType="textPassword"
-            android:shadowColor="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHighlight="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textColorLink="@android:color/white"/>
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +78,7 @@
                 android:id="@+id/butenter"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:background="@drawable/oval_shape"
                 android:text="Войти"
@@ -85,5 +87,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/login_but_reg"
+        android:layout_width="150dp"
+        android:layout_height="42dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/oval_shape"
+        android:text="Регистрация"
+        android:textColor="@android:color/background_light"/>
 
 </LinearLayout>

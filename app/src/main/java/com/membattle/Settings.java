@@ -61,7 +61,7 @@ public class Settings extends Fragment{
                                 editor.putInt("countgames", 1);
                                 editor.apply();
                                 dialog.cancel();
-                                Intent i = new Intent(getActivity(),AuthActivity.class);
+                                Intent i = new Intent(getActivity(),LoginActivity.class);
                                 startActivity(i);
                                 getActivity().finish();
                             }
