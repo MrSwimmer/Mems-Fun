@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -17,6 +18,7 @@ import android.widget.TextView;
 public class Profile extends Fragment {
     TextView username, coins, countgames, countwins, winstrik, winrate;
     private SharedPreferences mSettings;
+    ImageView photo;
     public static final String APP_PREFERENCES = "mysettings";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,6 +27,7 @@ public class Profile extends Fragment {
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         username = (TextView) v.findViewById(R.id.profileusername);
         coins = (TextView) v.findViewById(R.id.profilecoins);
+        photo = (ImageView) v.findViewById(R.id.profile_image);
         countgames = (TextView) v.findViewById(R.id.countgames);
         countwins = (TextView) v.findViewById(R.id.countwins);
         winstrik = (TextView) v.findViewById(R.id.profwinstr);
@@ -45,6 +48,14 @@ public class Profile extends Fragment {
         coins.setText(c);
         countgames.setText(Countg);
         countwins.setText(Countw);
+        photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String refresh = mSettings.getString("token_refresh", null);
+                Log.i("code", "pr " + refresh);
+                new RefreshAction(refresh, getActivity());
+            }
+        });
         return  v;
     }
 
