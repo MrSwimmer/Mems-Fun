@@ -13,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.membattle.API.APIService;
-import com.membattle.API.Exres;
+import com.membattle.API.SupportClasses.Requests.RegistrationUser;
+import com.membattle.API.SupportClasses.Responses.Exres;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;

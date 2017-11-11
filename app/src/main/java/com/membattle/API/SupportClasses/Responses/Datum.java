@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.API.SupportClasses.Responses;
 
 /**
  * Created by Севастьян on 15.10.2017.

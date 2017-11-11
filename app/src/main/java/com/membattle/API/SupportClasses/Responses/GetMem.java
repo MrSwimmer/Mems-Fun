@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.API.SupportClasses.Responses;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

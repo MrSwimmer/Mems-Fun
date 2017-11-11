@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.Realm;
 
 import io.realm.RealmObject;
 import io.realm.annotations.Required;

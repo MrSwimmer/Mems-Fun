@@ -11,6 +11,8 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.membattle.NewNavigation.MainActivity;
+
 public class Splash extends Activity {
     private SharedPreferences mSettings;
 
@@ -48,7 +50,7 @@ public class Splash extends Activity {
                 }
                 else {
                     overridePendingTransition(0,0);
-                    Intent i = new Intent(Splash.this, NavigationActivity.class);
+                    Intent i = new Intent(Splash.this, MainActivity.class);
                     startActivity(i);
                 }
 

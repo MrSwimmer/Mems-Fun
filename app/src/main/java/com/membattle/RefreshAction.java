@@ -1,15 +1,16 @@
 package com.membattle;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.membattle.API.APIService;
-import com.membattle.API.Exres;
+import com.membattle.API.SupportClasses.Responses.Exres;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,15 +33,28 @@ public class RefreshAction {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);
-        RefreshTok tok = new RefreshTok(accessToken);
-        Call<Exres> call = service.refresh(tok);
+        JSONObject Text = null;
+        String refresh_token = mSettings.getString("refresh_token", null);
+        try {
+            Text = new JSONObject("{\"token_refresh\":\""+refresh_token+"\"}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i("code", Text.toString());
+        RequestBody myreqbody = null;
+        try {
+            myreqbody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                    (new JSONObject(String.valueOf(Text))).toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //RefreshTok tok = new RefreshTok(accessToken);
+        Call<Exres> call = service.refreshbody(myreqbody);
         call.enqueue(new Callback<Exres>() {
 
             @Override
             public void onResponse(Call<Exres> call, Response<Exres> response) {
                 Exres exres = response.body();
-                Log.i("code", "req" + call.request());
-                Log.i("code", "res" + response.raw());
                 /*String forAccTok = null, forRefrTok = null;
                 try {
                     JWTUtils.decoded(exres.getToken_access(), forAccTok);
@@ -60,7 +74,7 @@ public class RefreshAction {
                     Log.i("code", "refresh " + exres.getToken_refresh());
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString("access_token", exres.getToken_access());
-                    editor.putString("token_refresh", exres.getToken_refresh());
+                    editor.putString("refresh_token", exres.getToken_refresh());
                     editor.apply();
                 } else {
                     Log.i("code", "errefr "+exres.getError() + " " + exres.getMessage());

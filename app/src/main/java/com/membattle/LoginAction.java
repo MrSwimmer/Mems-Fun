@@ -1,17 +1,14 @@
 package com.membattle;
 
-import android.app.Application;
-import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.membattle.API.APIService;
-import com.membattle.API.Exres;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.membattle.API.SupportClasses.Requests.RegistrationUser;
+import com.membattle.API.SupportClasses.Responses.Exres;
+import com.membattle.NewNavigation.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,16 +52,16 @@ public class LoginAction {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }*/
-                Log.i("code", "token_refresh " + exres.getToken_access());
+                Log.i("code", "refresh_token " + exres.getToken_access());
                 if(exres.getSuccess()) {
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString("access_token", exres.getToken_access());
-                    editor.putString("token_refresh", exres.getToken_refresh());
+                    editor.putString("refresh_token", exres.getToken_refresh());
                     editor.putString("login", Login);
                     editor.putInt("coins", 0);
                     //editor.putInt("coins", user.getCoins());
                     editor.apply();
-                    Intent i = new Intent( context, NavigationActivity.class);
+                    Intent i = new Intent( context, MainActivity.class);
                     i.putExtra("login", Login);
                     //i.putExtra("coins", user.getCoins());
                     i.putExtra("coins", 0);

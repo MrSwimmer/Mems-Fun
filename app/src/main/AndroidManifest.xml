@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".RegActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -43,7 +39,7 @@
             android:name=".FirstStartActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TestJWT">
+        <activity android:name=".NewNavigation.MainActivity">
         </activity>
     </application>
 

@@ -41,7 +41,6 @@ public class Play extends Fragment{
     public static final String APP_PREFERENCES = "mysettings";
     int tick=5;
     static TextView timer, countfirst, countsecond;
-    Button Skip;
     boolean click = false;
     LinearLayout firstlikes, secondlikes;
     private Handler mHandler;
@@ -82,7 +81,6 @@ public class Play extends Fragment{
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
         timer = (TextView) v.findViewById(R.id.textcount);
-        Skip = (Button) v.findViewById(R.id.battleskip);
         first = (ImageView) v.findViewById(R.id.battlefirstim);
         second = (ImageView) v.findViewById(R.id.battlesecondim);
         countfirst = (TextView) v.findViewById(R.id.battlecountfirst);
@@ -108,16 +106,6 @@ public class Play extends Fragment{
                     click = true;
                     voice = false;
                     like2.setImageResource(R.drawable.trulike);
-                }
-            }
-        });
-        Skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!click){
-                ws.send(choose+id1+"}");
-                click = true;
-                    voice = true;
                 }
             }
         });
