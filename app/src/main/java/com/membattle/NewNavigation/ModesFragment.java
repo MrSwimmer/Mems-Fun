@@ -8,13 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.membattle.Play;
 import com.membattle.R;
+
+import java.util.ArrayList;
+
+import static com.membattle.NewNavigation.MainActivity.fTrans;
 
 /**
  * Created by Севастьян on 11.11.2017.
  */
 
-public class ModesFragment extends Fragment {
+public class ModesFragment extends android.app.Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -22,19 +27,33 @@ public class ModesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.modes_fragment, container, false);
+        ArrayList<ModeItem> myDataset = getDataSet();
+
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mods_recycler);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
+        mAdapter = new RecyclerAdapter(myDataset, getActivity());
         mRecyclerView.setAdapter(mAdapter);
         return v;
+    }
+    private ArrayList<ModeItem> getDataSet() {
+
+        ArrayList<ModeItem> mDataSet = new ArrayList();
+
+        for (int i = 0; i < 4; i++) {
+            ModeItem modeItem = new ModeItem(R.drawable.party, "Title"+i, "Description"+i);
+            mDataSet.add(modeItem);
+        }
+        return mDataSet;
+    }
+    void gotoGame(){
+        Play play = new Play();
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.main_cont, play);
+        fTrans.commit();
     }
 }

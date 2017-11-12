@@ -41,6 +41,8 @@
         </activity>
         <activity android:name=".NewNavigation.MainActivity">
         </activity>
+        <activity android:name=".NewNavigation.PlayActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,27 +1,23 @@
 package com.membattle.NewNavigation;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
+import com.membattle.Play;
 import com.membattle.R;
 
-public class MainActivity extends Activity {
-    ModesFragment mModesFragment;
+public class PlayActivity extends Activity {
     CircleMenu circleMenu;
     static FragmentTransaction fTrans;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mModesFragment = new ModesFragment();
-        circleMenu = (CircleMenu) findViewById(R.id.circleMenu);
+        setContentView(R.layout.play_activity);
+        circleMenu = (CircleMenu) findViewById(R.id.play_circle_menu);
         circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
             @Override
             public void onItemClick(CircleMenuButton menuButton) {
@@ -29,7 +25,8 @@ public class MainActivity extends Activity {
                 fTrans = getFragmentManager().beginTransaction();
                 switch (hintText) {
                     case "игра" :
-                        fTrans.replace(R.id.main_cont, mModesFragment);
+                        Play play = new Play();
+                        fTrans.replace(R.id.play_cont, play);
                 }
                 fTrans.commit();
             }

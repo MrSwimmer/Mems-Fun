@@ -33,7 +33,7 @@ import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import okio.ByteString;
 
-public class Play extends Fragment{
+public class Play extends android.app.Fragment{
     private OkHttpClient client;
     ImageView like1, like2;
     WebSocket ws;
