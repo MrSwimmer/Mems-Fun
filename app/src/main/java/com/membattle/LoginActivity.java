@@ -47,6 +47,10 @@ public class LoginActivity extends Activity {
                 new LoginAction(login.getText().toString(), password.getText().toString(), null, getApplicationContext());
             }
         });
+        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+        Typeface CFt = Typeface.createFromAsset(getAssets(), font_text);
+        login.setTypeface(CFt);
+        password.setTypeface(CFt);
         login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         password.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
     }

@@ -6,10 +6,13 @@ package com.membattle.NewNavigation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,71 +27,44 @@ import com.membattle.R;
 import java.util.ArrayList;
 
 import static com.membattle.NewNavigation.MainActivity.fTrans;
+import static com.membattle.NewNavigation.ModesFragment.start;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<ModeItem> mDataset;
-
+    private static ArrayList<Time> mTimes;
+    String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+    Typeface CFt;
     private Context context;
     int tick = 0;
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title, Description, Play, TextTime;
+        public TextView Title;
+        public TextView Play;
+        public TextView TextTime;
+        public TextView Rules;
         public ImageView Image;
-        public Chronometer mChronometer;
 
         public ViewHolder(View v) {
             super(v);
             Title = (TextView) v.findViewById(R.id.item_title);
-            Description = (TextView) v.findViewById(R.id.item_description);
             Play = (TextView) v.findViewById(R.id.item_play);
+            Rules = (TextView) v.findViewById(R.id.item_rules);
             Image = (ImageView) v.findViewById(R.id.item_image);
             TextTime = (TextView) v.findViewById(R.id.item_text_timer);
-            MyCountDownTimer mCountDownTimer;
-            mCountDownTimer = new MyCountDownTimer(10000, 1000);
-            mCountDownTimer.start();
-            /*mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                @Override
-                public void onChronometerTick(Chronometer chronometer) {
-                    long elapsedMillis = SystemClock.elapsedRealtime()
-                            - mChronometer.getBase();
-                    if (elapsedMillis > 1000) {
-                        tick++;
-                        String fortick = String.valueOf(tick);
-                        elapsedMillis=0;
-                    }
-                }
-            });*/
-
-        }
-        class MyCountDownTimer extends CountDownTimer {
-
-            public MyCountDownTimer(long millisInFuture, long countDownInterval) {
-                super(millisInFuture, countDownInterval);
-            }
-
-            @Override
-            public void onFinish() {
-                TextTime.setText("Поехали!");
-            }
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                TextTime.setText((String.valueOf(millisUntilFinished / 1000)));
-            }
         }
     }
-
     public RecyclerAdapter(ArrayList<ModeItem> dataset, Context context) {
         mDataset = dataset;
         this.context = context;
+        CFt = Typeface.createFromAsset(context.getAssets(), font_text);
     }
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_item, parent, false);
+                .inflate(R.layout.recycler_item_new, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -108,12 +84,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
         });
         holder.Title.setText(mDataset.get(position).Title);
-        holder.Description.setText(mDataset.get(position).Description);
         holder.Image.setImageResource(mDataset.get(position).Image);
+        holder.Title.setTypeface(CFt);
+        holder.Play.setTypeface(CFt);
+        holder.Rules.setTypeface(CFt);
+        holder.TextTime.setTypeface(CFt);
+        String tick = String.valueOf(ModesFragment.Tick);
+        //holder.TextTime.setText(tick);
+        MyCountDownTimer mCountDownTimer;
+        long timegone = System.currentTimeMillis() - start;
+        Log.i("code", "gone " + timegone);
+        Log.i("code", "> "+mDataset.get(position).Time);
+        if(mDataset.get(position).Time*1000-timegone>0){
+            mCountDownTimer = new MyCountDownTimer(mDataset.get(position).Time*1000 - timegone, 1000, holder.TextTime);
+            mCountDownTimer.start();
+        }
+        else {
+            holder.TextTime.setText("Поехали!");
+        }
     }
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
-
 }

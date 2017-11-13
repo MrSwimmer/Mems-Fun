@@ -5,13 +5,12 @@ package com.membattle.NewNavigation;
  */
 
 class ModeItem {
-    String Title, Description;
+    String Title;
     int Image;
     int Time;
 
-    public ModeItem(int image, String title, String description, int time) {
+    public ModeItem(int image, String title, int time) {
         Title = title;
-        Description = description;
         Image = image;
         Time = time;
     }
