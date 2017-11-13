@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android1"
+    android:background="@drawable/backenter"
     tools:context="com.membattle.Splash">
 
     <TextView
@@ -15,6 +15,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="MemBattle"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/memblue"
         android:textSize="38sp"/>
 </RelativeLayout>

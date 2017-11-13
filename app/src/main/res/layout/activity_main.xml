@@ -4,14 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.membattle.NewNavigation.MainActivity">
 
 
     <FrameLayout
+        android:id="@+id/main_cont"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_cont">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/android1">
     </FrameLayout>
 
     <com.imangazaliev.circlemenu.CircleMenu
@@ -19,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false">
 
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_game"
@@ -31,6 +35,7 @@
             app:hintText="игра"
             app:icon="@drawable/ic_game"
             />
+
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_set"
             android:layout_width="wrap_content"
@@ -38,6 +43,7 @@
             app:colorNormal="#4CAF50"
             app:colorPressed="#43A047"
             app:icon="@drawable/ic_action_name"/>
+
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_shop"
             android:layout_width="wrap_content"
@@ -45,6 +51,7 @@
             app:colorNormal="#F44336"
             app:colorPressed="#E53935"
             app:icon="@drawable/ic_shop"/>
+
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_help"
             android:layout_width="wrap_content"
@@ -52,6 +59,7 @@
             app:colorNormal="#FF911F"
             app:colorPressed="#FF911F"
             app:icon="@drawable/ic_help"/>
+
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_prof"
             android:layout_width="wrap_content"
@@ -61,4 +69,5 @@
             app:icon="@drawable/ic_prf"/>
 
     </com.imangazaliev.circlemenu.CircleMenu>
+
 </RelativeLayout>

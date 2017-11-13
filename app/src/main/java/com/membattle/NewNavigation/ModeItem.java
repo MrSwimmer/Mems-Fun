@@ -7,9 +7,12 @@ package com.membattle.NewNavigation;
 class ModeItem {
     String Title, Description;
     int Image;
-    public ModeItem(int image, String title, String description) {
+    int Time;
+
+    public ModeItem(int image, String title, String description, int time) {
         Title = title;
         Description = description;
         Image = image;
+        Time = time;
     }
 }

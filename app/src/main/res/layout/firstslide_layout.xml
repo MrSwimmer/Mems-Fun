@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/android1"
+              android:background="@drawable/backenter"
               android:gravity="center"
               android:orientation="vertical">
 
@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center"
         android:text="MemBattle"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/memblue"
         android:textSize="38sp"/>
 
     <TextView
@@ -26,7 +26,7 @@
         android:paddingTop="50dp"
         android:text="Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст "
         android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="15sp"/>
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
 
 </LinearLayout>

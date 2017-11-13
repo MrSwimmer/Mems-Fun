@@ -3,6 +3,7 @@ package com.membattle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,9 +44,13 @@ public class RegActivity extends Activity {
         Repeat = (EditText) findViewById(R.id.repeatpassreg);
         textreg = (TextView) findViewById(R.id.textReg);
         Registration = (Button) findViewById(R.id.butreg);
-        String custom_font = "fonts/Mr_Lonely.otf";
+        String custom_font = "fonts/NAUTILUS.otf";
         Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);
         textreg.setTypeface(CF);
+        Login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        Pass.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        Repeat.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        Email.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         Registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

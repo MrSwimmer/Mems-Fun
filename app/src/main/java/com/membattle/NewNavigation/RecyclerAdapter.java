@@ -6,10 +6,14 @@ package com.membattle.NewNavigation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,16 +29,53 @@ import static com.membattle.NewNavigation.MainActivity.fTrans;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<ModeItem> mDataset;
+
     private Context context;
+    int tick = 0;
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title, Description, Play;
+        public TextView Title, Description, Play, TextTime;
         public ImageView Image;
+        public Chronometer mChronometer;
+
         public ViewHolder(View v) {
             super(v);
             Title = (TextView) v.findViewById(R.id.item_title);
             Description = (TextView) v.findViewById(R.id.item_description);
             Play = (TextView) v.findViewById(R.id.item_play);
             Image = (ImageView) v.findViewById(R.id.item_image);
+            TextTime = (TextView) v.findViewById(R.id.item_text_timer);
+            MyCountDownTimer mCountDownTimer;
+            mCountDownTimer = new MyCountDownTimer(10000, 1000);
+            mCountDownTimer.start();
+            /*mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                @Override
+                public void onChronometerTick(Chronometer chronometer) {
+                    long elapsedMillis = SystemClock.elapsedRealtime()
+                            - mChronometer.getBase();
+                    if (elapsedMillis > 1000) {
+                        tick++;
+                        String fortick = String.valueOf(tick);
+                        elapsedMillis=0;
+                    }
+                }
+            });*/
+
+        }
+        class MyCountDownTimer extends CountDownTimer {
+
+            public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+                super(millisInFuture, countDownInterval);
+            }
+
+            @Override
+            public void onFinish() {
+                TextTime.setText("Поехали!");
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                TextTime.setText((String.valueOf(millisUntilFinished / 1000)));
+            }
         }
     }
 
@@ -53,8 +94,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final int[] backcount = {mDataset.get(position).Time};
         holder.Play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

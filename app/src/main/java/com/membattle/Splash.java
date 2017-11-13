@@ -22,7 +22,7 @@ public class Splash extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String custom_font = "fonts/Mr_Lonely.otf";
+        String custom_font = "fonts/NAUTILUS.otf";
 
         setContentView(R.layout.activity_splash);
         Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);

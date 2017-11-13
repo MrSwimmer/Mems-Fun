@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android1"
+    android:background="@drawable/backenter"
     android:gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="8dp"
@@ -18,7 +18,7 @@
         android:paddingBottom="20dp"
         android:text="Регистрация"
         android:textAlignment="center"
-        android:textColor="@color/title"
+        android:textColor="@color/memblue"
         android:textSize="30sp"/>
 
     <LinearLayout
@@ -26,37 +26,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Логин"
-            android:textAlignment="viewStart"
-            android:textColor="@android:color/background_light"/>
-
         <EditText
             android:id="@+id/loginreg"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/oval_edittext"
             android:ems="10"
             android:hint="Логин"
             android:inputType="textPersonName"
-            android:paddingBottom="5dp"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp"
-            android:paddingTop="5dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:theme="@style/Widget.AppCompat.EditText"/>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="E-mail"
-            android:textAlignment="viewStart"
-            android:textColor="@android:color/background_light"/>
 
         <EditText
             android:id="@+id/reg_email"
@@ -64,57 +45,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/oval_edittext"
             android:ems="10"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:paddingBottom="5dp"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp"
-            android:paddingTop="5dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:theme="@style/Widget.AppCompat.EditText"/>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Пароль"
-            android:textColor="@android:color/white"/>
 
         <EditText
             android:id="@+id/passreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/oval_edittext"
             android:ems="10"
             android:hint="Пароль"
             android:inputType="textPassword"
-            android:paddingBottom="5dp"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Повторите пароль"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"/>
 
         <EditText
             android:id="@+id/repeatpassreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/oval_edittext"
             android:ems="10"
-            android:hint="Еще раз"
+            android:hint="Повторите пароль"
             android:inputType="textPassword"
-            android:paddingBottom="5dp"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp"
-            android:paddingTop="5dp"/>
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,13 +83,13 @@
 
             <Button
                 android:id="@+id/butreg"
-                android:layout_width="150dp"
-                android:layout_height="42dp"
+                android:layout_width="140dp"
+                android:layout_height="34dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/oval_shape"
                 android:text="Регистрация"
-                android:textColor="@android:color/background_light"/>
+                android:textColor="@color/memblue"/>
 
         </LinearLayout>
 

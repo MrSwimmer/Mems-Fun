@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,7 @@ public class LoginActivity extends Activity {
         password = (EditText) findViewById(R.id.passlogin);
         enter = (Button) findViewById(R.id.butenter);
         title = (TextView) findViewById(R.id.titlelogin);
-        String custom_font = "fonts/Mr_Lonely.otf";
+        String custom_font = "fonts/NAUTILUS.otf";
         Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);
         title.setTypeface(CF);
         gotoReg.setOnClickListener(new View.OnClickListener() {
@@ -46,5 +47,7 @@ public class LoginActivity extends Activity {
                 new LoginAction(login.getText().toString(), password.getText().toString(), null, getApplicationContext());
             }
         });
+        login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        password.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
     }
 }

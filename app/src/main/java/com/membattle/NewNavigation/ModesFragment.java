@@ -45,7 +45,7 @@ public class ModesFragment extends android.app.Fragment {
         ArrayList<ModeItem> mDataSet = new ArrayList();
 
         for (int i = 0; i < 4; i++) {
-            ModeItem modeItem = new ModeItem(R.drawable.party, "Title"+i, "Description"+i);
+            ModeItem modeItem = new ModeItem(R.drawable.party, "Title"+i, "Description"+i, 50);
             mDataSet.add(modeItem);
         }
         return mDataSet;
