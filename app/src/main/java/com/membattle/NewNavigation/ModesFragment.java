@@ -62,13 +62,13 @@ public class ModesFragment extends android.app.Fragment {
     private ArrayList<ModeItem> getDataSet() {
 
         ArrayList<ModeItem> mDataSet = new ArrayList();
-        ModeItem modeItem = new ModeItem(R.drawable.dp, "Бесконечный баттл", 0);
-        mDataSet.add(modeItem);
+
         for (int i = 0; i < 10; i++) {
             ModeItem modeItem1 = new ModeItem(R.drawable.dp, "День первокурсника", 50);
             mDataSet.add(modeItem1);
         }
-
+        ModeItem modeItem = new ModeItem(R.drawable.bb, "Бесконечный баттл", 0);
+        mDataSet.add(modeItem);
         return mDataSet;
     }
     void gotoGame(){

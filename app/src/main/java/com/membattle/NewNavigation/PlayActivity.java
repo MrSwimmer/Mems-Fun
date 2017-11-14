@@ -27,6 +27,8 @@ public class PlayActivity extends Activity {
                     case "игра" :
                         Play play = new Play();
                         fTrans.replace(R.id.play_cont, play);
+                    case "правила" :
+
                 }
                 fTrans.commit();
             }

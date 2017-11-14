@@ -2,6 +2,7 @@ package com.membattle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -81,6 +82,9 @@ public class Play extends android.app.Fragment{
         secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
         timer = (TextView) v.findViewById(R.id.textcount);
+        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
+        timer.setTypeface(CFt);
         first = (ImageView) v.findViewById(R.id.battlefirstim);
         second = (ImageView) v.findViewById(R.id.battlesecondim);
         countfirst = (TextView) v.findViewById(R.id.battlecountfirst);
@@ -201,7 +205,7 @@ public class Play extends android.app.Fragment{
                 if (elapsedMillis > 1000) {
                     tick--;
                     String fortick = String.valueOf(tick);
-                    timer.setText(fortick);
+                    timer.setText("Осталось " + fortick);
                     elapsedMillis=0;
                     if(tick==0){
                         mChronometer.stop();

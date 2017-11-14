@@ -95,7 +95,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         long timegone = System.currentTimeMillis() - start;
         Log.i("code", "gone " + timegone);
         Log.i("code", "> "+mDataset.get(position).Time);
-        if(mDataset.get(position).Time*1000-timegone>0){
+        if(mDataset.get(position).Time*1000-timegone>0&&(mDataset.get(position).Time!=0)){
             mCountDownTimer = new MyCountDownTimer(mDataset.get(position).Time*1000 - timegone, 1000, holder.TextTime);
             mCountDownTimer.start();
         }
