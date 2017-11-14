@@ -3,21 +3,17 @@ package com.membattle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +22,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.realm.Realm;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -35,32 +30,64 @@ import okhttp3.WebSocketListener;
 import okio.ByteString;
 
 public class Play extends android.app.Fragment{
+
     private OkHttpClient client;
-    ImageView like1, like2;
     WebSocket ws;
     private SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
-    int tick=5;
-    static TextView timer, countfirst, countsecond;
-    boolean click = false;
-    LinearLayout firstlikes, secondlikes;
-    private Handler mHandler;
-    Chronometer mChronometer;
-    static ImageView first, second;
-    private int id1=1, id2=2;
-    boolean voice = true;
     Request request;
     EchoWebSocketListener listener;
-    int skin1 = R.drawable.mem1;
+
+    public static final String APP_PREFERENCES = "mysettings";
+    static TextView timer, countfirst, countsecond, winfirst, winsecond;
+    static ImageView first, second;
+    RelativeLayout after1, after2;
+    Chronometer mChronometer;
+
+    int tick=5;
+    boolean click = false;
+    private Handler mHandler;
+    private int id1=1, id2=2;
+    boolean voice = true;
+
+    //int skin1 = R.drawable.mem1;
+    //запуск сокетов
+    @Override
+    public void onResume() {
+        request = new Request.Builder().url("wss://mems.fun/ws").build();
+        listener = new EchoWebSocketListener();
+        ws = client.newWebSocket(request, listener);
+        client.dispatcher().executorService().shutdown();
+        SharedPreferences.Editor editor = mSettings.edit();
+        int games = mSettings.getInt("countgames", 0);
+        editor.putInt("countgames", games-1);
+        super.onResume();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         mHandler = new Handler();
-
         client = new OkHttpClient();
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        int chooseskin = mSettings.getInt("skin1", 0);
+        request = new Request.Builder().url("wss://mems.fun/ws").build();
+        listener = new EchoWebSocketListener();
+
+        mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
+        timer = (TextView) v.findViewById(R.id.textcount);
+        after1 = (RelativeLayout) v.findViewById(R.id.battle_after_first);
+        after2 = (RelativeLayout) v.findViewById(R.id.battle_after_second);
+        first = (ImageView) v.findViewById(R.id.battlefirstim);
+        second = (ImageView) v.findViewById(R.id.battlesecondtim);
+        countfirst = (TextView) v.findViewById(R.id.battle_after_likes);
+        countsecond = (TextView) v.findViewById(R.id.battle_after_likes2);
+        winfirst = (TextView) v.findViewById(R.id.battle_after_winner_first);
+        winsecond = (TextView) v.findViewById(R.id.battle_after_winner_second);
+
+        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
+        timer.setTypeface(CFt);
+        final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
+        /*int chooseskin = mSettings.getInt("skin1", 0);
         switch (chooseskin){
             case 0: skin1 = R.drawable.mem1; break;
             case 1: skin1 = R.drawable.pay1; break;
@@ -69,28 +96,7 @@ public class Play extends android.app.Fragment{
             case 4: skin1 = R.drawable.pay4; break;
             case 5: skin1 = R.drawable.pay5; break;
             case 6: skin1 = R.drawable.pay6; break;
-        }
-
-        request = new Request.Builder().url("wss://mems.fun/ws").build();
-        listener = new EchoWebSocketListener();
-        /*ws = client.newWebSocket(request, listener);
-        client.dispatcher().executorService().shutdown();*/
-
-        like1 = (ImageView) v.findViewById(R.id.like1);
-        like2 = (ImageView) v.findViewById(R.id.like2);
-        firstlikes = (LinearLayout) v.findViewById(R.id.battlefirstlike);
-        secondlikes = (LinearLayout) v.findViewById(R.id.battleseclike);
-        mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
-        timer = (TextView) v.findViewById(R.id.textcount);
-        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
-        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
-        timer.setTypeface(CFt);
-        first = (ImageView) v.findViewById(R.id.battlefirstim);
-        second = (ImageView) v.findViewById(R.id.battlesecondim);
-        countfirst = (TextView) v.findViewById(R.id.battlecountfirst);
-        countsecond = (TextView) v.findViewById(R.id.battlecountsecond);
-
-        final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
+        }*/
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +104,6 @@ public class Play extends android.app.Fragment{
                     ws.send(choose+id1+"}");
                     click = true;
                     voice = true;
-                    like1.setImageResource(R.drawable.trulike);
                 }
             }
         });
@@ -109,7 +114,6 @@ public class Play extends android.app.Fragment{
                     ws.send(choose+id2+"}");
                     click = true;
                     voice = false;
-                    like2.setImageResource(R.drawable.trulike);
                 }
             }
         });
@@ -188,39 +192,11 @@ public class Play extends android.app.Fragment{
     void setim(String url, ImageView imageView){
         Picasso.with(getActivity())
                 .load(url)
-                .placeholder(skin1)
-                .error(R.drawable.mem2)
+                .placeholder(R.color.white)
+                .error(R.color.white)
                 .into(imageView);
     }
-    void getOnUI(String[] parameter){
-        timer.setText("5");
-        like1.setImageResource(R.drawable.like);
-        like2.setImageResource(R.drawable.like);
-        mChronometer.start();
-        mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                long elapsedMillis = SystemClock.elapsedRealtime()
-                        - mChronometer.getBase();
-                if (elapsedMillis > 1000) {
-                    tick--;
-                    String fortick = String.valueOf(tick);
-                    timer.setText("Осталось " + fortick);
-                    elapsedMillis=0;
-                    if(tick==0){
-                        mChronometer.stop();
-                        tick=5;
-                    }
-                }
-            }
-        });
-        countfirst.setText("");
-        countsecond.setText("");
-        setim(parameter[0], first);
-        setim(parameter[1], second);
-        firstlikes.setVisibility(View.INVISIBLE);
-        secondlikes.setVisibility(View.INVISIBLE);
-    }
+
     private class getWinnerMemAsync extends AsyncTask<Boolean, Integer, Void> {
         @Override
         protected void onProgressUpdate(Integer... progress) {
@@ -248,13 +224,11 @@ public class Play extends android.app.Fragment{
         int strik = mSettings.getInt("winstrik",1);
         games++;
         Log.i("code", parameter[0]+" "+voice);
+        //победа первого мема
         if(parameter[0]){
-            try{
-                Toast.makeText(getActivity(), "Победа первого мема! Винстрик х"+strik, Toast.LENGTH_SHORT).show();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
             editor.putInt("countgames", games);
+            //если проголосовали за 1
             if(voice){
                 wins++;
                 coins+=strik;
@@ -264,21 +238,19 @@ public class Play extends android.app.Fragment{
                 editor.putInt("winstrik", strik);
                 editor.putInt("coins", coins);
                 editor.putInt("countwins", wins);
-
             }
+            //если проголосовали за 2
             else {
                 strik=1;
                 editor.putInt("winstrik", strik);
             }
             editor.apply();
         }
+        //победа второго мема
         else {
-            try{
-                Toast.makeText(getActivity(), "Победа второго мема! Винстрик х"+strik, Toast.LENGTH_SHORT).show();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
             editor.putInt("countgames", games);
+            //если проголосовали за 2
             if(!voice){
 
                 wins++;
@@ -291,6 +263,7 @@ public class Play extends android.app.Fragment{
                 editor.putInt("countwins", wins);
 
             }
+            //если проголосовали за 1
             else {
                 strik=1;
                 editor.putInt("winstrik", strik);
@@ -310,12 +283,39 @@ public class Play extends android.app.Fragment{
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    getOnUI(parameter);
+                    SetMemsOnUI(parameter);
                 }
             });
 
             return null;
         }
+    }
+    void SetMemsOnUI(String[] parameter){
+        timer.setText("5");
+        mChronometer.start();
+        mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long elapsedMillis = SystemClock.elapsedRealtime()
+                        - mChronometer.getBase();
+                if (elapsedMillis > 1000) {
+                    tick--;
+                    String fortick = String.valueOf(tick);
+                    timer.setText("Осталось " + fortick);
+                    elapsedMillis=0;
+                    if(tick==0){
+                        mChronometer.stop();
+                        tick=5;
+                    }
+                }
+            }
+        });
+        /*countfirst.setText("");
+        countsecond.setText("");*/
+        after1.setVisibility(View.INVISIBLE);
+        after2.setVisibility(View.INVISIBLE);
+        setim(parameter[0], first);
+        setim(parameter[1], second);
     }
     private class setLikesAsync extends AsyncTask<String, Integer, Void> {
         @Override
@@ -329,14 +329,16 @@ public class Play extends android.app.Fragment{
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    setOnUI(parameter);
+                    SetLikesOnUI(parameter);
                 }
             });
 
             return null;
         }
     }
-    void setOnUI(String[] parameter){
+    void SetLikesOnUI(String[] parameter){
+        after1.setVisibility(View.VISIBLE);
+        after2.setVisibility(View.VISIBLE);
         countfirst.setText(parameter[0]);
         countsecond.setText(parameter[1]);
         firstlikes.setVisibility(View.VISIBLE);
@@ -355,15 +357,5 @@ public class Play extends android.app.Fragment{
         super.onPause();
     }
 
-    @Override
-    public void onResume() {
-        request = new Request.Builder().url("wss://mems.fun/ws").build();
-        listener = new EchoWebSocketListener();
-        ws = client.newWebSocket(request, listener);
-        client.dispatcher().executorService().shutdown();
-        SharedPreferences.Editor editor = mSettings.edit();
-        int games = mSettings.getInt("countgames", 0);
-        editor.putInt("countgames", games-1);
-        super.onResume();
-    }
+
 }

@@ -56,9 +56,10 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_gravity="center"
             android:layout_width="338dp"
-            android:layout_height="218dp">
+            android:layout_height="218dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
 
             <ImageView
                 android:id="@+id/battlefirstim"
@@ -76,7 +77,7 @@
                 android:layout_alignParentTop="true">
 
                 <TextView
-                    android:id="@+id/after_winner_first"
+                    android:id="@+id/battle_after_winner_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -87,12 +88,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/after_winner_first"
+                    android:layout_below="@+id/battle_after_winner_first"
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/after_likes"
+                        android:id="@+id/battle_after_likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -110,12 +111,65 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/battlesecondim"
-            android:layout_width="338dp"
-            android:layout_height="218dp"
-            android:layout_gravity="center"
-            app:srcCompat="@color/circle_menu_button_color_disabled"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/battlesecondtim"
+                android:layout_width="338dp"
+                android:layout_height="218dp"
+                android:layout_gravity="center"
+                app:srcCompat="@color/circle_menu_button_color_disabled"/>
+
+            <RelativeLayout
+                android:id="@+id/battle_after_second"
+                android:layout_width="338dp"
+                android:layout_height="218dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_alignParentTop="true">
+
+                <TextView
+                    android:id="@+id/battle_after_winner_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Победитель"
+                    android:textSize="30sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/battle_after_winner_second"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="33dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/battle_after_likes2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:text="33"
+                        android:textSize="24sp"/>
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/lois"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
