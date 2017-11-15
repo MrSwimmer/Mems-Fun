@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.membattle.NewNavigation.PlayActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -97,10 +98,14 @@ public class Play extends android.app.Fragment{
             case 5: skin1 = R.drawable.pay5; break;
             case 6: skin1 = R.drawable.pay6; break;
         }*/
+        first.setImageResource(R.drawable.bb);
+        second.setImageResource(R.drawable.bb);
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showlikes();
                 if(!click){
+
                     ws.send(choose+id1+"}");
                     click = true;
                     voice = true;
@@ -110,7 +115,9 @@ public class Play extends android.app.Fragment{
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hidelikes();
                 if(!click){
+
                     ws.send(choose+id2+"}");
                     click = true;
                     voice = false;
@@ -118,6 +125,16 @@ public class Play extends android.app.Fragment{
             }
         });
         return  v;
+    }
+    void showlikes(){
+        after1.setVisibility(View.VISIBLE);
+        after2.setVisibility(View.VISIBLE);
+        countfirst.setText(12+"");
+        countsecond.setText(23+"");
+    }
+    void hidelikes(){
+        after1.setVisibility(View.INVISIBLE);
+        after2.setVisibility(View.INVISIBLE);
     }
     class EchoWebSocketListener extends WebSocketListener {
         private static final int NORMAL_CLOSURE_STATUS = 1000;
@@ -341,8 +358,9 @@ public class Play extends android.app.Fragment{
         after2.setVisibility(View.VISIBLE);
         countfirst.setText(parameter[0]);
         countsecond.setText(parameter[1]);
-        firstlikes.setVisibility(View.VISIBLE);
-        secondlikes.setVisibility(View.VISIBLE);
+
+        /*firstlikes.setVisibility(View.VISIBLE);
+        secondlikes.setVisibility(View.VISIBLE);*/
     }
 
     @Override

@@ -3,6 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/circle_menu_center_button_color_pressed"
               android:orientation="vertical">
 
     <ScrollView
@@ -12,17 +13,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/android1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/ruletitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="@android:color/white"
+                android:textColor="@color/memblue"
                 android:textSize="30sp"
                 tools:text="Правила игры"/>
 
@@ -34,8 +35,8 @@
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textColor="@color/memblue"
+                android:textSize="24sp"
                 tools:text="@string/rules"/>
 
         </LinearLayout>

@@ -15,16 +15,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/android1">
+        android:background="@color/circle_menu_center_button_color_pressed">
     </FrameLayout>
 
     <com.imangazaliev.circlemenu.CircleMenu
         android:id="@+id/circleMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="false">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="339dp">
 
         <com.imangazaliev.circlemenu.CircleMenuButton
             android:id="@+id/main_circle_game"
@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:colorNormal="@color/circle_second"
+            app:hintText="настройки"
             app:icon="@drawable/ic_action_name"/>
 
         <com.imangazaliev.circlemenu.CircleMenuButton
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:colorNormal="@color/circle_third"
+            app:hintText="магазин"
             app:icon="@drawable/ic_shop"/>
 
         <com.imangazaliev.circlemenu.CircleMenuButton
@@ -54,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:colorNormal="@color/circle_fourth"
+            app:hintText="помощь"
             app:icon="@drawable/ic_help"/>
 
         <com.imangazaliev.circlemenu.CircleMenuButton
@@ -61,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:colorNormal="@color/circle_fifth"
+            app:hintText="профиль"
             app:icon="@drawable/ic_prf"/>
 
     </com.imangazaliev.circlemenu.CircleMenu>

@@ -1,26 +1,31 @@
 package com.membattle.NewNavigation;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
+import com.membattle.Profile;
 import com.membattle.R;
+import com.membattle.Rules;
+import com.membattle.Settings;
 
 public class MainActivity extends Activity {
     ModesFragment mModesFragment;
     CircleMenu circleMenu;
     static FragmentTransaction fTrans;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mModesFragment = new ModesFragment();
+        final Rules rules = new Rules();
+        final Settings settings = new Settings();
+        final Profile profile = new Profile();
+        final ShopMem shop = new ShopMem();
         circleMenu = (CircleMenu) findViewById(R.id.circleMenu);
         circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
             @Override
@@ -29,7 +34,16 @@ public class MainActivity extends Activity {
                 fTrans = getFragmentManager().beginTransaction();
                 switch (hintText) {
                     case "игра" :
-                        fTrans.replace(R.id.main_cont, mModesFragment);
+                        fTrans.replace(R.id.main_cont, mModesFragment); break;
+                    case "помощь" :
+                        fTrans.replace(R.id.main_cont, rules); break;
+                    case "настройки" :
+                        fTrans.replace(R.id.main_cont, settings); break;
+                    case "профиль" :
+                        fTrans.replace(R.id.main_cont, profile); break;
+                    case "магазин" :
+                        fTrans.replace(R.id.main_cont, shop); break;
+
                 }
                 fTrans.commit();
             }

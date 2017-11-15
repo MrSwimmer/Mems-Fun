@@ -17,7 +17,7 @@ import android.widget.TextView;
  * Created by Севастьян on 15.10.2017.
  */
 
-public class Settings extends Fragment{
+public class Settings extends android.app.Fragment{
     TextView Out, Mark, Clear, About;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";

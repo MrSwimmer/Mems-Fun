@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/android1"
+              android:background="@drawable/backenter"
               android:orientation="vertical">
 
     <LinearLayout
@@ -13,41 +13,41 @@
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:paddingTop="50dp">
+        >
 
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/user"/>
+            app:srcCompat="@drawable/logo_circlel"/>
 
         <TextView
             android:id="@+id/profileusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:text="username"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
-            android:textSize="20sp"/>
+            android:textSize="28sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/profilecoins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingTop="20dp"
                 android:text="coins"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"/>
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -67,12 +67,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/title1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Игр сыграно:"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                />
 
             <TextView
                 android:id="@+id/countgames"
@@ -81,7 +83,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -91,10 +95,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Из них выиграно: "
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
 
             <TextView
                 android:id="@+id/countwins"
@@ -102,7 +108,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -112,10 +120,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/title3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Винрейт:"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
 
             <TextView
                 android:id="@+id/profwinrate"
@@ -123,7 +133,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -133,10 +145,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/title4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Текущий винстрик:"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
 
             <TextView
                 android:id="@+id/profwinstr"
@@ -144,7 +158,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"
+                />
         </LinearLayout>
 
     </LinearLayout>

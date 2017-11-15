@@ -57,26 +57,29 @@ public class RegActivity extends Activity {
 //                SharedPreferences.Editor editor = mSettings.edit();
 //                editor.putString("login", Login.getText().toString());
 //                editor.apply();
+                if(Login.getText().toString().equals("")||Pass.getText().toString().equals("")||Repeat.getText().toString().equals("")||Email.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
+                } else {
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://78.24.223.212:3080/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                service = retrofit.create(APIService.class);
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("http://78.24.223.212:3080/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    service = retrofit.create(APIService.class);
 
                     RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString(), Email.getText().toString());
                     Call<Exres> call = service.registration(user);
-                if(Pass.getText().toString().equals(Repeat.getText().toString())){
-                    call.enqueue(new Callback<Exres>() {
-                        @Override
-                        public void onResponse(Call<Exres> call, Response<Exres> response) {
-                            Exres exres = response.body();
+                    if (Pass.getText().toString().equals(Repeat.getText().toString())) {
+                        call.enqueue(new Callback<Exres>() {
+                            @Override
+                            public void onResponse(Call<Exres> call, Response<Exres> response) {
+                                Exres exres = response.body();
 
-                            if(!exres.getSuccess()){
-                                Log.i("code", exres.getError());
-                                Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new LoginAction(Login.getText().toString(), Pass.getText().toString(), null, getApplicationContext());
+                                if (!exres.getSuccess()) {
+                                    Log.i("code", exres.getError());
+                                    Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    new LoginAction(Login.getText().toString(), Pass.getText().toString(), null, getApplicationContext());
                                 /*SharedPreferences.Editor editor = mSettings.edit();
                                 editor.putString("login", Login.getText().toString());
                                 editor.putInt("coins", 0);
@@ -84,16 +87,17 @@ public class RegActivity extends Activity {
                                 Intent i = new Intent(RegActivity.this, NavigationActivity.class);
                                 startActivity(i);
                                 finish();*/
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<Exres> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Exres> call, Throwable t) {
 
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Пароли отличаются!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

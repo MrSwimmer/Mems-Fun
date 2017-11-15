@@ -59,14 +59,15 @@
             android:layout_width="338dp"
             android:layout_height="218dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/battlefirstim"
                 android:layout_width="338dp"
                 android:layout_height="218dp"
                 android:layout_gravity="center"
-                app:srcCompat="@color/circle_menu_button_color_disabled"/>
+                app:srcCompat="@drawable/bb"/>
 
             <RelativeLayout
                 android:id="@+id/battle_after_first"
@@ -74,7 +75,9 @@
                 android:layout_height="218dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true">
+                android:layout_alignParentTop="true"
+                android:background="@color/back_likes"
+                android:visibility="invisible">
 
                 <TextView
                     android:id="@+id/battle_after_winner_first"
@@ -83,6 +86,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Победитель"
+                    android:textColor="@android:color/white"
                     android:textSize="30sp"/>
 
                 <LinearLayout
@@ -99,13 +103,14 @@
                         android:layout_gravity="center"
                         android:layout_marginRight="5dp"
                         android:text="33"
+                        android:textColor="@android:color/white"
                         android:textSize="24sp"/>
 
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/lois"/>
+                        app:srcCompat="@drawable/ic_like"/>
                 </LinearLayout>
 
             </RelativeLayout>
@@ -114,14 +119,15 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/battlesecondtim"
                 android:layout_width="338dp"
                 android:layout_height="218dp"
                 android:layout_gravity="center"
-                app:srcCompat="@color/circle_menu_button_color_disabled"/>
+                app:srcCompat="@drawable/bb"/>
 
             <RelativeLayout
                 android:id="@+id/battle_after_second"
@@ -130,7 +136,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
 
-                android:layout_alignParentTop="true">
+                android:layout_alignParentTop="true"
+                android:background="@color/back_likes"
+                android:visibility="invisible">
 
                 <TextView
                     android:id="@+id/battle_after_winner_second"
@@ -139,6 +147,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Победитель"
+                    android:textColor="@android:color/white"
                     android:textSize="30sp"/>
 
                 <LinearLayout
@@ -157,6 +166,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:text="33"
+                        android:textColor="@android:color/white"
                         android:textSize="24sp"/>
 
                     <ImageView
@@ -165,7 +175,7 @@
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/lois"/>
+                        app:srcCompat="@drawable/ic_like"/>
                 </LinearLayout>
 
             </RelativeLayout>

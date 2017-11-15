@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.membattle.API.APIService;
 
@@ -41,10 +42,15 @@ public class LoginActivity extends Activity {
                 startActivity(i);
             }
         });
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new LoginAction(login.getText().toString(), password.getText().toString(), null, getApplicationContext());
+                if(login.getText().toString().equals("")||password.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
+                } else {
+                    new LoginAction(login.getText().toString(), password.getText().toString(), null, getApplicationContext());
+                }
             }
         });
         String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";

@@ -29,5 +29,6 @@
     <color name="circle_third">#04082e</color>
     <color name="circle_fourth">#457696</color>
     <color name="circle_fifth">#bfe5ee</color>
+    <color name="back_likes">#de363636</color>
 
 </resources>
