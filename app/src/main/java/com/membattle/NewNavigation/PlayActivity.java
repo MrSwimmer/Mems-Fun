@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
@@ -41,11 +42,20 @@ public class PlayActivity extends Activity {
                     case "игра" :
                         Play play = new Play();
                         fTrans.replace(R.id.play_cont, play);
+                        break;
                     case "правила" :
                         RulesEvent rules = new RulesEvent();
                         fTrans.replace(R.id.play_cont, rules);
+                        break;
                     case "рейтинг" :
-
+                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "назад" :
+                        finish();
+                        break;
+                    case "сетка" :
+                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 fTrans.commit();
             }

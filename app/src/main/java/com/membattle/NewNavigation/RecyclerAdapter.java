@@ -75,12 +75,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.Play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, PlayActivity.class);
                 switch (position){
                     case 0 :
-                        Intent intent = new Intent(context, PlayActivity.class);
-                        context.startActivity(intent);
+                        intent.putExtra("ison", false);
+                        break;
+                    case 1 :
+                        intent.putExtra("ison", true);
                         break;
                 }
+                context.startActivity(intent);
             }
         });
         holder.Title.setText(mDataset.get(position).Title);

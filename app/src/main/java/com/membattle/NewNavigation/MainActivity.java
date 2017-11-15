@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
@@ -42,7 +43,8 @@ public class MainActivity extends Activity {
                     case "профиль" :
                         fTrans.replace(R.id.main_cont, profile); break;
                     case "магазин" :
-                        fTrans.replace(R.id.main_cont, shop); break;
+                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        break;
 
                 }
                 fTrans.commit();

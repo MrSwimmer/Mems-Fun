@@ -39,9 +39,11 @@
             android:name=".FirstStartActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".NewNavigation.MainActivity">
+        <activity android:name=".NewNavigation.MainActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".NewNavigation.PlayActivity">
+        <activity android:name=".NewNavigation.PlayActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

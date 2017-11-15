@@ -322,7 +322,7 @@ public class Play extends android.app.Fragment{
                     elapsedMillis=0;
                     if(tick==0){
                         mChronometer.stop();
-                        tick=5;
+                        tick=7;//длина баттла
                     }
                 }
             }
