@@ -4,7 +4,9 @@ package com.membattle.NewNavigation;
  * Created by Севастьян on 12.11.2017.
  */
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -35,6 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private ArrayList<ModeItem> mDataset;
     private static ArrayList<Time> mTimes;
     String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+    String modes[];
     Typeface CFt;
     private Context context;
     int tick = 0;
@@ -58,6 +61,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         mDataset = dataset;
         this.context = context;
         CFt = Typeface.createFromAsset(context.getAssets(), font_text);
+        //modes = context.getResources().getStringArray(R.array.modes_game);
+        modes = new String[]{"Правила для сетки", "Правила для турнирки"};
     }
 
     @Override
@@ -79,12 +84,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 switch (position){
                     case 0 :
                         intent.putExtra("ison", false);
+                        intent.putExtra("mode", 1);
                         break;
                     case 1 :
                         intent.putExtra("ison", true);
+                        intent.putExtra("mode", 0);
                         break;
                 }
                 context.startActivity(intent);
+            }
+        });
+        holder.Rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Правила")
+                        .setMessage(modes[position])
+                        .setCancelable(false)
+                        .setPositiveButton("ОК",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
         holder.Title.setText(mDataset.get(position).Title);

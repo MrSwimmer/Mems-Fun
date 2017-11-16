@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modes_game">
+        <item>Правила для крутилки</item>
+        <item>Правила для сетки</item>
+    </string-array>
+</resources>

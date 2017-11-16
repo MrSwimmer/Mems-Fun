@@ -40,7 +40,7 @@ public class Play extends android.app.Fragment{
 
     public static final String APP_PREFERENCES = "mysettings";
     static TextView timer, countfirst, countsecond, winfirst, winsecond;
-    static ImageView first, second;
+    static ImageView first, second, clock;
     RelativeLayout after1, after2;
     Chronometer mChronometer;
 
@@ -72,7 +72,8 @@ public class Play extends android.app.Fragment{
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         request = new Request.Builder().url("wss://mems.fun/ws").build();
         listener = new EchoWebSocketListener();
-
+        clock = (ImageView) v.findViewById(R.id.battle_clockim);
+        clock.setImageResource(R.drawable.hourglass);
         mChronometer = (Chronometer) v.findViewById(R.id.battlechrono);
         timer = (TextView) v.findViewById(R.id.textcount);
         after1 = (RelativeLayout) v.findViewById(R.id.battle_after_first);
@@ -142,6 +143,7 @@ public class Play extends android.app.Fragment{
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
             Log.i("code", "open");
+
         }
 
         @Override
@@ -374,6 +376,4 @@ public class Play extends android.app.Fragment{
         ws.cancel();
         super.onPause();
     }
-
-
 }

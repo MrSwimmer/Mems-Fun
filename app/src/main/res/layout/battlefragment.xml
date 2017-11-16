@@ -23,7 +23,7 @@
             android:paddingTop="10dp">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/battle_clockim"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
