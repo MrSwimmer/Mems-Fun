@@ -42,7 +42,6 @@ public class LoginActivity extends Activity {
                 startActivity(i);
             }
         });
-
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,8 +52,11 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+
         String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
         Typeface CFt = Typeface.createFromAsset(getAssets(), font_text);
+        enter.setTypeface(CFt);
+        gotoReg.setTypeface(CFt);
         login.setTypeface(CFt);
         password.setTypeface(CFt);
         login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);

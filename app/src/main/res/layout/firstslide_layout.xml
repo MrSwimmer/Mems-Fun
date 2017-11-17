@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/backenter"
               android:gravity="center"
               android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titleintro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:text="MemBattle"
-        android:textColor="@color/memblue"
-        android:textSize="38sp"/>
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/logo_circlel"/>
 
     <TextView
         android:id="@+id/textintro"
@@ -27,6 +23,6 @@
         android:text="Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст "
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="24sp"/>
+        android:textSize="18sp"/>
 
 </LinearLayout>

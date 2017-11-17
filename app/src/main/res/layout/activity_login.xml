@@ -63,7 +63,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/oval_shape"
                 android:text="Войти"
-                android:textColor="@color/memblue"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"/>
 
             <Button
                 android:id="@+id/login_but_reg"
@@ -73,7 +74,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/oval_shapetwo"
                 android:text="Регистрация"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 

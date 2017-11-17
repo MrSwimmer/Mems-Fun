@@ -16,25 +16,20 @@ import com.membattle.NewNavigation.MainActivity;
 public class Splash extends Activity {
     private SharedPreferences mSettings;
 
-    public static final String APP_PREFERENCES = "mysettings";
-    private TextView textreg;
+    public static final String APP_PREFERENCES = "settings";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String custom_font = "fonts/NAUTILUS.otf";
-
         setContentView(R.layout.activity_splash);
-        Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);
-        textreg = (TextView) findViewById(R.id.splashtite);
-        textreg.setTypeface(CF);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // По истечении времени, запускаем главный активити, а Splash Screen закрываем
 //                Intent intent = new Intent(Splash.this, FirstStartActivity.class);
 //                startActivity(intent);
-                mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
                 String login = mSettings.getString("login", "no");
                 Log.i("code", "first: "+login);
                 if(login.equals("no")){

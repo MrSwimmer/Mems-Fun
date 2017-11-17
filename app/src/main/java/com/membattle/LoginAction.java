@@ -21,12 +21,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginAction {
+    private static SharedPreferences mSettings;
     private static final String APP_PREFERENCES = "settings";
     private static APIService service;
-    private static SharedPreferences mSettings;
+
 
     public LoginAction(final String Login, String Pass, String Email, final Context context) {
-        mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        mSettings = context.getApplicationContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://78.24.223.212:3080/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,12 +61,15 @@ public class LoginAction {
                     editor.putString("refresh_token", exres.getToken_refresh());
                     editor.putString("login", Login);
                     editor.putInt("coins", 0);
-                    //editor.putInt("coins", user.getCoins());
                     editor.apply();
+                    Log.i("code", "putlog "+mSettings.getString("login", "nifiga"));
+                    //editor.putInt("coins", user.getCoins());
+
                     Intent i = new Intent( context, MainActivity.class);
-                    i.putExtra("login", Login);
-                    //i.putExtra("coins", user.getCoins());
+                    /*i.putExtra("login", Login);
                     i.putExtra("coins", 0);
+                    i.putExtra("access_token", exres.getToken_access());
+                    i.putExtra("refresh_token", exres.getToken_refresh());*/
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }

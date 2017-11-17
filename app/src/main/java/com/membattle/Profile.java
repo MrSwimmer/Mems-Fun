@@ -21,7 +21,7 @@ public class Profile extends android.app.Fragment {
     TextView title1, title2, title3, title4;
     private SharedPreferences mSettings;
     ImageView photo;
-    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES = "settings";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

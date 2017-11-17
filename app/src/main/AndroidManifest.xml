@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NewNavigation.MainActivity"
+            android:name=".Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,7 +42,7 @@
         <activity android:name=".NewNavigation.PlayActivity"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Splash"
+        <activity android:name=".NewNavigation.MainActivity"
                   android:screenOrientation="portrait">
         </activity>
     </application>

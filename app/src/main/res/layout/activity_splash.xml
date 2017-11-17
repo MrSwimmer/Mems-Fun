@@ -8,13 +8,11 @@
     android:background="@drawable/backenter"
     tools:context="com.membattle.Splash">
 
-    <TextView
-        android:id="@+id/splashtite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="MemBattle"
-        android:textColor="@color/memblue"
-        android:textSize="38sp"/>
+        android:src="@drawable/logo_circlel"/>
 </RelativeLayout>

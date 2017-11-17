@@ -19,7 +19,7 @@ import agency.tango.materialintroscreen.SlideFragment;
 
 public class FirstSlide extends SlideFragment {
     String text;
-    TextView Title, Text;
+    TextView Text;
 
     public FirstSlide() {
         super();
@@ -35,12 +35,8 @@ public class FirstSlide extends SlideFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.firstslide_layout, container, false);
-        Title = (TextView) view.findViewById(R.id.titleintro);
         Text = (TextView) view.findViewById(R.id.textintro);
-        String custom_font = "fonts/Mr_Lonely.otf";
-        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
-        Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
-        Title.setTypeface(CF);
+        String font_text = "fonts/TAHOMA.ttf";
         Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
         Text.setTypeface(CFt);
         Text.setText(text);
