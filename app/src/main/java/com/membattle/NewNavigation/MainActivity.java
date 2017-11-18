@@ -29,8 +29,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
         mModesFragment = new ModesFragment();
+        fTrans = getFragmentManager().beginTransaction();
+        fTrans.replace(R.id.main_cont, mModesFragment);
+        fTrans.commit();
         final Rules rules = new Rules();
         final Settings settings = new Settings();
         final Profile profile = new Profile();

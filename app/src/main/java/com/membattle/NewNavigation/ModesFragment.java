@@ -1,5 +1,6 @@
 package com.membattle.NewNavigation;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -64,10 +65,10 @@ public class ModesFragment extends android.app.Fragment {
         ArrayList<ModeItem> mDataSet = new ArrayList();
 
         for (int i = 0; i < 1; i++) {
-            ModeItem modeItem1 = new ModeItem(R.drawable.dp, "День первокурсника", 10*i, 1);
+            ModeItem modeItem1 = new ModeItem(R.drawable.dp, "День первокурсника", 70, 1, Color.WHITE);
             mDataSet.add(modeItem1);
         }
-        ModeItem modeItem = new ModeItem(R.drawable.bb, "", 0, 0);
+        ModeItem modeItem = new ModeItem(R.drawable.bb, "Бесконечный баттл", 0, 0, R.color.memblue);
         mDataSet.add(modeItem);
         return mDataSet;
     }

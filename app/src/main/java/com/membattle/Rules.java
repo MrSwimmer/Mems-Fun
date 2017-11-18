@@ -23,7 +23,7 @@ public class Rules extends Fragment {
         title = (TextView) v.findViewById(R.id.ruletitle);
         text.setText(R.string.rules);
         title.setText("Правила игры");
-        String custom_font = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+        String custom_font = "fonts/TAHOMA.ttf";
         Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
         String font = "fonts/NAUTILUS.otf";
         Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font);

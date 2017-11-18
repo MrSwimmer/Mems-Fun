@@ -36,7 +36,7 @@
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/memblue"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:text="@string/rules"/>
 
         </LinearLayout>

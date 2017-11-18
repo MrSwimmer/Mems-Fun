@@ -40,7 +40,7 @@ public class Play extends android.app.Fragment{
 
     public static final String APP_PREFERENCES = "mysettings";
     static TextView timer, countfirst, countsecond, winfirst, winsecond;
-    static ImageView first, second, clock;
+    static ImageView first, second, clock, flikes, slikes, likeonf, likeons;
     RelativeLayout after1, after2;
     Chronometer mChronometer;
 
@@ -84,10 +84,22 @@ public class Play extends android.app.Fragment{
         countsecond = (TextView) v.findViewById(R.id.battle_after_likes2);
         winfirst = (TextView) v.findViewById(R.id.battle_after_winner_first);
         winsecond = (TextView) v.findViewById(R.id.battle_after_winner_second);
-
+        flikes = (ImageView) v.findViewById(R.id.battle_imlikef);
+        slikes = (ImageView) v.findViewById(R.id.battle_imlikes);
         String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
         Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
         timer.setTypeface(CFt);
+        countfirst.setTypeface(CFt);
+        countsecond.setTypeface(CFt);
+        winsecond.setTypeface(CFt);
+        winfirst.setTypeface(CFt);
+        flikes.setImageResource(R.drawable.ic_like);
+        slikes.setImageResource(R.drawable.ic_like);
+        timer.setText(5+"");
+        likeonf = (ImageView) v.findViewById(R.id.battle_likeonf);
+        likeons = (ImageView) v.findViewById(R.id.battle_likeons);
+        likeonf.setImageResource(R.drawable.onimagelike);
+        likeons.setImageResource(R.drawable.onimagelike);
         final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
         /*int chooseskin = mSettings.getInt("skin1", 0);
         switch (chooseskin){
@@ -104,9 +116,9 @@ public class Play extends android.app.Fragment{
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showlikes();
+                //showlikes();
+                showOnFirstImageLike();
                 if(!click){
-
                     ws.send(choose+id1+"}");
                     click = true;
                     voice = true;
@@ -116,7 +128,8 @@ public class Play extends android.app.Fragment{
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hidelikes();
+                //hidelikes();
+                showOnSecondImageLike();
                 if(!click){
 
                     ws.send(choose+id2+"}");
@@ -136,6 +149,12 @@ public class Play extends android.app.Fragment{
     void hidelikes(){
         after1.setVisibility(View.INVISIBLE);
         after2.setVisibility(View.INVISIBLE);
+    }
+    void showOnFirstImageLike(){
+        likeonf.setVisibility(View.VISIBLE);
+    }
+    void showOnSecondImageLike(){
+        likeons.setVisibility(View.VISIBLE);
     }
     class EchoWebSocketListener extends WebSocketListener {
         private static final int NORMAL_CLOSURE_STATUS = 1000;

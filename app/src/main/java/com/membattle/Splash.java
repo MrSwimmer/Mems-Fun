@@ -41,12 +41,13 @@ public class Splash extends Activity {
                             .addNextIntentWithParentStack(new Intent(getApplicationContext(), LoginActivity.class))
                             .addNextIntent(new Intent(getApplicationContext(), FirstStartActivity.class))
                             .startActivities();
-
+                    finish();
                 }
                 else {
                     overridePendingTransition(0,0);
                     Intent i = new Intent(Splash.this, MainActivity.class);
                     startActivity(i);
+                    finish();
                 }
 
             }

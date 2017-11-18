@@ -28,7 +28,7 @@ public class LoginAction {
 
     public LoginAction(final String Login, String Pass, String Email, final Context context) {
 
-        mSettings = context.getApplicationContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://78.24.223.212:3080/")
                 .addConverterFactory(GsonConverterFactory.create())

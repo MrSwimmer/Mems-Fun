@@ -6,17 +6,16 @@ package com.membattle.NewNavigation;
 
 class ModeItem {
     String Title;
-    int Image;
-    int Time;
-    int Type;
+    int Image, Time, Type, Color;
     /*Типы игры
             0 - бесконечный баттл
             1 - турнирка
     */
-    public ModeItem(int image, String title, int time, int type) {
+    public ModeItem(int image, String title, int time, int type, int color) {
         Title = title;
         Image = image;
         Time = time;
         Type = type;
+        Color = color;
     }
 }

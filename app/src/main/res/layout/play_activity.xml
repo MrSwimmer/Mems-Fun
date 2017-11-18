@@ -67,7 +67,7 @@
             app:colorNormal="#4CAF50"
             app:colorPressed="#43A047"
             app:hintText="рейтинг"
-            app:icon="@drawable/ic_rate"/>
+            app:icon="@drawable/trophy"/>
 
     </com.imangazaliev.circlemenu.CircleMenu>
 </RelativeLayout>

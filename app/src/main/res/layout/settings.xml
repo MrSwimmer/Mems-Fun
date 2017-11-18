@@ -2,8 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@android:color/background_light"
               android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/settitle"
+        tools:text="Правила игры"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Настройки"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/memblue"
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/setout"
@@ -13,7 +27,7 @@
         android:background="@drawable/bottom_line"
         android:padding="12dp"
         android:text="Выйти из аккаунта"
-        android:textSize="19sp"/>
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/setclear"
@@ -23,7 +37,7 @@
         android:background="@drawable/bottom_line"
         android:padding="12dp"
         android:text="Очистить данные аккаунта"
-        android:textSize="19sp"/>
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/setmark"
@@ -33,7 +47,7 @@
         android:background="@drawable/bottom_line"
         android:padding="12dp"
         android:text="Оценить нас в Google Play"
-        android:textSize="19sp"/>
+        android:textSize="24sp"/>
     <TextView
         android:id="@+id/aboutv"
         android:layout_width="match_parent"
@@ -42,5 +56,5 @@
         android:background="@drawable/bottom_line"
         android:padding="12dp"
         android:text="Что нового в версии 1.3?"
-        android:textSize="19sp"/>
+        android:textSize="24sp"/>
 </LinearLayout>

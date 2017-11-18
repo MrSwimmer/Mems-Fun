@@ -45,8 +45,15 @@ public class RegActivity extends Activity {
         textreg = (TextView) findViewById(R.id.textReg);
         Registration = (Button) findViewById(R.id.butreg);
         String custom_font = "fonts/NAUTILUS.otf";
+        String font = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
+        Typeface CFt = Typeface.createFromAsset(getAssets(), font);
         Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);
         textreg.setTypeface(CF);
+        Email.setTypeface(CFt);
+        Login.setTypeface(CFt);
+        Pass.setTypeface(CFt);
+        Repeat.setTypeface(CFt);
+        Registration.setTypeface(CFt);
         Login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         Pass.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         Repeat.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);

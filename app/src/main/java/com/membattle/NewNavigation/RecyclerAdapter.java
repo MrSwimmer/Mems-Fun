@@ -117,6 +117,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.Play.setTypeface(CFt);
         holder.Rules.setTypeface(CFt);
         holder.TextTime.setTypeface(CFt);
+        holder.TextTime.setTextColor(mDataset.get(position).Color);
+        holder.Title.setTextColor(mDataset.get(position).Color);
         String tick = String.valueOf(ModesFragment.Tick);
         //holder.TextTime.setText(tick);
         MyCountDownTimer mCountDownTimer;

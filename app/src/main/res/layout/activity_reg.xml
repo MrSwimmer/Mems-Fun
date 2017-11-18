@@ -93,7 +93,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/oval_shape"
                 android:text="Регистрация"
-                android:textColor="@color/memblue"/>
+                android:textColor="@color/memblue"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 

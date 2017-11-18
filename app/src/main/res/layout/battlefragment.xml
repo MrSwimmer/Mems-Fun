@@ -35,21 +35,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:padding="5dp"
-                android:text="5"
-                android:textColor="@color/custom_slide_background"
+                android:text="7"
+                android:textColor="@color/memblue"
                 android:textSize="22sp"/>
 
             <Chronometer
                 android:id="@+id/battlechrono"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/memblue"
                 android:textSize="8sp"
                 android:visibility="invisible"/>
 
@@ -68,6 +66,15 @@
                 android:layout_height="218dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/bb"/>
+
+            <ImageView
+                android:id="@+id/battle_likeonf"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/onimagelike"/>
 
             <RelativeLayout
                 android:id="@+id/battle_after_first"
@@ -90,6 +97,7 @@
                     android:textSize="30sp"/>
 
                 <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/battle_after_winner_first"
@@ -107,6 +115,7 @@
                         android:textSize="24sp"/>
 
                     <ImageView
+                        android:id="@+id/battle_imlikef"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
@@ -128,6 +137,15 @@
                 android:layout_height="218dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/bb"/>
+
+            <ImageView
+                android:id="@+id/battle_likeons"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/onimagelike"/>
 
             <RelativeLayout
                 android:id="@+id/battle_after_second"
@@ -170,7 +188,7 @@
                         android:textSize="24sp"/>
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/battle_imlikes"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"

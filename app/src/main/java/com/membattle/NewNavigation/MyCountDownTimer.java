@@ -22,6 +22,12 @@ class MyCountDownTimer extends CountDownTimer {
 
     @Override
     public void onTick(long millisUntilFinished) {
-        mTextTime.setText((String.valueOf(millisUntilFinished / 1000)));
+        if(millisUntilFinished/1000>59){
+            String min = millisUntilFinished/60000+"";
+            String sec = ((int) (millisUntilFinished%60000)/1000)+"";
+            mTextTime.setText(min+":"+sec);
+        } else {
+            mTextTime.setText((String.valueOf(millisUntilFinished / 1000)));
+        }
     }
 }
