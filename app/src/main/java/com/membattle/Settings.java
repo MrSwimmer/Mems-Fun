@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
 public class Settings extends android.app.Fragment{
     TextView Out, Mark, Clear, About, Title;
     private SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES = "settings";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

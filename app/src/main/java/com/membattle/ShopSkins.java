@@ -21,7 +21,7 @@ public class ShopSkins extends Fragment{
     boolean buy1, buy2, buy3, buy4, buy5, buy6;
     ImageView im1, im2,im3,im4,im5,im6;
     private SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES = "settings";
     int coins;
     void choosefor(){
 

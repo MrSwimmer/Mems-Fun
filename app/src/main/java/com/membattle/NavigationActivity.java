@@ -22,7 +22,7 @@ public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES = "settings";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

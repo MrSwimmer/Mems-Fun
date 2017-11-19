@@ -17,11 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.membattle.NewNavigation.PlayActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,10 +40,10 @@ public class Play extends android.app.Fragment{
     private OkHttpClient client;
     WebSocket ws;
     private SharedPreferences mSettings;
+    public static final String APP_PREFERENCES = "settings";
     Request request;
     EchoWebSocketListener listener;
 
-    public static final String APP_PREFERENCES = "mysettings";
     static TextView timer, countfirst, countsecond, winfirst, winsecond;
     static ImageView first, second, clock, flikes, slikes, likeonf, likeons;
     RelativeLayout after1, after2;
@@ -50,19 +55,83 @@ public class Play extends android.app.Fragment{
     private int id1=1, id2=2;
     boolean voice = true;
 
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket("http://dev.themezv.ru:8000/");
+        } catch (URISyntaxException e) {}
+    }
     //int skin1 = R.drawable.mem1;
     //запуск сокетов
     @Override
     public void onResume() {
-        request = new Request.Builder().url("wss://mems.fun/ws").build();
+        request = new Request.Builder().url("http://dev.themezv.ru:8000/").build();
         listener = new EchoWebSocketListener();
         ws = client.newWebSocket(request, listener);
         client.dispatcher().executorService().shutdown();
         SharedPreferences.Editor editor = mSettings.edit();
         int games = mSettings.getInt("countgames", 0);
         editor.putInt("countgames", games-1);
+
+        mSocket.on("CHOOSE_MEM", onGameListen);
+
+        //mSocket.on("type2", )
+        mSocket.connect();
+
         super.onResume();
     }
+    private Emitter.Listener onGameListen = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(String.valueOf(args[0]));
+                Log.i("code", "socketio: "+jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            /*JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(String.valueOf(args[0]));
+                String type = jsonObject.getString("type");
+                if(type.equals("END_TIMER")){
+                    int winid = jsonObject.getJSONObject("data").getInt("winner_id");
+                    click=true;
+                    if(winid==id1){
+                        getWinnerMemAsync winner = new getWinnerMemAsync();
+                        winner.execute(true);
+                    }
+                    else {
+                        getWinnerMemAsync newwin = new getWinnerMemAsync();
+                        newwin.execute(false);
+                    }
+                }
+                String url1 = jsonObject.getJSONArray("data").getJSONObject(0).getString("url");
+                String url2 = jsonObject.getJSONArray("data").getJSONObject(1).getString("url");
+                id2 = jsonObject.getJSONArray("data").getJSONObject(1).getInt("id");
+                id1 = jsonObject.getJSONArray("data").getJSONObject(0).getInt("id");
+
+                if(type.equals("START_TIMER")){
+                    click = false;
+                    getMemesAsync myAsyncTaskStart = new getMemesAsync();
+                    myAsyncTaskStart.execute(url1, url2, String.valueOf(id1), String.valueOf(id2));
+                }
+                if(type.equals("MEMES_LIKES")){
+                    int likesf, likess;
+                    likesf = jsonObject.getJSONArray("data").getJSONObject(0).getInt("likes");
+                    likess = jsonObject.getJSONArray("data").getJSONObject(1).getInt("likes");
+                    String slikef, slikess;
+                    slikef = String.valueOf(likesf);
+                    slikess = String.valueOf(likess);
+                    setLikesAsync setl = new setLikesAsync();
+                    setl.execute(slikef, slikess);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+        }
+    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,23 +170,16 @@ public class Play extends android.app.Fragment{
         likeonf.setImageResource(R.drawable.onimagelike);
         likeons.setImageResource(R.drawable.onimagelike);
         final String choose = "{\"type\":\"CHOOSE_MEM\",\"id\":";
-        /*int chooseskin = mSettings.getInt("skin1", 0);
-        switch (chooseskin){
-            case 0: skin1 = R.drawable.mem1; break;
-            case 1: skin1 = R.drawable.pay1; break;
-            case 2: skin1 = R.drawable.pay2; break;
-            case 3: skin1 = R.drawable.pay3; break;
-            case 4: skin1 = R.drawable.pay4; break;
-            case 5: skin1 = R.drawable.pay5; break;
-            case 6: skin1 = R.drawable.pay6; break;
-        }*/
+
         first.setImageResource(R.drawable.bb);
         second.setImageResource(R.drawable.bb);
+
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //showlikes();
                 showOnFirstImageLike();
+                mSocket.emit("CHOOSE_MEM", "{data:\"artem\"}");
                 if(!click){
                     ws.send(choose+id1+"}");
                     click = true;

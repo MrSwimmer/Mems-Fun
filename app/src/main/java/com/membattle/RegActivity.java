@@ -30,7 +30,7 @@ public class RegActivity extends Activity {
     TextView textreg;
     private SharedPreferences mSettings;
     EditText Login, Pass, Repeat, Email;
-    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES = "settings";
     private APIService service;
 
     @Override
