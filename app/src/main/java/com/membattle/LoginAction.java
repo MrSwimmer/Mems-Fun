@@ -30,7 +30,7 @@ public class LoginAction {
 
         mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://78.24.223.212:3080/")
+                .baseUrl("http://dev.themezv.ru:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);
@@ -54,13 +54,15 @@ public class LoginAction {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }*/
-                Log.i("code", "refresh_token " + exres.getToken_access());
+                //Log.i("code", "refresh_token " + exres.getToken_access());
                 if(exres.getSuccess()) {
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString("access_token", exres.getToken_access());
                     editor.putString("refresh_token", exres.getToken_refresh());
                     editor.putString("login", Login);
                     editor.putInt("coins", 0);
+                    Log.i("code", "id"+exres.getId());
+                    editor.putInt("id", exres.getId());
                     editor.apply();
                     Log.i("code", "putlog "+mSettings.getString("login", "nifiga"));
                     //editor.putInt("coins", user.getCoins());

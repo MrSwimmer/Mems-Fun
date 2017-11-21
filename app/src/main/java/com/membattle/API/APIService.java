@@ -3,10 +3,12 @@ package com.membattle.API;
 import com.membattle.API.SupportClasses.Responses.Exres;
 import com.membattle.API.SupportClasses.Requests.RefreshTok;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
+import com.membattle.API.SupportClasses.Responses.Modes;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -25,4 +27,6 @@ public interface APIService {
     Call<Exres> refresh(@Body RefreshTok refreshTok);
     @POST("auth/refresh-token")
     Call<Exres> refreshbody(@Body RequestBody refreshTok);
+    @GET("game/modes")
+    Call<Modes> modes();
 }

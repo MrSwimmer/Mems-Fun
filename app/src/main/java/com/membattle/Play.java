@@ -55,83 +55,68 @@ public class Play extends android.app.Fragment{
     private int id1=1, id2=2;
     boolean voice = true;
 
-    private Socket mSocket;
+
+    //int skin1 = R.drawable.mem1;
+    //запуск сокетов
+    public static Socket mSocket;
     {
         try {
             mSocket = IO.socket("http://dev.themezv.ru:8000/");
         } catch (URISyntaxException e) {}
     }
-    //int skin1 = R.drawable.mem1;
-    //запуск сокетов
+    private Emitter.Listener onConnect = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.i("code", args[0]+"");
+            JSONObject jsonObject = null;
+            //jsonObject(entity);
+            try {
+                jsonObject = new JSONObject(String.valueOf(args[0]));
+                Log.i("code", "listenConnect: " + jsonObject);
+            } catch (JSONException e) {
+
+                e.printStackTrace();
+            }
+        }
+    };
+    private Emitter.Listener onChoose = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.i("code", args[0]+"");
+            JSONObject jsonObject = null;
+            //jsonObject(entity);
+            try {
+                jsonObject = new JSONObject(String.valueOf(args[0]));
+                Log.i("code", "listenChoose: " + jsonObject);
+            } catch (JSONException e) {
+
+                e.printStackTrace();
+            }
+        }
+    };
     @Override
     public void onResume() {
         request = new Request.Builder().url("http://dev.themezv.ru:8000/").build();
         listener = new EchoWebSocketListener();
         ws = client.newWebSocket(request, listener);
+        mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         client.dispatcher().executorService().shutdown();
         SharedPreferences.Editor editor = mSettings.edit();
         int games = mSettings.getInt("countgames", 0);
         editor.putInt("countgames", games-1);
-
-        mSocket.on("CHOOSE_MEM", onGameListen);
-
+        mSocket.on("CONNECT_TO_GAME", onConnect);
+        mSocket.on("CHOOSE_MEM", onChoose);
+        //mSocket.on("START_ROUND", startRound);
         //mSocket.on("type2", )
         mSocket.connect();
 
+
+            mSocket.emit("CONNECT_TO_GAME", "{\"user_id\":"+mSettings.getInt("id",999)+ ",\"game_id\":1234}");
+            Log.i("code", "SendConnect " + "{\"user_id\":"+mSettings.getInt("id",999)+ ",\"game_id\":1234}");
+
         super.onResume();
     }
-    private Emitter.Listener onGameListen = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(String.valueOf(args[0]));
-                Log.i("code", "socketio: "+jsonObject);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-            /*JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(String.valueOf(args[0]));
-                String type = jsonObject.getString("type");
-                if(type.equals("END_TIMER")){
-                    int winid = jsonObject.getJSONObject("data").getInt("winner_id");
-                    click=true;
-                    if(winid==id1){
-                        getWinnerMemAsync winner = new getWinnerMemAsync();
-                        winner.execute(true);
-                    }
-                    else {
-                        getWinnerMemAsync newwin = new getWinnerMemAsync();
-                        newwin.execute(false);
-                    }
-                }
-                String url1 = jsonObject.getJSONArray("data").getJSONObject(0).getString("url");
-                String url2 = jsonObject.getJSONArray("data").getJSONObject(1).getString("url");
-                id2 = jsonObject.getJSONArray("data").getJSONObject(1).getInt("id");
-                id1 = jsonObject.getJSONArray("data").getJSONObject(0).getInt("id");
-
-                if(type.equals("START_TIMER")){
-                    click = false;
-                    getMemesAsync myAsyncTaskStart = new getMemesAsync();
-                    myAsyncTaskStart.execute(url1, url2, String.valueOf(id1), String.valueOf(id2));
-                }
-                if(type.equals("MEMES_LIKES")){
-                    int likesf, likess;
-                    likesf = jsonObject.getJSONArray("data").getJSONObject(0).getInt("likes");
-                    likess = jsonObject.getJSONArray("data").getJSONObject(1).getInt("likes");
-                    String slikef, slikess;
-                    slikef = String.valueOf(likesf);
-                    slikess = String.valueOf(likess);
-                    setLikesAsync setl = new setLikesAsync();
-                    setl.execute(slikef, slikess);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }*/
-        }
-    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -179,7 +164,10 @@ public class Play extends android.app.Fragment{
             public void onClick(View v) {
                 //showlikes();
                 showOnFirstImageLike();
-                mSocket.emit("CHOOSE_MEM", "{data:\"artem\"}");
+
+                    mSocket.emit("CHOOSE_MEM", "{\"user_id\":"+mSettings.getInt("id",999)+ ",\"game_id\":1234"+",\"mem_id\":"+id1+"}");
+                Log.i("code", "SendChoose1");
+
                 if(!click){
                     ws.send(choose+id1+"}");
                     click = true;
@@ -192,8 +180,10 @@ public class Play extends android.app.Fragment{
             public void onClick(View v) {
                 //hidelikes();
                 showOnSecondImageLike();
-                if(!click){
+                    mSocket.emit("CHOOSE_MEM", "{\"user_id\":"+mSettings.getInt("id",999)+ ",\"game_id\":1234"+",\"mem_id\":"+id2+"}");
+                    Log.i("code", "SendChoose2");
 
+                if(!click){
                     ws.send(choose+id2+"}");
                     click = true;
                     voice = false;

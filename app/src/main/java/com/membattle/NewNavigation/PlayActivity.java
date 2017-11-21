@@ -3,26 +3,44 @@ package com.membattle.NewNavigation;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
 import com.membattle.Play;
 import com.membattle.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 
 public class PlayActivity extends Activity {
     static CircleMenu circleMenu;
     static FragmentTransaction fTrans;
     static int mode = 0;
     private String[] modes;
+    private SharedPreferences mSettings;
+    ImageView photo, imc;
+    public static final String APP_PREFERENCES = "settings";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        //mSocket.emit("CONNECT_TO_GAME", "{user_id:"+mSettings.getInt("id",999)+ ",game_id:number}");
         modes = getResources().getStringArray(R.array.modes_game);
         Intent intent = getIntent();
         boolean ison = intent.getBooleanExtra("ison", false);
@@ -63,7 +81,9 @@ public class PlayActivity extends Activity {
                         fTrans.replace(R.id.play_cont, rules);*/
                         break;
                     case "рейтинг" :
-                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        RateEvent rateEvent = new RateEvent();
+                        fTrans.replace(R.id.play_cont, rateEvent);
+                        //Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
                         break;
                     case "назад" :
                         finish();

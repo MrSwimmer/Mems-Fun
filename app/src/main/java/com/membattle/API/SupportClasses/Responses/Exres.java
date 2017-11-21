@@ -20,10 +20,19 @@ public class Exres {
     @SerializedName("token_access")
     @Expose
     private String token_access;
-        @SerializedName("token_refresh")
+    @SerializedName("token_refresh")
     @Expose
     private String token_refresh;
+    @SerializedName("_id")
+    @Expose
+    private int _id;
+    public int getId() {
+        return _id;
+    }
 
+    public void setId(int id) {
+        this._id = id;
+    }
     public Boolean getSuccess() {
         return success;
     }

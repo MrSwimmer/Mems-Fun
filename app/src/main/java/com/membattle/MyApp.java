@@ -11,7 +11,6 @@ import com.membattle.API.APIService;
 import org.json.JSONObject;
 
 
-import io.realm.Realm;
 
 /**
  * Created by Севастьян on 16.10.2017.
@@ -19,7 +18,6 @@ import io.realm.Realm;
 
 public class MyApp extends Application {
     private static MyApp singleton;
-    //public Realm mainRealm;
     private static final String APP_PREFERENCES = "settings";
     private static APIService service;
     private static SharedPreferences mSettings;

@@ -1,6 +1,7 @@
 package com.membattle.NewNavigation;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
+import android.widget.TextView;
 
 import com.membattle.Play;
 import com.membattle.R;
@@ -29,13 +31,19 @@ public class ModesFragment extends android.app.Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     static int Tick;
     static long start = 0;
+    TextView title;
     static Chronometer sChronometer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.modes_fragment, container, false);
         ArrayList<ModeItem> myDataset = getDataSet();
         Tick = 0;
+        String custom_font = "fonts/NAUTILUS.otf";
+        title = (TextView) v.findViewById(R.id.modes_title);
+        Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
+        title.setTypeface(CF);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mods_recycler);
         start = System.currentTimeMillis();
         /*sChronometer = (Chronometer) v.findViewById(R.id.modes_chrono);

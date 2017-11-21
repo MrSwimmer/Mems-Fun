@@ -5,6 +5,16 @@
               android:background="@color/circle_menu_center_button_color_pressed"
               android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/modes_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Режимы и события"
+        android:textAlignment="center"
+        android:textColor="@color/memblue"
+        android:textSize="30sp"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mods_recycler"
         android:layout_width="match_parent"

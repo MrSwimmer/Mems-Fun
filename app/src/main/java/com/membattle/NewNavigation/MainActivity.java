@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         final Rules rules = new Rules();
         final Settings settings = new Settings();
         final Profile profile = new Profile();
-        final ShopMem shop = new ShopMem();
+
         circleMenu = (CircleMenu) findViewById(R.id.circleMenu);
         circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
             @Override

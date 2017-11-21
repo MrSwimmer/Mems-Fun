@@ -17,20 +17,23 @@ import android.widget.TextView;
  */
 
 public class Profile extends android.app.Fragment {
-    TextView username, coins, countgames, countwins, winstrik, winrate;
+    TextView username, coins, countgames, countwins, winstrik, winrate, titleInf;
     TextView title1, title2, title3, title4;
     private SharedPreferences mSettings;
-    ImageView photo;
+    ImageView photo, imc;
     public static final String APP_PREFERENCES = "settings";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.profile, container, false);
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        titleInf = (TextView) v.findViewById(R.id.prof_titleinf);
         title1 = (TextView) v.findViewById(R.id.title1);
         title2 = (TextView) v.findViewById(R.id.title2);
         title3 = (TextView) v.findViewById(R.id.title3);
         title4 = (TextView) v.findViewById(R.id.title4);
+        imc = (ImageView) v.findViewById(R.id.prof_imc);
+        imc.setImageResource(R.drawable.coin_menu);
         username = (TextView) v.findViewById(R.id.profileusername);
         coins = (TextView) v.findViewById(R.id.profilecoins);
         photo = (ImageView) v.findViewById(R.id.profile_image);
@@ -70,6 +73,7 @@ public class Profile extends android.app.Fragment {
             }
         });
         username.setTypeface(CFt);
+        titleInf.setTypeface(CFt);
         title1.setTypeface(CF);
         title2.setTypeface(CF);
         title3.setTypeface(CF);

@@ -51,7 +51,7 @@
                 android:textSize="24sp"/>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/prof_imc"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="bottom"
@@ -61,10 +61,19 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/prof_titleinf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Бесконечный баттл"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView

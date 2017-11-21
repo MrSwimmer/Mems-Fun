@@ -69,7 +69,7 @@ public class RegActivity extends Activity {
                 } else {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://78.24.223.212:3080/")
+                            .baseUrl("http://dev.themezv.ru:8000/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     service = retrofit.create(APIService.class);
