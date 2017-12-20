@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.Sups;
 
 import android.util.Base64;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 import android.os.CountDownTimer;
 import android.widget.TextView;

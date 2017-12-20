@@ -1,12 +1,15 @@
-package com.membattle.NewNavigation;
+package com.membattle.Sups;
 
 /**
  * Created by Севастьян on 12.11.2017.
  */
 
-class ModeItem {
-    String Title;
-    int Image, Time, Type, Color;
+public class ModeItem {
+    public String Title;
+    public int Image;
+    public int Time;
+    int Type;
+    public int Color;
     /*Типы игры
             0 - бесконечный баттл
             1 - турнирка

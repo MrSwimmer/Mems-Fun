@@ -1,4 +1,4 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 /**
  * Created by Севастьян on 12.11.2017.
@@ -9,27 +9,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
-import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.membattle.NavigationActivity;
-import com.membattle.Play;
+import com.membattle.Sups.ModeItem;
 import com.membattle.R;
 
 import java.util.ArrayList;
-
-import static com.membattle.NewNavigation.MainActivity.fTrans;
-import static com.membattle.NewNavigation.ModesFragment.start;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -122,7 +114,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         String tick = String.valueOf(ModesFragment.Tick);
         //holder.TextTime.setText(tick);
         MyCountDownTimer mCountDownTimer;
-        long timegone = System.currentTimeMillis() - start;
+        long timegone = System.currentTimeMillis() - ModesFragment.start;
         Log.i("code", "gone " + timegone);
         Log.i("code", "> "+mDataset.get(position).Time);
         if(mDataset.get(position).Time*1000-timegone>0&&(mDataset.get(position).Time!=0)){

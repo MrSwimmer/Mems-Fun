@@ -1,11 +1,10 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.membattle.Sups.LineRating;
 import com.membattle.R;
-
-import java.util.ArrayList;
 
 /**
  * Created by Севастьян on 19.11.2017.

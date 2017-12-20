@@ -3,10 +3,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@android:color/background_light"
               android:orientation="vertical">
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/settitle"
         tools:text="Правила игры"
         android:layout_width="match_parent"
@@ -15,46 +16,55 @@
         android:layout_marginTop="15dp"
         android:text="Настройки"
         android:textAlignment="center"
+        app:customFont="@string/font_title"
+
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/setout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
+        app:customFont="@string/font_main"
+
         android:text="Выйти из аккаунта"
         android:textSize="24sp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/setclear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
+        app:customFont="@string/font_main"
+
         android:text="Очистить данные аккаунта"
         android:textSize="24sp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/setmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
+        app:customFont="@string/font_main"
+
         android:text="Оценить нас в Google Play"
         android:textSize="24sp"/>
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/aboutv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
+        app:customFont="@string/font_main"
         android:text="Что нового в версии 1.3?"
         android:textSize="24sp"/>
 </LinearLayout>

@@ -30,7 +30,7 @@ public class MyApp extends Application {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         String access = mSettings.getString("token_refresh", null);
         if(access!=null){
-            Log.i("code", "myapp "+ access);
+            //Log.i("code", "myapp "+ access);
         }
         //mainRealm = Realm.getInstance(this);
     }

@@ -1,27 +1,22 @@
-package com.membattle.NewNavigation;
+package com.membattle.MainActivity;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
-import com.membattle.MyApp;
-import com.membattle.Profile;
+import com.membattle.Game.ModesFragment;
 import com.membattle.R;
-import com.membattle.Rules;
-import com.membattle.Settings;
 
 public class MainActivity extends Activity {
     ModesFragment mModesFragment;
     CircleMenu circleMenu;
-    static FragmentTransaction fTrans;
+    public static FragmentTransaction fTrans;
     private static SharedPreferences mSettings;
     private static final String APP_PREFERENCES = "settings";
     @Override
@@ -36,7 +31,6 @@ public class MainActivity extends Activity {
         final Rules rules = new Rules();
         final Settings settings = new Settings();
         final Profile profile = new Profile();
-
         circleMenu = (CircleMenu) findViewById(R.id.circleMenu);
         circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
             @Override

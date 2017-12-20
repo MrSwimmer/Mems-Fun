@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name=".Intro.Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -22,27 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegActivity"
+            android:name=".SignInUp.RegActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".SignInUp.LoginActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".NavigationActivity"
-            android:label="MemBattle"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".FirstStartActivity"
+            android:name=".Intro.FirstStartActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".NewNavigation.PlayActivity"
+        <activity android:name=".Game.PlayActivity"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".NewNavigation.MainActivity"
+        <activity android:name=".MainActivity.MainActivity"
                   android:screenOrientation="portrait">
         </activity>
     </application>

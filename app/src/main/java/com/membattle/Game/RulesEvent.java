@@ -1,4 +1,4 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 import android.app.Fragment;
 import android.os.Bundle;

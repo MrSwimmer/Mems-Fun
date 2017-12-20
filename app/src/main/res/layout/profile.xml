@@ -23,13 +23,14 @@
             android:paddingTop="25dp"
             app:srcCompat="@drawable/logo_circlel"/>
 
-        <TextView
+        <com.membattle.TextViewPlus
             android:id="@+id/profileusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="username"
             android:textAlignment="center"
+            app:customFont="@string/font_title"
             android:textColor="@android:color/background_light"
             android:textSize="28sp"/>
 
@@ -40,13 +41,14 @@
             android:orientation="horizontal"
             android:paddingTop="10dp">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/profilecoins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="coins"
                 android:textAlignment="center"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="24sp"/>
 
@@ -61,14 +63,15 @@
 
         </LinearLayout>
 
-        <TextView
+        <com.membattle.TextViewPlus
             android:id="@+id/prof_titleinf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Бесконечный баттл"
             android:textColor="@android:color/white"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            app:customFont="@string/font_title"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -76,23 +79,25 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/title1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Игр сыграно:"
                 android:textColor="@android:color/white"
+                app:customFont="@string/font_main"
                 android:textSize="24sp"
                 />
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/countgames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="TextView"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="24sp"
                 />
@@ -104,20 +109,22 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Из них выиграно: "
                 android:textColor="@android:color/white"
+                app:customFont="@string/font_main"
                 android:textSize="24sp"/>
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/countwins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="24sp"
                 />
@@ -129,20 +136,22 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/title3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Винрейт:"
+                app:customFont="@string/font_main"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"/>
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/profwinrate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="24sp"
                 />
@@ -154,20 +163,22 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/title4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Текущий винстрик:"
+                app:customFont="@string/font_main"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"/>
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/profwinstr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="TextView"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="24sp"
                 />

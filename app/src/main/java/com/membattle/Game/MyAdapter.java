@@ -1,4 +1,4 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 /**
  * Created by Севастьян on 20.11.2017.
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.membattle.Sups.LineRating;
 import com.membattle.R;
 
 public class MyAdapter extends ArrayAdapter<LineRating> {

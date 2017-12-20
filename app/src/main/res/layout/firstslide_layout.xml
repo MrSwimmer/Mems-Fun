@@ -13,7 +13,7 @@
         android:layout_height="120dp"
         app:srcCompat="@drawable/logo_circlel"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/textintro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +23,7 @@
         android:text="Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст "
         android:textAlignment="center"
         android:textColor="@android:color/white"
+        app:customFont="@string/font_main"
         android:textSize="18sp"/>
 
 </LinearLayout>

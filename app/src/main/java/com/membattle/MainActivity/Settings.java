@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.MainActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,21 +7,22 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.membattle.SignInUp.LoginActivity;
+import com.membattle.R;
+import com.membattle.TextViewPlus;
 
 /**
  * Created by Севастьян on 15.10.2017.
  */
 
 public class Settings extends android.app.Fragment{
-    TextView Out, Mark, Clear, About, Title;
+    TextViewPlus Out, Mark, Clear, About, Title;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "settings";
 
@@ -29,21 +30,12 @@ public class Settings extends android.app.Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.settings, container, false);
-        String custom_font = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
-        Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
-        String font = "fonts/NAUTILUS.otf";
-        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font);
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        Out = (TextView) v.findViewById(R.id.setout);
-        Mark = (TextView) v.findViewById(R.id.setmark);
-        Clear = (TextView) v.findViewById(R.id.setclear);
-        About = (TextView) v.findViewById(R.id.aboutv);
-        Title = (TextView) v.findViewById(R.id.settitle);
-        Out.setTypeface(CF);
-        Mark.setTypeface(CF);
-        Clear.setTypeface(CF);
-        About.setTypeface(CF);
-        Title.setTypeface(CFt);
+        Out = (TextViewPlus) v.findViewById(R.id.setout);
+        Mark = (TextViewPlus) v.findViewById(R.id.setmark);
+        Clear = (TextViewPlus) v.findViewById(R.id.setclear);
+        About = (TextViewPlus) v.findViewById(R.id.aboutv);
+        Title = (TextViewPlus) v.findViewById(R.id.settitle);
         About.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

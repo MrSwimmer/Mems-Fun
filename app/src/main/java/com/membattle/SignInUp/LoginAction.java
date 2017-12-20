@@ -1,14 +1,15 @@
-package com.membattle;
+package com.membattle.SignInUp;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
-import com.membattle.NewNavigation.MainActivity;
+import com.membattle.MainActivity.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,26 +56,28 @@ public class LoginAction {
                     e.printStackTrace();
                 }*/
                 //Log.i("code", "refresh_token " + exres.getToken_access());
-                if(exres.getSuccess()) {
-                    SharedPreferences.Editor editor = mSettings.edit();
-                    editor.putString("access_token", exres.getToken_access());
-                    editor.putString("refresh_token", exres.getToken_refresh());
-                    editor.putString("login", Login);
-                    editor.putInt("coins", 0);
-                    Log.i("code", "id"+exres.getId());
-                    editor.putInt("id", exres.getId());
-                    editor.apply();
-                    Log.i("code", "putlog "+mSettings.getString("login", "nifiga"));
-                    //editor.putInt("coins", user.getCoins());
+                try {
+                    if(exres.getSuccess()) {
 
-                    Intent i = new Intent( context, MainActivity.class);
-                    /*i.putExtra("login", Login);
-                    i.putExtra("coins", 0);
-                    i.putExtra("access_token", exres.getToken_access());
-                    i.putExtra("refresh_token", exres.getToken_refresh());*/
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(i);
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putString("access_token", exres.getToken_access());
+                        editor.putString("refresh_token", exres.getToken_refresh());
+                        editor.putString("login", Login);
+                        editor.putInt("coins", 0);
+                        editor.putInt("id", exres.getId());
+                        editor.apply();
+
+                        Log.i("code", "id"+exres.getId());
+                        Log.i("code", "putlog "+mSettings.getString("login", "nifiga"));
+
+                        Intent i = new Intent( context, MainActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(i);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "Неверное имя или пароль!", Toast.LENGTH_LONG).show();
                 }
+
             }
             @Override
             public void onFailure(Call<Exres> call, Throwable t) {

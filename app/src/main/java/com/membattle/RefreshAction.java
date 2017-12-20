@@ -48,27 +48,12 @@ public class RefreshAction {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //RefreshTok tok = new RefreshTok(accessToken);
         Call<Exres> call = service.refreshbody(myreqbody);
         call.enqueue(new Callback<Exres>() {
 
             @Override
             public void onResponse(Call<Exres> call, Response<Exres> response) {
                 Exres exres = response.body();
-                /*String forAccTok = null, forRefrTok = null;
-                try {
-                    JWTUtils.decoded(exres.getToken_access(), forAccTok);
-                    JWTUtils.decoded(exres.getToken_refresh(), forRefrTok);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                JSONObject token_refresh = null;
-                try {
-                    token_refresh = new JSONObject(forAccTok);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
-
                 if(exres.getSuccess()) {
                     Log.i("code", "access " + exres.getToken_access());
                     Log.i("code", "refresh " + exres.getToken_refresh());

@@ -1,15 +1,9 @@
-package com.membattle;
+package com.membattle.Intro;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import agency.tango.materialintroscreen.MaterialIntroActivity;
-import agency.tango.materialintroscreen.SlideFragmentBuilder;
-import agency.tango.materialintroscreen.animations.IViewTranslation;
 
 public class FirstStartActivity extends MaterialIntroActivity {
     @Override

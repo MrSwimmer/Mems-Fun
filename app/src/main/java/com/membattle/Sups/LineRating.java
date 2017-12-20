@@ -1,12 +1,13 @@
-package com.membattle.NewNavigation;
+package com.membattle.Sups;
 
 /**
  * Created by Севастьян on 20.11.2017.
  */
 
-class LineRating {
-    String user;
-    int coins, pos;
+public class LineRating {
+    public String user;
+    public int coins;
+    int pos;
 
     public LineRating(String user, int coins, int pos) {
         this.user = user;

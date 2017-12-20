@@ -1,17 +1,17 @@
-package com.membattle;
+package com.membattle.Intro;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.membattle.NewNavigation.MainActivity;
+import com.membattle.SignInUp.LoginActivity;
+import com.membattle.MainActivity.MainActivity;
+import com.membattle.R;
 
 public class Splash extends Activity {
     private SharedPreferences mSettings;
@@ -22,21 +22,15 @@ public class Splash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // По истечении времени, запускаем главный активити, а Splash Screen закрываем
-//                Intent intent = new Intent(Splash.this, FirstStartActivity.class);
-//                startActivity(intent);
-
                 String login = mSettings.getString("login", "no");
                 Log.i("code", "first: "+login);
                 if(login.equals("no")){
                     overridePendingTransition(0,0);
-                    /*overridePendingTransition(0,0);
-                    Intent i = new Intent(Splash.this, NavigationActivity.class);
-                    startActivity(i);*/
                     TaskStackBuilder.create(getApplicationContext())
                             .addNextIntentWithParentStack(new Intent(getApplicationContext(), LoginActivity.class))
                             .addNextIntent(new Intent(getApplicationContext(), FirstStartActivity.class))
@@ -49,7 +43,6 @@ public class Splash extends Activity {
                     startActivity(i);
                     finish();
                 }
-
             }
         }, 2000);
     }

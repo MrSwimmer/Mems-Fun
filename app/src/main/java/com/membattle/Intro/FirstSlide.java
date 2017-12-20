@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.Intro;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.membattle.R;
+import com.membattle.TextViewPlus;
 
 import org.w3c.dom.Text;
 
@@ -19,7 +22,7 @@ import agency.tango.materialintroscreen.SlideFragment;
 
 public class FirstSlide extends SlideFragment {
     String text;
-    TextView Text;
+    TextViewPlus Text;
 
     public FirstSlide() {
         super();
@@ -35,10 +38,7 @@ public class FirstSlide extends SlideFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.firstslide_layout, container, false);
-        Text = (TextView) view.findViewById(R.id.textintro);
-        String font_text = "fonts/TAHOMA.ttf";
-        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font_text);
-        Text.setTypeface(CFt);
+        Text = (TextViewPlus) view.findViewById(R.id.textintro);
         Text.setText(text);
         return view;
     }

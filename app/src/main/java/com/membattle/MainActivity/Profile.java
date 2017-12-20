@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.MainActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,13 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.membattle.R;
+import com.membattle.RefreshAction;
+import com.membattle.TextViewPlus;
+
 /**
  * Created by Севастьян on 14.10.2017.
  */
 
 public class Profile extends android.app.Fragment {
-    TextView username, coins, countgames, countwins, winstrik, winrate, titleInf;
-    TextView title1, title2, title3, title4;
+    TextViewPlus username, coins, countgames, countwins, winstrik, winrate;
     private SharedPreferences mSettings;
     ImageView photo, imc;
     public static final String APP_PREFERENCES = "settings";
@@ -27,26 +30,16 @@ public class Profile extends android.app.Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.profile, container, false);
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        titleInf = (TextView) v.findViewById(R.id.prof_titleinf);
-        title1 = (TextView) v.findViewById(R.id.title1);
-        title2 = (TextView) v.findViewById(R.id.title2);
-        title3 = (TextView) v.findViewById(R.id.title3);
-        title4 = (TextView) v.findViewById(R.id.title4);
         imc = (ImageView) v.findViewById(R.id.prof_imc);
         imc.setImageResource(R.drawable.coin_menu);
-        username = (TextView) v.findViewById(R.id.profileusername);
-        coins = (TextView) v.findViewById(R.id.profilecoins);
+        username = (TextViewPlus) v.findViewById(R.id.profileusername);
+        coins = (TextViewPlus) v.findViewById(R.id.profilecoins);
         photo = (ImageView) v.findViewById(R.id.profile_image);
         photo.setImageResource(R.drawable.logo_circlel);
-        countgames = (TextView) v.findViewById(R.id.countgames);
-        countwins = (TextView) v.findViewById(R.id.countwins);
-        winstrik = (TextView) v.findViewById(R.id.profwinstr);
-        winrate = (TextView) v.findViewById(R.id.profwinrate);
-
-        String custom_font = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
-        Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
-        String font = "fonts/NAUTILUS.otf";
-        Typeface CFt = Typeface.createFromAsset(getActivity().getAssets(), font);
+        countgames = (TextViewPlus) v.findViewById(R.id.countgames);
+        countwins = (TextViewPlus) v.findViewById(R.id.countwins);
+        winstrik = (TextViewPlus) v.findViewById(R.id.profwinstr);
+        winrate = (TextViewPlus) v.findViewById(R.id.profwinrate);
 
         String user, c, Countg, Countw;
         user = mSettings.getString("login", "username");
@@ -72,18 +65,6 @@ public class Profile extends android.app.Fragment {
                 new RefreshAction(refresh, getActivity());
             }
         });
-        username.setTypeface(CFt);
-        titleInf.setTypeface(CFt);
-        title1.setTypeface(CF);
-        title2.setTypeface(CF);
-        title3.setTypeface(CF);
-        title4.setTypeface(CF);
-        coins.setTypeface(CF);
-        countgames.setTypeface(CF);
-        countwins.setTypeface(CF);
-        winrate.setTypeface(CF);
-        winstrik.setTypeface(CF);
-
         return  v;
     }
 

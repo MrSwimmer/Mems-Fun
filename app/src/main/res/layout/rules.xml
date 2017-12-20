@@ -3,6 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@color/circle_menu_center_button_color_pressed"
               android:orientation="vertical">
 
@@ -15,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/ruletitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,9 +26,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/memblue"
                 android:textSize="30sp"
+                app:customFont="@string/font_title"
                 tools:text="Правила игры"/>
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/rultext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,6 +37,7 @@
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat"
+                app:customFont="@string/font_bigtext"
                 android:textColor="@color/memblue"
                 android:textSize="18sp"
                 tools:text="@string/rules"/>

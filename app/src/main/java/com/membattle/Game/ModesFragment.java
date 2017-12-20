@@ -1,10 +1,8 @@
-package com.membattle.NewNavigation;
+package com.membattle.Game;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
-import com.membattle.Play;
+import com.membattle.Sups.ModeItem;
 import com.membattle.R;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
-import static com.membattle.NewNavigation.MainActivity.fTrans;
+import static com.membattle.MainActivity.MainActivity.fTrans;
 
 /**
  * Created by Севастьян on 11.11.2017.
@@ -46,19 +43,6 @@ public class ModesFragment extends android.app.Fragment {
         title.setTypeface(CF);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mods_recycler);
         start = System.currentTimeMillis();
-        /*sChronometer = (Chronometer) v.findViewById(R.id.modes_chrono);
-        sChronometer.start();
-        sChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                long elapsedMillis = SystemClock.elapsedRealtime()
-                        - sChronometer.getBase();
-                if (elapsedMillis > 1000) {
-                    Tick++;
-                    elapsedMillis=0;
-                }
-            }
-        });*/
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -81,7 +65,7 @@ public class ModesFragment extends android.app.Fragment {
         return mDataSet;
     }
     void gotoGame(){
-        Play play = new Play();
+        Game play = new Game();
         fTrans = getFragmentManager().beginTransaction();
         fTrans.replace(R.id.main_cont, play);
         fTrans.commit();
