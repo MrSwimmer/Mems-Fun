@@ -30,13 +30,14 @@
                 android:layout_marginRight="5dp"
                 app:srcCompat="@drawable/hourglass"/>
 
-            <TextView
+            <com.membattle.TextViewPlus
                 android:id="@+id/textcount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:text="7"
+                app:customFont="@string/font_main"
                 android:textColor="@color/memblue"
                 android:textSize="22sp"/>
 
@@ -86,13 +87,14 @@
                 android:background="@color/back_likes"
                 android:visibility="invisible">
 
-                <TextView
+                <com.membattle.TextViewPlus
                     android:id="@+id/battle_after_winner_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Победитель"
+                    app:customFont="@string/font_main"
                     android:textColor="@android:color/white"
                     android:textSize="30sp"/>
 
@@ -104,11 +106,12 @@
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.membattle.TextViewPlus
                         android:id="@+id/battle_after_likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        app:customFont="@string/font_main"
                         android:layout_marginRight="5dp"
                         android:text="33"
                         android:textColor="@android:color/white"
@@ -158,13 +161,14 @@
                 android:background="@color/back_likes"
                 android:visibility="invisible">
 
-                <TextView
+                <com.membattle.TextViewPlus
                     android:id="@+id/battle_after_winner_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="Победитель"
+                    app:customFont="@string/font_main"
                     android:textColor="@android:color/white"
                     android:textSize="30sp"/>
 
@@ -176,7 +180,7 @@
                     android:layout_marginTop="33dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.membattle.TextViewPlus
                         android:id="@+id/battle_after_likes2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -184,6 +188,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:text="33"
+                        app:customFont="@string/font_main"
                         android:textColor="@android:color/white"
                         android:textSize="24sp"/>
 

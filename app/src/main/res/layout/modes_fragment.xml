@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@color/circle_menu_center_button_color_pressed"
               android:orientation="vertical">
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/modes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Режимы и события"
         android:textAlignment="center"
+        app:customFont="@string/font_title"
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
 

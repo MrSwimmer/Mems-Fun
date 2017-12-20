@@ -34,10 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Context context;
     int tick = 0;
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title;
-        public TextView Play;
-        public TextView TextTime;
-        public TextView Rules;
+        public TextView Title, Play, Rules, TextTime;
         public ImageView Image;
 
         public ViewHolder(View v) {

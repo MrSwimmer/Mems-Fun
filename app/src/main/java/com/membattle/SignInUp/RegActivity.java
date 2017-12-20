@@ -14,7 +14,10 @@ import android.widget.Toast;
 import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
+import com.membattle.ButtonPlus;
+import com.membattle.EditTextPlus;
 import com.membattle.R;
+import com.membattle.TextViewPlus;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -24,10 +27,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegActivity extends Activity {
-    Button Registration;
-    private OkHttpClient client;
-    TextView textreg;
-    EditText Login, Pass, Repeat, Email;
+    ButtonPlus Registration;
+    TextViewPlus textreg;
+    EditTextPlus Login, Pass, Repeat, Email;
     private APIService service;
 
     @Override
@@ -35,23 +37,18 @@ public class RegActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
 
-        Email = (EditText) findViewById(R.id.reg_email);
-        Login = (EditText) findViewById(R.id.loginreg);
-        Pass = (EditText) findViewById(R.id.passreg);
-        Repeat = (EditText) findViewById(R.id.repeatpassreg);
-        textreg = (TextView) findViewById(R.id.textReg);
-        Registration = (Button) findViewById(R.id.butreg);
-
-        Login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        Pass.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        Repeat.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        Email.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        Email = (EditTextPlus) findViewById(R.id.reg_email);
+        Login = (EditTextPlus) findViewById(R.id.loginreg);
+        Pass = (EditTextPlus) findViewById(R.id.passreg);
+        Repeat = (EditTextPlus) findViewById(R.id.repeatpassreg);
+        textreg = (TextViewPlus) findViewById(R.id.textReg);
+        Registration = (ButtonPlus) findViewById(R.id.butreg);
 
         Registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (Login.getText().toString().equals("") || Pass.getText().toString().equals("") || Repeat.getText().toString().equals("") || Email.getText().toString().equals("")) {
+                if(Login.getText().toString().equals("")||Pass.getText().toString().equals("")||Repeat.getText().toString().equals("")||Email.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
                 } else {
 

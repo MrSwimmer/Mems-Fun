@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/backenter"
     android:gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="8dp">
 
-    <TextView
+    <com.membattle.TextViewPlus
+        app:customFont="@string/font_title"
         android:id="@+id/textReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/loginreg"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -40,7 +42,7 @@
             android:textSize="24sp"
             android:theme="@style/Widget.AppCompat.EditText"/>
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/reg_email"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -54,8 +56,9 @@
             android:textSize="24sp"
             android:theme="@style/Widget.AppCompat.EditText"/>
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/passreg"
+            style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -64,10 +67,12 @@
             android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
+            android:theme="@style/Widget.AppCompat.EditText"
             android:textSize="24sp"/>
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/repeatpassreg"
+            style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -76,6 +81,7 @@
             android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
+            android:theme="@style/Widget.AppCompat.EditText"
             android:textSize="24sp"/>
 
         <LinearLayout
@@ -85,7 +91,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <com.membattle.ButtonPlus
                 android:id="@+id/butreg"
                 android:layout_width="140dp"
                 android:layout_height="34dp"

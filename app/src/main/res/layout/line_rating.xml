@@ -6,15 +6,16 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/line_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1."
+        app:customFont="@string/font_main"
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/line_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
         android:layout_toRightOf="@+id/line_pos"
         android:text="Username"
         android:textColor="@color/memblue"
+        app:customFont="@string/font_main"
         android:textSize="30sp"/>
 
     <ImageView
@@ -39,13 +41,14 @@
         android:layout_marginRight="15dp"
         app:srcCompat="@drawable/coin"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/line_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/line_user"
         android:layout_alignBottom="@+id/line_user"
         android:layout_marginEnd="10dp"
+        app:customFont="@string/font_main"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/line_imc"
         android:layout_toStartOf="@+id/line_imc"

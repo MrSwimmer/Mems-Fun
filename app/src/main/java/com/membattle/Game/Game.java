@@ -27,6 +27,8 @@ import com.membattle.R;
 import com.membattle.Sups.RequestToGame;
 import com.membattle.TextViewPlus;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.net.URISyntaxException;
@@ -67,9 +69,10 @@ public class Game extends android.app.Fragment {
         int games = mSettings.getInt("countgames", 0);
         editor.putInt("countgames", games - 1);
         mSocket.on("CONNECT_TO_GAME", onConnect);
-        mSocket.on("GET_MEM", onGetMems);
+        mSocket.on("GET_MEM", onGetMemes);
+        mSocket.on("PAIR_WINNER", onGetWinner);
         mSocket.connect();
-        RequestToGame requestToGame = new RequestToGame(USER_ID, 0, 0);
+        RequestToGame requestToGame = new RequestToGame(USER_ID, false, 0, 0);
         String json = gson.toJson(requestToGame);
         mSocket.emit("CONNECT_TO_GAME", json);
         super.onResume();
@@ -113,7 +116,7 @@ public class Game extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 showOnImageLike(true);
-                RequestToGame req = new RequestToGame(USER_ID, 1234, 1);
+                RequestToGame req = new RequestToGame(USER_ID, false, 1234, 1);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
                 Log.i("code", "SendChoose1");
@@ -127,7 +130,7 @@ public class Game extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 showOnImageLike(true);
-                RequestToGame req = new RequestToGame(USER_ID, game_id, 2);
+                RequestToGame req = new RequestToGame(USER_ID, true, game_id, 2);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
                 Log.i("code", "SendChoose2");
@@ -149,7 +152,7 @@ public class Game extends android.app.Fragment {
         }
     };
 
-    private Emitter.Listener onGetMems = new Emitter.Listener() {
+    private Emitter.Listener onGetMemes = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             hideTrash();
@@ -163,11 +166,25 @@ public class Game extends android.app.Fragment {
             id2 = i2.getId();
         }
     };
+    private Emitter.Listener onGetWinner = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            JSONObject jsonObject = gson.fromJson(String.valueOf(args[0]), JSONObject.class);
+            showlikes(1, 2);
+            if(true) {
+                winfirst.setText("Победитель!");
+                winsecond.setText("Проигравший");
+            } else {
+                winsecond.setText("Победитель!");
+                winfirst.setText("Проигравший");
+            }
+        }
+    };
     void showlikes(int countf, int counts){
         after1.setVisibility(View.VISIBLE);
         after2.setVisibility(View.VISIBLE);
-        countfirst.setText(12+"");
-        countsecond.setText(23+"");
+        countfirst.setText(countf+"");
+        countsecond.setText(counts+"");
     }
     void hideTrash(){
         after1.setVisibility(View.INVISIBLE);

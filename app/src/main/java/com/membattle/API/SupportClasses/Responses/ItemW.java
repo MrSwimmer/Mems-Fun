@@ -6,16 +6,16 @@ package com.membattle.API.SupportClasses.Responses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Item {
+public class ItemW {
 
     @SerializedName("id")
     @Expose
-    private int id;
-    @SerializedName("url")
+    private Integer id;
+    @SerializedName("likes")
     @Expose
-    private String url;
+    private Integer likes;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -23,12 +23,12 @@ public class Item {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public Integer getLikes() {
+        return likes;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
 }

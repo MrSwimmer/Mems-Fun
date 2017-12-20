@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/backenter"
     android:gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="8dp">
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/titlelogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
         android:text="Вход"
+        app:customFont="@string/font_title"
         android:textAlignment="center"
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
@@ -24,9 +26,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/loginenter"
-            style="@style/AppTheme"
+            style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -36,9 +38,9 @@
             android:textColorHint="@android:color/white"
             android:textSize="24sp"/>
 
-        <EditText
+        <com.membattle.EditTextPlus
             android:id="@+id/passlogin"
-            style="@style/AppTheme"
+            style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -55,7 +57,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <com.membattle.ButtonPlus
                 android:id="@+id/butenter"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="140dp"
@@ -66,7 +68,7 @@
                 android:textColor="@color/memblue"
                 android:textSize="24sp"/>
 
-            <Button
+            <com.membattle.ButtonPlus
                 android:id="@+id/login_but_reg"
                 android:layout_width="140dp"
                 android:layout_height="34dp"

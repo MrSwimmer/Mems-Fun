@@ -31,6 +31,7 @@ public class TextViewPlus extends android.support.v7.widget.AppCompatTextView {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.TextViewPlus);
         String customFont = a.getString(R.styleable.TextViewPlus_customFont);
         setCustomFont(ctx, customFont);
+
         a.recycle();
     }
 
@@ -42,8 +43,8 @@ public class TextViewPlus extends android.support.v7.widget.AppCompatTextView {
             Log.e(TAG, "Could not get typeface: "+e.getMessage());
             return false;
         }
-
         setTypeface(tf);
+
         return true;
     }
 

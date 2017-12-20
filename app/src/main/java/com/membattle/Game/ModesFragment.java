@@ -28,8 +28,6 @@ public class ModesFragment extends android.app.Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     static int Tick;
     static long start = 0;
-    TextView title;
-    static Chronometer sChronometer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,10 +35,6 @@ public class ModesFragment extends android.app.Fragment {
         View v = inflater.inflate(R.layout.modes_fragment, container, false);
         ArrayList<ModeItem> myDataset = getDataSet();
         Tick = 0;
-        String custom_font = "fonts/NAUTILUS.otf";
-        title = (TextView) v.findViewById(R.id.modes_title);
-        Typeface CF = Typeface.createFromAsset(getActivity().getAssets(), custom_font);
-        title.setTypeface(CF);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mods_recycler);
         start = System.currentTimeMillis();
         mRecyclerView.setHasFixedSize(true);
