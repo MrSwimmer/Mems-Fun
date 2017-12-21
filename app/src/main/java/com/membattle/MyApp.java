@@ -20,9 +20,11 @@ public class MyApp extends Application {
     private static MyApp singleton;
     private static final String APP_PREFERENCES = "settings";
     private static APIService service;
+    String ADRESS;
     private static SharedPreferences mSettings;
     public static MyApp getInstance() {
         return singleton;
+
     }
     @Override
     public final void onCreate() {

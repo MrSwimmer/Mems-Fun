@@ -10,6 +10,7 @@ import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
 import com.membattle.MainActivity.MainActivity;
+import com.membattle.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +27,11 @@ public class LoginAction {
     private static final String APP_PREFERENCES = "settings";
     private static APIService service;
 
-
     public LoginAction(final String Login, String Pass, String Email, final Context context) {
 
         mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://dev.themezv.ru:8000/")
+                .baseUrl(context.getString(R.string.URL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);

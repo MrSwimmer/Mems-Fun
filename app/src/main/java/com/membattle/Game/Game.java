@@ -43,7 +43,7 @@ public class Game extends android.app.Fragment {
     private SharedPreferences mSettings;
     private Handler mHandler;
     public static final String APP_PREFERENCES = "settings";
-    String ADRESS = "http://78.24.223.212:3080/";
+    String ADRESS = "http://dev.themezv.ru:8000/";
     Gson gson = new Gson();
     static TextViewPlus timer, countfirst, countsecond, winfirst, winsecond;
     static ImageView first, second, clock, flikes, slikes, likeonf, likeons;
@@ -115,8 +115,9 @@ public class Game extends android.app.Fragment {
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showOnImageLike(true);
-                RequestToGame req = new RequestToGame(USER_ID, false, 1234, 1);
+                RequestToGame req = new RequestToGame(USER_ID, false, 0, 1);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
                 Log.i("code", "SendChoose1");
@@ -129,12 +130,12 @@ public class Game extends android.app.Fragment {
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showOnImageLike(true);
-                RequestToGame req = new RequestToGame(USER_ID, true, game_id, 2);
+                RequestToGame req = new RequestToGame(USER_ID, true, 0, 2);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
                 Log.i("code", "SendChoose2");
-
                 if (!click) {
                     click = true;
                     voice = false;
@@ -156,6 +157,8 @@ public class Game extends android.app.Fragment {
         @Override
         public void call(Object... args) {
             hideTrash();
+            voice = false;
+            click = false;
             Memes memes = gson.fromJson((String) args[0], Memes.class);
             Item i1, i2;
             i1 = memes.getItems().get(0);
@@ -171,13 +174,7 @@ public class Game extends android.app.Fragment {
         public void call(Object... args) {
             JSONObject jsonObject = gson.fromJson(String.valueOf(args[0]), JSONObject.class);
             showlikes(1, 2);
-            if(true) {
-                winfirst.setText("Победитель!");
-                winsecond.setText("Проигравший");
-            } else {
-                winsecond.setText("Победитель!");
-                winfirst.setText("Проигравший");
-            }
+
         }
     };
     void showlikes(int countf, int counts){
@@ -185,6 +182,13 @@ public class Game extends android.app.Fragment {
         after2.setVisibility(View.VISIBLE);
         countfirst.setText(countf+"");
         countsecond.setText(counts+"");
+        if(countf>counts) {
+            winfirst.setText("Победитель!");
+            winsecond.setText("");
+        } else {
+            winsecond.setText("Победитель!");
+            winfirst.setText("");
+        }
     }
     void hideTrash(){
         after1.setVisibility(View.INVISIBLE);
