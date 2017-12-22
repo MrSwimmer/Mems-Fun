@@ -2,19 +2,16 @@ package com.membattle.MainActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.membattle.R;
 import com.membattle.RefreshAction;
-import com.membattle.TextViewPlus;
+import com.membattle.WidgetPlus.TextViewPlus;
 
 /**
  * Created by Севастьян on 14.10.2017.

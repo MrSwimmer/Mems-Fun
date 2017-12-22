@@ -32,7 +32,7 @@ public class PlayActivity extends Activity {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         USER_ID = mSettings.getInt("id", 99);
         //mSocket.emit("CONNECT_TO_GAME", "{user_id:"+mSettings.getInt("id",999)+ ",game_id:number}");
-        modes = getResources().getStringArray(R.array.modes_game);
+        modes = new String[]{getString(R.string.rules_infinity),getString(R.string.rules_infinity)};
         Intent intent = getIntent();
         boolean ison = intent.getBooleanExtra("ison", false);
         final int mode = intent.getIntExtra("mode", 0);

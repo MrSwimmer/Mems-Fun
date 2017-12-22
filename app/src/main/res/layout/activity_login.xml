@@ -10,7 +10,7 @@
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="8dp">
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/titlelogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.membattle.EditTextPlus
+        <com.membattle.WidgetPlus.EditTextPlus
             android:id="@+id/loginenter"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:textColorHint="@android:color/white"
             android:textSize="24sp"/>
 
-        <com.membattle.EditTextPlus
+        <com.membattle.WidgetPlus.EditTextPlus
             android:id="@+id/passlogin"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.membattle.ButtonPlus
+            <com.membattle.WidgetPlus.ButtonPlus
                 android:id="@+id/butenter"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="140dp"
@@ -68,7 +68,7 @@
                 android:textColor="@color/memblue"
                 android:textSize="24sp"/>
 
-            <com.membattle.ButtonPlus
+            <com.membattle.WidgetPlus.ButtonPlus
                 android:id="@+id/login_but_reg"
                 android:layout_width="140dp"
                 android:layout_height="34dp"

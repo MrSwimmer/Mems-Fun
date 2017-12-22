@@ -1,4 +1,4 @@
-package com.membattle.Sups;
+package com.membattle.API.SupportClasses.Requests;
 
 /**
  * Created by Севастьян on 22.11.2017.

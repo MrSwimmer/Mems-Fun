@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.WidgetPlus;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +7,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.EditText;
+
+import com.membattle.R;
 
 /**
  * Created by Севастьян on 20.12.2017.

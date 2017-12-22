@@ -1,11 +1,8 @@
 package com.membattle.Game;
 
-import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Bundle;
@@ -16,27 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
-import com.membattle.API.SupportClasses.Responses.Item;
 import com.membattle.API.SupportClasses.Responses.Memes;
+import com.membattle.API.SupportClasses.Responses.Winner;
 import com.membattle.R;
-import com.membattle.Sups.RequestToGame;
-import com.membattle.TextViewPlus;
-import com.squareup.picasso.Picasso;
+import com.membattle.API.SupportClasses.Requests.RequestToGame;
+import com.membattle.WidgetPlus.TextViewPlus;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.net.URISyntaxException;
 
-import okhttp3.WebSocketListener;
-
 import static com.membattle.Game.PlayActivity.USER_ID;
-import static com.membattle.Game.PlayActivity.game_id;
 
 public class Game extends android.app.Fragment {
 
@@ -117,17 +109,15 @@ public class Game extends android.app.Fragment {
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                showOnImageLike(true);
-                showlikes(1,2);
-                /*RequestToGame req = new RequestToGame(USER_ID, false, 0, 1);
-                String j = gson.toJson(req);
-                mSocket.emit("CHOOSE_MEM", j);
-                Log.i("code", "SendChoose1");
-                if (!click) {
+                if(!click) {
+                    showOnImageLike(true);
+                    RequestToGame req = new RequestToGame(USER_ID, false, 0, 1);
+                    String j = gson.toJson(req);
+                    mSocket.emit("CHOOSE_MEM", j);
+                    Log.i("code", "SendChoose1");
                     click = true;
                     voice = true;
-                }*/
+                }
             }
         });
         second.setOnClickListener(new View.OnClickListener() {
@@ -173,24 +163,20 @@ public class Game extends android.app.Fragment {
     void onSetMemes(String args){
         hideTrash();
         startTick();
-        voice = false;
+        voice = true;
         click = false;
-        Memes memes = gson.fromJson((String) args, Memes.class);
-        Item i1, i2;
-        i1 = memes.getItems().get(0);
-        i2 = memes.getItems().get(1);
-        first.setImageURI(Uri.parse(i1.getUrl()));
-        second.setImageURI(Uri.parse(i2.getUrl()));
-        id1 = i1.getId();
-        id2 = i2.getId();
+        Memes memes = gson.fromJson(args, Memes.class);
+        first.setImageURI(Uri.parse(memes.getLeftMemeImg()));
+        second.setImageURI(Uri.parse(memes.getRightMemeImg()));
+        id1 = memes.getLeftMemeId();
+        id2 = memes.getRightMemeId();
     }
     private Emitter.Listener onGetWinner = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            JSONObject jsonObject = gson.fromJson(String.valueOf(args[0]), JSONObject.class);
-            Log.i("game", jsonObject+"");
-            showlikes(1, 2);
-
+            Winner winner = gson.fromJson(String.valueOf(args[0]), Winner.class);
+            Log.i("game", winner+"");
+            showlikes(winner.getLeftLikes(), winner.getRightLikes());
         }
     };
     void showlikes(int countf, int counts){

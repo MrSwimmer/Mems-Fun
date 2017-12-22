@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/line_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/line_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_marginRight="15dp"
         app:srcCompat="@drawable/coin"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/line_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

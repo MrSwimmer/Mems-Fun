@@ -1,18 +1,14 @@
 package com.membattle.Intro;
 
 import android.annotation.SuppressLint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.membattle.R;
-import com.membattle.TextViewPlus;
-
-import org.w3c.dom.Text;
+import com.membattle.WidgetPlus.TextViewPlus;
 
 import agency.tango.materialintroscreen.SlideFragment;
 

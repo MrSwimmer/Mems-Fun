@@ -1,25 +1,19 @@
 package com.membattle.SignInUp;
 
 import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
-import com.membattle.ButtonPlus;
-import com.membattle.EditTextPlus;
+import com.membattle.WidgetPlus.ButtonPlus;
+import com.membattle.WidgetPlus.EditTextPlus;
 import com.membattle.R;
-import com.membattle.TextViewPlus;
+import com.membattle.WidgetPlus.TextViewPlus;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

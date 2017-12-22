@@ -3,19 +3,14 @@ package com.membattle.SignInUp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.membattle.ButtonPlus;
-import com.membattle.EditTextPlus;
+import com.membattle.WidgetPlus.ButtonPlus;
+import com.membattle.WidgetPlus.EditTextPlus;
 import com.membattle.R;
-import com.membattle.TextViewPlus;
+import com.membattle.WidgetPlus.TextViewPlus;
 
 public class LoginActivity extends Activity {
     private static final String APP_PREFERENCES = "settings";

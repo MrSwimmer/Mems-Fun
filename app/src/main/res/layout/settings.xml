@@ -7,7 +7,7 @@
               android:background="@android:color/background_light"
               android:orientation="vertical">
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/settitle"
         tools:text="Правила игры"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:textColor="@color/memblue"
         android:textSize="30sp"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/setout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:text="Выйти из аккаунта"
         android:textSize="24sp"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/setclear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         android:text="Очистить данные аккаунта"
         android:textSize="24sp"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/setmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
 
         android:text="Оценить нас в Google Play"
         android:textSize="24sp"/>
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/aboutv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

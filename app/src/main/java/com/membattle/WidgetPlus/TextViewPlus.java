@@ -1,4 +1,4 @@
-package com.membattle;
+package com.membattle.WidgetPlus;
 
 /**
  * Created by Севастьян on 20.12.2017.
@@ -9,6 +9,8 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
+
+import com.membattle.R;
 
 public class TextViewPlus extends android.support.v7.widget.AppCompatTextView {
     private static final String TAG = "TextView";

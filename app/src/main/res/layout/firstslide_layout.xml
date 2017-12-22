@@ -13,7 +13,7 @@
         android:layout_height="120dp"
         app:srcCompat="@drawable/logo_circlel"/>
 
-    <com.membattle.TextViewPlus
+    <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/textintro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

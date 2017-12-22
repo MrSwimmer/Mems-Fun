@@ -1,16 +1,14 @@
 package com.membattle.MainActivity;
 
 import android.app.Fragment;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.membattle.R;
-import com.membattle.TextViewPlus;
+import com.membattle.WidgetPlus.TextViewPlus;
 
 /**
  * Created by Севастьян on 18.10.2017.
