@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/dp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,11 +30,12 @@
         android:paddingRight="5dp"
         android:text="Название какой-то дичи"
         android:textAlignment="center"
+        card_view:customFont="@string/font_main"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/white"
         android:textSize="27sp"/>
 
-    <TextView
+    <com.membattle.TextViewPlus
         android:id="@+id/item_text_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:padding="10dp"
+        card_view:customFont="@string/font_main"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/white"
         android:textSize="30sp"/>
@@ -52,7 +54,7 @@
         android:layout_below="@+id/item_title"
         android:layout_centerHorizontal="true">
 
-        <TextView
+        <com.membattle.TextViewPlus
             android:id="@+id/item_rules"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,10 +64,11 @@
             android:layout_marginLeft="35dp"
             android:layout_marginStart="35dp"
             android:text="ПРАВИЛА"
+            card_view:customFont="@string/font_main"
             android:textColor="@color/memblue"
             android:textSize="24sp"/>
 
-        <TextView
+        <com.membattle.TextViewPlus
             android:id="@+id/item_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,6 +78,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="42dp"
             android:layout_marginRight="42dp"
+            card_view:customFont="@string/font_main"
             android:text="ИГРАТЬ"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/memblue"

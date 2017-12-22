@@ -24,7 +24,7 @@ public class Rules extends Fragment {
         View v = inflater.inflate(R.layout.rules, container, false);
         text = (TextViewPlus) v.findViewById(R.id.rultext);
         title = (TextViewPlus) v.findViewById(R.id.ruletitle);
-        text.setText(R.string.rules);
+        text.setText(R.string.description);
         title.setText("Правила игры");
         return v;
     }

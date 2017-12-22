@@ -21,7 +21,7 @@ import com.membattle.TextViewPlus;
  */
 
 public class Profile extends android.app.Fragment {
-    TextViewPlus username, coins, countgames, countwins, winstrik, winrate;
+    TextViewPlus username, coins;
     private SharedPreferences mSettings;
     ImageView photo, imc;
     public static final String APP_PREFERENCES = "settings";
@@ -36,27 +36,14 @@ public class Profile extends android.app.Fragment {
         coins = (TextViewPlus) v.findViewById(R.id.profilecoins);
         photo = (ImageView) v.findViewById(R.id.profile_image);
         photo.setImageResource(R.drawable.logo_circlel);
-        countgames = (TextViewPlus) v.findViewById(R.id.countgames);
-        countwins = (TextViewPlus) v.findViewById(R.id.countwins);
-        winstrik = (TextViewPlus) v.findViewById(R.id.profwinstr);
-        winrate = (TextViewPlus) v.findViewById(R.id.profwinrate);
 
-        String user, c, Countg, Countw;
+        String user, c;
         user = mSettings.getString("login", "username");
         c = String.valueOf(mSettings.getInt("coins", 0));
-        Countg = String.valueOf(mSettings.getInt("countgames",0));
-        Countw = String.valueOf(mSettings.getInt("countwins",0));
-        int cg = mSettings.getInt("countgames",1);
-        int cw = mSettings.getInt("countwins",1);
-        float rate = 100*((float)cw/(float)cg);
-        String Rate = String.format("%.2f", rate);
-        int strik = mSettings.getInt("winstrik",1);
-        winstrik.setText(String.valueOf(strik));
-        winrate.setText(Rate+"%");
+
         username.setText(user);
         coins.setText(c);
-        countgames.setText(Countg);
-        countwins.setText(Countw);
+
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

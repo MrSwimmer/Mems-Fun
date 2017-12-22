@@ -43,7 +43,7 @@ public class Game extends android.app.Fragment {
     private SharedPreferences mSettings;
     private Handler mHandler;
     public static final String APP_PREFERENCES = "settings";
-    String ADRESS = "http://dev.themezv.ru:8000/";
+    String ADRESS = "https://mems.fun/";
     Gson gson = new Gson();
     static TextViewPlus timer, countfirst, countsecond, winfirst, winsecond;
     static ImageView first, second, clock, flikes, slikes, likeonf, likeons;
@@ -69,11 +69,13 @@ public class Game extends android.app.Fragment {
         int games = mSettings.getInt("countgames", 0);
         editor.putInt("countgames", games - 1);
         mSocket.on("CONNECT_TO_GAME", onConnect);
-        mSocket.on("GET_MEM", onGetMemes);
+        mSocket.on("NEW_PAIR", onGetMemes);
         mSocket.on("PAIR_WINNER", onGetWinner);
+        mSocket.on("GET_MEM_PAIR", onFirstGet);
         mSocket.connect();
         RequestToGame requestToGame = new RequestToGame(USER_ID, false, 0, 0);
         String json = gson.toJson(requestToGame);
+        mSocket.emit("GET_MEM_PAIR", json);
         mSocket.emit("CONNECT_TO_GAME", json);
         super.onResume();
     }
@@ -117,21 +119,22 @@ public class Game extends android.app.Fragment {
             public void onClick(View v) {
 
                 showOnImageLike(true);
-                RequestToGame req = new RequestToGame(USER_ID, false, 0, 1);
+                showlikes(1,2);
+                /*RequestToGame req = new RequestToGame(USER_ID, false, 0, 1);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
                 Log.i("code", "SendChoose1");
                 if (!click) {
                     click = true;
                     voice = true;
-                }
+                }*/
             }
         });
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                showOnImageLike(true);
+                hideTrash();
+                /*showOnImageLike(false);
                 RequestToGame req = new RequestToGame(USER_ID, true, 0, 2);
                 String j = gson.toJson(req);
                 mSocket.emit("CHOOSE_MEM", j);
@@ -139,7 +142,7 @@ public class Game extends android.app.Fragment {
                 if (!click) {
                     click = true;
                     voice = false;
-                }
+                }*/
             }
         });
         return v;
@@ -149,30 +152,43 @@ public class Game extends android.app.Fragment {
         @Override
         public void call(Object... args) {
             JSONObject jsonObject = getJsonFromArgs(args);
-            Log.i("code", "onConnect"+jsonObject);
+            Log.i("game", "onConnect"+jsonObject);
         }
     };
 
     private Emitter.Listener onGetMemes = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            hideTrash();
-            voice = false;
-            click = false;
-            Memes memes = gson.fromJson((String) args[0], Memes.class);
-            Item i1, i2;
-            i1 = memes.getItems().get(0);
-            i2 = memes.getItems().get(1);
-            first.setImageURI(Uri.parse(i1.getUrl()));
-            second.setImageURI(Uri.parse(i2.getUrl()));
-            id1 = i1.getId();
-            id2 = i2.getId();
+            Log.i("game", args[0]+"");
+            onSetMemes((String) args[0]);
         }
     };
+    private Emitter.Listener onFirstGet = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.i("game", args[0]+"");
+            onSetMemes((String) args[0]);
+        }
+    };
+    void onSetMemes(String args){
+        hideTrash();
+        startTick();
+        voice = false;
+        click = false;
+        Memes memes = gson.fromJson((String) args, Memes.class);
+        Item i1, i2;
+        i1 = memes.getItems().get(0);
+        i2 = memes.getItems().get(1);
+        first.setImageURI(Uri.parse(i1.getUrl()));
+        second.setImageURI(Uri.parse(i2.getUrl()));
+        id1 = i1.getId();
+        id2 = i2.getId();
+    }
     private Emitter.Listener onGetWinner = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             JSONObject jsonObject = gson.fromJson(String.valueOf(args[0]), JSONObject.class);
+            Log.i("game", jsonObject+"");
             showlikes(1, 2);
 
         }
@@ -221,5 +237,26 @@ public class Game extends android.app.Fragment {
             e.printStackTrace();
         }
         return jsonObject;
+    }
+    void startTick(){
+        mChronometer.stop();
+        timer.setText("10");
+        mChronometer.start();
+        mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long elapsedMillis = SystemClock.elapsedRealtime()
+                        - mChronometer.getBase();
+                if (elapsedMillis > 1000) {
+                    tick--;
+                    timer.setText(tick+"");
+                    elapsedMillis=0;
+                    if(tick==0){
+                        mChronometer.stop();
+                        tick=10;//длина баттла
+                    }
+                }
+            }
+        });
     }
 }

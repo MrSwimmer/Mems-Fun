@@ -1,7 +1,8 @@
 package com.membattle.API;
 
+import com.membattle.API.SupportClasses.Responses.Rate;
 import com.membattle.API.SupportClasses.Responses.Exres;
-import com.membattle.API.SupportClasses.Requests.RefreshTok;
+import com.membattle.API.SupportClasses.Requests.Secret;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Modes;
 
@@ -24,9 +25,9 @@ public interface APIService {
     @POST("auth/login")
     Call<Exres> auth(@Body RegistrationUser user);
     @POST("auth/refresh-token")
-    Call<Exres> refresh(@Body RefreshTok refreshTok);
-    @POST("auth/refresh-token")
     Call<Exres> refreshbody(@Body RequestBody refreshTok);
     @GET("game/modes")
     Call<Modes> modes();
+    @POST("game/rating")
+    Call<Rate> getrate(@Body Secret secret);
 }

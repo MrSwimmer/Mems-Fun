@@ -17,11 +17,13 @@ import com.membattle.Sups.LineRating;
 import com.membattle.R;
 import com.membattle.TextViewPlus;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends ArrayAdapter<LineRating> {
     private final Context context;
-    private final LineRating[] values;
+    private final ArrayList<LineRating> values;
 
-    public MyAdapter(Context context, LineRating[] values) {
+    public MyAdapter(Context context, ArrayList<LineRating> values) {
         super(context, R.layout.line_rating, values);
         this.context = context;
         this.values = values;
@@ -36,11 +38,18 @@ public class MyAdapter extends ArrayAdapter<LineRating> {
         TextViewPlus name = (TextViewPlus) rowView.findViewById(R.id.line_user);
         TextViewPlus coins = (TextViewPlus) rowView.findViewById(R.id.line_points);
         ImageView imc = (ImageView) rowView.findViewById(R.id.line_imc);
-        imc.setImageResource(R.drawable.coin);
-        int p = position+1;
-        pos.setText(p+"");
-        name.setText(values[position].user);
-        coins.setText(values[position].coins+"");
+        if(values.get(position).user.equals("|||")){
+            pos.setText("");
+            name.setText("...");
+            coins.setText("");
+        }
+        else {
+            imc.setImageResource(R.drawable.coin);
+            int p = position+1;
+            pos.setText(p+"");
+            name.setText(values.get(position).user);
+            coins.setText(values.get(position).coins+"");
+        }
         return rowView;
     }
 }

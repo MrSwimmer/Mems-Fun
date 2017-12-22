@@ -30,7 +30,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private static ArrayList<Time> mTimes;
     String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
     String modes[];
-    Typeface CFt;
     private Context context;
     int tick = 0;
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,9 +48,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public RecyclerAdapter(ArrayList<ModeItem> dataset, Context context) {
         mDataset = dataset;
         this.context = context;
-        CFt = Typeface.createFromAsset(context.getAssets(), font_text);
         //modes = context.getResources().getStringArray(R.array.modes_game);
-        modes = new String[]{"Правила для сетки", "Правила для турнирки"};
+        modes = new String[]{context.getString(R.string.rules_infinity),context.getString(R.string.rules_infinity)};
     }
 
     @Override
@@ -102,10 +100,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         });
         holder.Title.setText(mDataset.get(position).Title);
         holder.Image.setImageResource(mDataset.get(position).Image);
-        holder.Title.setTypeface(CFt);
-        holder.Play.setTypeface(CFt);
-        holder.Rules.setTypeface(CFt);
-        holder.TextTime.setTypeface(CFt);
         holder.TextTime.setTextColor(mDataset.get(position).Color);
         holder.Title.setTextColor(mDataset.get(position).Color);
         String tick = String.valueOf(ModesFragment.Tick);

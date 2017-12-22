@@ -31,7 +31,7 @@ public class LoginAction {
 
         mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getString(R.string.URL))
+                .baseUrl("https://mems.fun/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);
