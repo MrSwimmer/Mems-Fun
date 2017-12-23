@@ -30,19 +30,6 @@ public class LoginActivity extends Activity {
         enter = (ButtonPlus) findViewById(R.id.butenter);
         title = (TextViewPlus) findViewById(R.id.titlelogin);
 
-        /*String custom_font = "fonts/NAUTILUS.otf";
-        Typeface CF = Typeface.createFromAsset(getAssets(), custom_font);
-        title.setTypeface(CF);
-
-        String font_text = "fonts/OPENGOSTTYPEA_REGULAR.ttf";
-        Typeface CFt = Typeface.createFromAsset(getAssets(), font_text);
-        enter.setTypeface(CFt);
-        gotoReg.setTypeface(CFt);
-        login.setTypeface(CFt);
-        password.setTypeface(CFt);
-        login.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        password.getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);*/
-
         gotoReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

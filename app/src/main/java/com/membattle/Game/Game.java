@@ -35,7 +35,7 @@ public class Game extends android.app.Fragment {
     private SharedPreferences mSettings;
     private Handler mHandler;
     public static final String APP_PREFERENCES = "settings";
-    String ADRESS = "https://mems.fun/";
+    String ADRESS = "wss://api.mems.fun/";
     Gson gson = new Gson();
     static TextViewPlus timer, countfirst, countsecond, winfirst, winsecond;
     static ImageView first, second, clock, flikes, slikes, likeonf, likeons;

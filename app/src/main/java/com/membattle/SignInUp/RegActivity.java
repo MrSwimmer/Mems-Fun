@@ -1,18 +1,26 @@
 package com.membattle.SignInUp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
+import com.membattle.API.SupportClasses.Responses.RegResponse;
+import com.membattle.MainActivity.MainActivity;
 import com.membattle.WidgetPlus.ButtonPlus;
 import com.membattle.WidgetPlus.EditTextPlus;
 import com.membattle.R;
 import com.membattle.WidgetPlus.TextViewPlus;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,11 +55,10 @@ public class RegActivity extends Activity {
                 } else {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://dev.themezv.ru:8000/")
+                            .baseUrl("https://api.mems.fun/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     service = retrofit.create(APIService.class);
-
                     RegistrationUser user = new RegistrationUser(Login.getText().toString(), Pass.getText().toString(), Email.getText().toString());
                     Call<Exres> call = service.registration(user);
                     if (Pass.getText().toString().equals(Repeat.getText().toString())) {
@@ -59,12 +66,29 @@ public class RegActivity extends Activity {
                             @Override
                             public void onResponse(Call<Exres> call, Response<Exres> response) {
                                 Exres exres = response.body();
-
-                                if (!exres.getSuccess()) {
-                                    Log.i("code", exres.getError());
-                                    Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                                if(response.code()!=502) {
+                                    Log.i("code", response.code() + "");
+                                    if (exres == null) {
+                                        Log.i("code", "onResponse - Status : " + response.code());
+                                        Gson gson = new Gson();
+                                        TypeAdapter<Exres> adapter = gson.getAdapter(Exres.class);
+                                        try {
+                                            if (response.errorBody() != null) {
+                                                exres = adapter.fromJson(response.errorBody().string());
+                                                Log.i("code", "suc" + exres.getSuccess() + "");
+                                            }
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    if (!exres.getSuccess()) {
+                                        Log.i("code", exres.getError());
+                                        Toast.makeText(getApplicationContext(), "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        new LoginAction(Login.getText().toString(), Pass.getText().toString(), null, getApplicationContext());
+                                    }
                                 } else {
-                                    new LoginAction(Login.getText().toString(), Pass.getText().toString(), null, getApplicationContext());
+                                    Toast.makeText(getApplicationContext(), "Ошибка подключения к серверу!", Toast.LENGTH_LONG).show();
                                 }
                             }
 
