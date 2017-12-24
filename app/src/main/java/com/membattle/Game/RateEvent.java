@@ -9,14 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.membattle.API.APIService;
+import com.membattle.API.SupportClasses.Responses.Exres;
 import com.membattle.API.SupportClasses.Responses.Rate.Rate;
 import com.membattle.API.SupportClasses.Requests.Secret;
 import com.membattle.API.SupportClasses.Responses.Rate.UserRating;
+import com.membattle.SignInUp.LoginAction;
 import com.membattle.Sups.LineRating;
 import com.membattle.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -46,13 +52,31 @@ public class RateEvent extends Fragment {
         service = retrofit.create(APIService.class);
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         String s = mSettings.getString("access_token", "nope");
+        Log.i("code", "secret "+s);
         Secret secret = new Secret(s);
         Call<Rate> call = service.getrate(secret);
         call.enqueue(new Callback<Rate>() {
             @Override
             public void onResponse(Call<Rate> call, Response<Rate> response) {
                 Rate rate = response.body();
-                Log.i("game", "rate" + rate.getGlobalRating().size());
+                if(response.code()!=502) {
+                    Log.i("code", response.code() + "");
+                    if (rate == null) {
+                        Log.i("code", "onResponse - Status : " + response.code());
+                        Gson gson = new Gson();
+                        TypeAdapter<Rate> adapter = gson.getAdapter(Rate.class);
+                        try {
+                            if (response.errorBody() != null) {
+                                rate = adapter.fromJson(response.errorBody().string());
+                                Log.i("code", "suc" + rate.getUserRating().getRating() + "");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Ошибка подключения к серверу!", Toast.LENGTH_LONG).show();
+                }
                 for(int i=0; i<rate.getGlobalRating().size(); i++) {
                     names.add(new LineRating( rate.getGlobalRating().get(i).getUsername(), rate.getGlobalRating().get(i).getCoins(), i + 1));
                 }

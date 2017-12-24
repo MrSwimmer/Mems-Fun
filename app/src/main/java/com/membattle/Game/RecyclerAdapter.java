@@ -68,16 +68,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PlayActivity.class);
-                switch (position){
-                    case 0 :
-                        intent.putExtra("ison", false);
-                        intent.putExtra("mode", 1);
-                        break;
-                    case 1 :
-                        intent.putExtra("ison", true);
-                        intent.putExtra("mode", 0);
-                        break;
-                }
                 context.startActivity(intent);
             }
         });

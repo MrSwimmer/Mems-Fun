@@ -34,17 +34,20 @@ public class PlayActivity extends Activity {
         //mSocket.emit("CONNECT_TO_GAME", "{user_id:"+mSettings.getInt("id",999)+ ",game_id:number}");
         modes = new String[]{getString(R.string.rules_infinity),getString(R.string.rules_infinity)};
         Intent intent = getIntent();
-        boolean ison = intent.getBooleanExtra("ison", false);
+        //boolean ison = intent.getBooleanExtra("ison", false);
         final int mode = intent.getIntExtra("mode", 0);
         fTrans = getFragmentManager().beginTransaction();
-        if(ison) {
+        /*if(ison) {
             game_id = 1234;
             Game play = new Game();
             fTrans.replace(R.id.play_cont, play);
         } else {
             RulesEvent rulesEvent = new RulesEvent();
             fTrans.replace(R.id.play_cont, rulesEvent);
-        }
+        }*/
+        Game play = new Game();
+        fTrans.replace(R.id.play_cont, play);
+        fTrans.commit();
         circleMenu = (CircleMenu) findViewById(R.id.play_circle_menu);
         circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
             @Override
@@ -73,9 +76,9 @@ public class PlayActivity extends Activity {
                         fTrans.replace(R.id.play_cont, rules);*/
                         break;
                     case "рейтинг" :
-                        RateEvent rateEvent = new RateEvent();
-                        fTrans.replace(R.id.play_cont, rateEvent);
-                        //Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        /*RateEvent rateEvent = new RateEvent();
+                        fTrans.replace(R.id.play_cont, rateEvent);*/
+                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
                         break;
                     case "назад" :
                         finish();

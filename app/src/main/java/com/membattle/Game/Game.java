@@ -17,9 +17,12 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
+import com.membattle.API.SupportClasses.Responses.Game.PairLikes.PairLikes;
+import com.membattle.API.SupportClasses.Responses.Game.PairMem.PairMem;
 import com.membattle.R;
 import com.membattle.API.SupportClasses.Requests.RequestToGame;
 import com.membattle.WidgetPlus.TextViewPlus;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,11 +42,6 @@ public class Game extends android.app.Fragment {
     RelativeLayout after1, after2;
     Chronometer mChronometer;
 
-    String CONNECT = "@@ws/CONNECT_TO_GAME_SUCCESS";
-    String NEW_PAIR = "@@ws/NEW_PAIR";
-    String PAIR_WINNER = "@@ws/PAIR_WINNER";
-    String GET_MEM_PAIR = "@@ws/GET_MEM_PAIR_SUCCESS";
-
     int tick = 7;
     boolean click = false;
     boolean voice = true;
@@ -51,28 +49,9 @@ public class Game extends android.app.Fragment {
     //private Socket socket;
     Socket socket = null;
 
-    /*private Socket mSocket; {
-        try {
-            mSocket = IO.socket("https://api.mems.fun");
-        } catch (URISyntaxException e) {
-            Log.i("game", "socketer " + e);
-        }
-    }*/
-
     @Override
     public void onResume() {
         super.onResume();
-        /*mSocket.on("@@ws/CONNECT_TO_GAME_SUCCESS", onConnect);
-        mSocket.on("@@ws/NEW_PAIR", onGetMemes);
-        mSocket.on("@@ws/PAIR_WINNER", onGetWinner);
-        mSocket.on("@@ws/GET_MEM_PAIR_SUCCESS", onFirstGet);
-        mSocket.connect();
-        RequestToGame requestToGame = new RequestToGame(USER_ID, false, 0, "@@ws/CONNECT_TO_GAME_REQUEST");
-        String json = gson.toJson(requestToGame);
-        mSocket.emit("action", json);
-        Log.i("game", json);*/
-        //mSocket.emit("@@ws/CONNECT_TO_GAME_REQUEST", json);
-        //mSocket.emit("@@ws/GET_MEM_PAIR_REQUEST", json);
         try {
             socket = IO.socket("https://api.mems.fun/");
         } catch (URISyntaxException e) {
@@ -84,20 +63,9 @@ public class Game extends android.app.Fragment {
                 RequestToGame requestToGame = new RequestToGame(USER_ID, 0, 0, "@@ws/CONNECT_TO_GAME_REQUEST");
                 String json = gson.toJson(requestToGame);
                 socket.emit("action", json);
-            }
-        });
-        socket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.i("game", "DISC");
-                Toast.makeText(getActivity().getApplicationContext(), "Разрыв соединения!", Toast.LENGTH_LONG).show();
-            }
-        });
-        socket.on(Socket.EVENT_ERROR, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.i("game", "ERR " + args[0]);
-                Toast.makeText(getActivity().getApplicationContext(), "Произошла ошибка!", Toast.LENGTH_LONG).show();
+                RequestToGame requestToGame2 = new RequestToGame(USER_ID, 0, 0, "@@ws/GET_MEM_PAIR_REQUEST");
+                String json2 = gson.toJson(requestToGame2);
+                socket.emit("action", json2);
             }
         });
         socket.on("connect", onConnect);
@@ -109,7 +77,7 @@ public class Game extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        mHandler = new Handler();
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         clock = (ImageView) v.findViewById(R.id.battle_clockim);
         clock.setImageResource(R.drawable.hourglass);
@@ -156,18 +124,16 @@ public class Game extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 if (!click) {
-                    showOnImageLike(true);
+                    showOnImageLike(false);
                     RequestToGame req = new RequestToGame(USER_ID, 1, 0, "@@ws/CHOOSE_MEM_REQUEST");
                     String j = gson.toJson(req);
                     socket.emit("action", j);
-                    Log.i("code", "SendChoose1");
                     click = true;
                 }
             }
         });
         return v;
     }
-
     private Emitter.Listener onConnect = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -187,8 +153,14 @@ public class Game extends android.app.Fragment {
                 Log.i("game", "type " + type);
                 switch (type) {
                     case "@@ws/NEW_PAIR" :
-
-
+                        onSetMemes(args[0]+"");
+                        break;
+                    case "@@ws/GET_MEM_PAIR_SUCCESS" :
+                        onSetMemes(args[0]+"");
+                        break;
+                    case "@@ws/PAIR_WINNER" :
+                        showlikes(args[0]+"");
+                        break;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -199,23 +171,38 @@ public class Game extends android.app.Fragment {
         @Override
         public void call(Object... args) {
             Log.i("game", "onError  " + args[0]);
-
         }
     };
 
-    void onSetMemes(String args) {
+    void onSetMemes(final String args) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                setMemesOnUI(args);
+            }
+        });
+    }
+    void setMemesOnUI(String args){
         hideTrash();
+
         startTick();
         click = false;
+        PairMem pairMem = gson.fromJson(args, PairMem.class);
+        String readyuril = pairMem.getData().getLeftMemeImg();
+        String readyurir = pairMem.getData().getRightMemeImg();
+        Log.i("game", readyuril+" "+readyurir);
+        setim(readyuril, first);
+        setim(readyurir, second);
 
-        Memes memes = gson.fromJson(args, Memes.class);
-        first.setImageURI(Uri.parse(memes.getLeftMemeImg()));
-        second.setImageURI(Uri.parse(memes.getRightMemeImg()));
-        id1 = memes.getLeftMemeId();
-        id2 = memes.getRightMemeId();*/
     }
-
-    void showlikes(int countf, int counts) {
+    void setim(String url, ImageView imageView){
+        Picasso.with(getActivity())
+                .load(url)
+                .placeholder(R.color.white)
+                .error(R.color.white)
+                .into(imageView);
+    }
+    void showLikesOnUI(int countf, int counts){
         after1.setVisibility(View.VISIBLE);
         after2.setVisibility(View.VISIBLE);
         countfirst.setText(countf + "");
@@ -227,6 +214,17 @@ public class Game extends android.app.Fragment {
             winsecond.setText("Победитель!");
             winfirst.setText("");
         }
+    }
+    void showlikes(String args) {
+        PairLikes pairLikes = gson.fromJson(args, PairLikes.class);
+        final int countf = Integer.parseInt(pairLikes.getData().getLeftLikes());
+        final int counts = Integer.parseInt(pairLikes.getData().getRightLikes());
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                showLikesOnUI(countf, counts);
+            }
+        });
     }
 
     void hideTrash() {
@@ -247,11 +245,13 @@ public class Game extends android.app.Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        socket.close();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        socket.close();
     }
 
     JSONObject getJsonFromArgs(Object... args) {
@@ -267,7 +267,7 @@ public class Game extends android.app.Fragment {
 
     void startTick() {
         mChronometer.stop();
-        timer.setText("10");
+        timer.setText("15");
         mChronometer.start();
         mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
@@ -280,7 +280,7 @@ public class Game extends android.app.Fragment {
                     elapsedMillis = 0;
                     if (tick == 0) {
                         mChronometer.stop();
-                        tick = 10;//длина баттла
+                        tick = 15;//длина баттла
                     }
                 }
             }
