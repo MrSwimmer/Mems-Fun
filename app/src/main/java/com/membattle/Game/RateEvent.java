@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.membattle.API.APIService;
-import com.membattle.API.SupportClasses.Responses.Rate;
+import com.membattle.API.SupportClasses.Responses.Rate.Rate;
 import com.membattle.API.SupportClasses.Requests.Secret;
-import com.membattle.API.SupportClasses.Responses.UserRating;
+import com.membattle.API.SupportClasses.Responses.Rate.UserRating;
 import com.membattle.Sups.LineRating;
 import com.membattle.R;
 

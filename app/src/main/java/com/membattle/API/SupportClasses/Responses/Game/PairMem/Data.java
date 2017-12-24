@@ -1,37 +1,48 @@
-package com.membattle.API.SupportClasses.Responses;
+package com.membattle.API.SupportClasses.Responses.Game.PairMem;
 
 /**
- * Created by Севастьян on 22.12.2017.
+ * Created by Севастьян on 24.12.2017.
  */
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Memes {
+public class Data {
 
+    @SerializedName("game_id")
+    @Expose
+    private Integer gameId;
     @SerializedName("leftMemeId")
     @Expose
-    private Integer leftMemeId;
+    private String leftMemeId;
     @SerializedName("leftMemeImg")
     @Expose
     private String leftMemeImg;
     @SerializedName("rightMemeId")
     @Expose
-    private Integer rightMemeId;
+    private String rightMemeId;
     @SerializedName("rightMemeImg")
     @Expose
     private String rightMemeImg;
     @SerializedName("rightLikes")
     @Expose
-    private Integer rightLikes;
+    private String rightLikes;
     @SerializedName("leftLikes")
     @Expose
-    private Integer leftLikes;
+    private String leftLikes;
 
-    public Integer getLeftMemeId() {
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
+    }
+
+    public String getLeftMemeId() {
         return leftMemeId;
     }
 
-    public void setLeftMemeId(Integer leftMemeId) {
+    public void setLeftMemeId(String leftMemeId) {
         this.leftMemeId = leftMemeId;
     }
 
@@ -43,11 +54,11 @@ public class Memes {
         this.leftMemeImg = leftMemeImg;
     }
 
-    public Integer getRightMemeId() {
+    public String getRightMemeId() {
         return rightMemeId;
     }
 
-    public void setRightMemeId(Integer rightMemeId) {
+    public void setRightMemeId(String rightMemeId) {
         this.rightMemeId = rightMemeId;
     }
 
@@ -59,19 +70,19 @@ public class Memes {
         this.rightMemeImg = rightMemeImg;
     }
 
-    public Integer getRightLikes() {
+    public String getRightLikes() {
         return rightLikes;
     }
 
-    public void setRightLikes(Integer rightLikes) {
+    public void setRightLikes(String rightLikes) {
         this.rightLikes = rightLikes;
     }
 
-    public Integer getLeftLikes() {
+    public String getLeftLikes() {
         return leftLikes;
     }
 
-    public void setLeftLikes(Integer leftLikes) {
+    public void setLeftLikes(String leftLikes) {
         this.leftLikes = leftLikes;
     }
 

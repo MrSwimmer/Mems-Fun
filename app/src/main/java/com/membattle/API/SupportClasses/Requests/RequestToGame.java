@@ -5,9 +5,9 @@ package com.membattle.API.SupportClasses.Requests;
  */
 public class RequestToGame {
     public int user_id, game_id;
-    boolean right;
+    int right;
     String type;
-    public RequestToGame(int user_id, boolean right, int game_id, String type) {
+    public RequestToGame(int user_id, int right, int game_id, String type) {
         this.user_id = user_id;
         this.game_id = game_id;
         this.right = right;

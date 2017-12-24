@@ -1,11 +1,10 @@
 package com.membattle.API;
 
-import com.membattle.API.SupportClasses.Responses.Rate;
+import com.membattle.API.SupportClasses.Responses.Rate.Rate;
 import com.membattle.API.SupportClasses.Responses.Exres;
 import com.membattle.API.SupportClasses.Requests.Secret;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Modes;
-import com.membattle.API.SupportClasses.Responses.RegResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

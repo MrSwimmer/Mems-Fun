@@ -13,7 +13,6 @@ import com.google.gson.TypeAdapter;
 import com.membattle.API.APIService;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
 import com.membattle.API.SupportClasses.Responses.Exres;
-import com.membattle.API.SupportClasses.Responses.RegResponse;
 import com.membattle.MainActivity.MainActivity;
 import com.membattle.WidgetPlus.ButtonPlus;
 import com.membattle.WidgetPlus.EditTextPlus;
