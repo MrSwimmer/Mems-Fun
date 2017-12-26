@@ -35,16 +35,15 @@
         android:textSize="24sp"/>
 
     <com.membattle.WidgetPlus.TextViewPlus
-        android:id="@+id/setclear"
+        android:id="@+id/aboutv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
-        app:customFont="@string/font_main"
-
-        android:text="Очистить данные аккаунта"
-        android:textSize="24sp"/>
+        android:text="Что нового в версии 1.3?"
+        android:textSize="24sp"
+        app:customFont="@string/font_main"/>
 
     <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/setmark"
@@ -53,18 +52,21 @@
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
-        app:customFont="@string/font_main"
-
         android:text="Оценить нас в Google Play"
-        android:textSize="24sp"/>
+
+        android:textSize="24sp"
+        app:customFont="@string/font_main"/>
+
     <com.membattle.WidgetPlus.TextViewPlus
-        android:id="@+id/aboutv"
+        android:id="@+id/setshare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
-        app:customFont="@string/font_main"
-        android:text="Что нового в версии 1.3?"
-        android:textSize="24sp"/>
+        android:text="Рассказать друзьям"
+
+        android:textSize="24sp"
+        app:customFont="@string/font_main"/>
+
 </LinearLayout>

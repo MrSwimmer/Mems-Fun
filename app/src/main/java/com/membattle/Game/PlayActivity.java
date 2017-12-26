@@ -76,9 +76,9 @@ public class PlayActivity extends Activity {
                         fTrans.replace(R.id.play_cont, rules);*/
                         break;
                     case "рейтинг" :
-                        /*RateEvent rateEvent = new RateEvent();
-                        fTrans.replace(R.id.play_cont, rateEvent);*/
-                        Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
+                        RateEvent rateEvent = new RateEvent();
+                        fTrans.replace(R.id.play_cont, rateEvent);
+                        //Toast.makeText(getApplicationContext(), "Упс, пока не работает ;)", Toast.LENGTH_SHORT).show();
                         break;
                     case "назад" :
                         finish();

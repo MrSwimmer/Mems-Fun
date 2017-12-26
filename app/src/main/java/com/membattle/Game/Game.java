@@ -21,6 +21,7 @@ import com.membattle.API.SupportClasses.Responses.Game.PairLikes.PairLikes;
 import com.membattle.API.SupportClasses.Responses.Game.PairMem.PairMem;
 import com.membattle.R;
 import com.membattle.API.SupportClasses.Requests.RequestToGame;
+import com.membattle.RefreshAction;
 import com.membattle.WidgetPlus.TextViewPlus;
 import com.squareup.picasso.Picasso;
 
@@ -78,6 +79,7 @@ public class Game extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mHandler = new Handler();
+        //new RefreshAction(getActivity());
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         clock = (ImageView) v.findViewById(R.id.battle_clockim);
         clock.setImageResource(R.drawable.hourglass);

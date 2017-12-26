@@ -20,7 +20,7 @@ import com.membattle.WidgetPlus.TextViewPlus;
  */
 
 public class Settings extends android.app.Fragment{
-    TextViewPlus Out, Mark, Clear, About, Title;
+    TextViewPlus Out, Mark, Share, About, Title;
     private SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "settings";
 
@@ -31,7 +31,7 @@ public class Settings extends android.app.Fragment{
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Out = (TextViewPlus) v.findViewById(R.id.setout);
         Mark = (TextViewPlus) v.findViewById(R.id.setmark);
-        Clear = (TextViewPlus) v.findViewById(R.id.setclear);
+        Share = (TextViewPlus) v.findViewById(R.id.setshare);
         About = (TextViewPlus) v.findViewById(R.id.aboutv);
         Title = (TextViewPlus) v.findViewById(R.id.settitle);
         About.setOnClickListener(new View.OnClickListener() {
@@ -78,30 +78,15 @@ public class Settings extends android.app.Fragment{
                 dialog.show();
             }
         });
-        Clear.setOnClickListener(new View.OnClickListener() {
+        Share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Очистка данных")
-                        .setMessage("Вы действительно хотите удалить данные?")
-                        .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferences.Editor editor = mSettings.edit();
-                                editor.putInt("countwins", 0);
-                                editor.putInt("countgames", 0);
-                                editor.apply();
-                                dialog.cancel();
-
-                            }
-                        }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_TEXT, "Присоединяйтесь к mems.fun !");
+                i.putExtra(Intent.EXTRA_SUBJECT, "Поделиться");
+                i = Intent.createChooser(i, "С помощью");
+                startActivity(i);
             }
         });
         Mark.setOnClickListener(new View.OnClickListener() {

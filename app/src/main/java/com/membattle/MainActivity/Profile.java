@@ -41,14 +41,15 @@ public class Profile extends android.app.Fragment {
         username.setText(user);
         coins.setText(c);
 
-        photo.setOnClickListener(new View.OnClickListener() {
+       /* photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String refresh = mSettings.getString("token_refresh", null);
+                String secret = mSettings.getString("token_access", null);
                 Log.i("code", "pr " + refresh);
-                new RefreshAction(refresh, getActivity());
+                new RefreshAction(getActivity());
             }
-        });
+        });*/
         return  v;
     }
 

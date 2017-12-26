@@ -26,10 +26,10 @@ public class RefreshAction {
     private static APIService service;
     private static SharedPreferences mSettings;
 
-    public RefreshAction(final String accessToken, final Context context) {
+    public RefreshAction(final Context context) {
         mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://78.24.223.212:3080/")
+                .baseUrl("https://api.mems.fun/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);
@@ -48,7 +48,7 @@ public class RefreshAction {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Call<Exres> call = service.refreshbody(myreqbody);
+        Call<Exres> call = service.refresh("Bearer "+ refresh_token, myreqbody);
         call.enqueue(new Callback<Exres>() {
 
             @Override

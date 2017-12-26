@@ -10,10 +10,13 @@
         android:id="@+id/line_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:text="1."
-        app:customFont="@string/font_main"
         android:textColor="@color/memblue"
-        android:textSize="30sp"/>
+        android:textSize="27sp"
+        app:customFont="@string/font_main"/>
 
     <com.membattle.WidgetPlus.TextViewPlus
         android:id="@+id/line_user"
@@ -27,8 +30,8 @@
         android:layout_toRightOf="@+id/line_pos"
         android:text="Username"
         android:textColor="@color/memblue"
-        app:customFont="@string/font_main"
-        android:textSize="30sp"/>
+        android:textSize="27sp"
+        app:customFont="@string/font_main"/>
 
     <ImageView
         android:id="@+id/line_imc"
@@ -48,11 +51,11 @@
         android:layout_alignBaseline="@+id/line_user"
         android:layout_alignBottom="@+id/line_user"
         android:layout_marginEnd="10dp"
-        app:customFont="@string/font_main"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/line_imc"
         android:layout_toStartOf="@+id/line_imc"
         android:text="34"
         android:textColor="@color/memblue"
-        android:textSize="30sp"/>
+        android:textSize="27sp"
+        app:customFont="@string/font_main"/>
 </RelativeLayout>
