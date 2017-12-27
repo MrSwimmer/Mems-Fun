@@ -27,8 +27,7 @@
             android:id="@+id/play_circle_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:colorNormal="#2196F3"
-            app:colorPressed="#1E88E5"
+            app:colorNormal="@color/circle_first"
             app:hintText="игра"
             app:icon="@drawable/ic_game"
             />
@@ -37,8 +36,7 @@
             android:id="@+id/play_circle_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:colorNormal="#4CAF50"
-            app:colorPressed="#43A047"
+            app:colorNormal="@color/circle_second"
             app:hintText="назад"
             app:icon="@drawable/ic_back"/>
 
@@ -46,8 +44,7 @@
             android:id="@+id/play_circle_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:colorNormal="#F44336"
-            app:colorPressed="#E53935"
+            app:colorNormal="@color/circle_third"
             app:hintText="сетка"
             app:icon="@drawable/ic_grid"/>
 
@@ -55,8 +52,7 @@
             android:id="@+id/play_circle_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:colorNormal="#FF911F"
-            app:colorPressed="#FF911F"
+            app:colorNormal="@color/circle_fourth"
             app:hintText="правила"
             app:icon="@drawable/ic_help"/>
 
@@ -64,8 +60,7 @@
             android:id="@+id/play_circle_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:colorNormal="#4CAF50"
-            app:colorPressed="#43A047"
+            app:colorNormal="@color/circle_fifth"
             app:hintText="рейтинг"
             app:icon="@drawable/trophy"/>
 

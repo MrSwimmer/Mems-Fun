@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.membattle.API.APIService;
+import com.membattle.API.SupportClasses.Requests.Secret;
 import com.membattle.API.SupportClasses.Responses.Exres;
 
 import org.json.JSONException;
@@ -33,41 +34,46 @@ public class RefreshAction {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(APIService.class);
-        JSONObject Text = null;
-        String refresh_token = mSettings.getString("refresh_token", null);
-        try {
-            Text = new JSONObject("{\"token_refresh\":\""+refresh_token+"\"}");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.i("code", Text.toString());
-        RequestBody myreqbody = null;
-        try {
-            myreqbody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                    (new JSONObject(String.valueOf(Text))).toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Call<Exres> call = service.refresh("Bearer "+ refresh_token, myreqbody);
-        call.enqueue(new Callback<Exres>() {
-
+        final String refresh_token = mSettings.getString("refresh_token", null);
+        final String access_token = mSettings.getString("access_token", null);
+        final Secret secret = new Secret(refresh_token);
+        Call<Exres> callsec = service.getsecret("Bearer " + access_token);
+        callsec.enqueue(new Callback<Exres>() {
             @Override
             public void onResponse(Call<Exres> call, Response<Exres> response) {
                 Exres exres = response.body();
-                if(exres.getSuccess()) {
-                    Log.i("code", "access " + exres.getToken_access());
-                    Log.i("code", "refresh " + exres.getToken_refresh());
-                    SharedPreferences.Editor editor = mSettings.edit();
-                    editor.putString("access_token", exres.getToken_access());
-                    editor.putString("refresh_token", exres.getToken_refresh());
-                    editor.apply();
-                } else {
-                    Log.i("code", "errefr "+exres.getError() + " " + exres.getMessage());
+                Log.i("code", "secr " + exres.getSuccess());
+                if (!exres.getSuccess()) {
+                    Call<Exres> callrefr = service.refresh("Bearer " + refresh_token, secret);
+                    callrefr.enqueue(new Callback<Exres>() {
+                        @Override
+                        public void onResponse(Call<Exres> call, Response<Exres> response) {
+                            Log.i("code", "coderesrefr" + response.code());
+                            Exres exres = response.body();
+                            assert exres != null;
+                            if (exres.getSuccess()) {
+                                Log.i("code", "access " + exres.getToken_access());
+                                Log.i("code", "refresh " + exres.getToken_refresh());
+                                SharedPreferences.Editor editor = mSettings.edit();
+                                editor.putString("access_token", exres.getToken_access());
+                                editor.putString("refresh_token", exres.getToken_refresh());
+                                editor.apply();
+                            } else {
+                                Log.i("code", "errefr " + exres.getError() + " " + exres.getMessage());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Exres> call, Throwable t) {
+                            Log.i("code", t.toString());
+                        }
+                    });
                 }
             }
+
             @Override
             public void onFailure(Call<Exres> call, Throwable t) {
-                Log.i("code", t.toString());
+
             }
         });
     }

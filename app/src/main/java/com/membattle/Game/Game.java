@@ -1,5 +1,7 @@
 package com.membattle.Game;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -17,6 +19,7 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
+import com.membattle.API.SupportClasses.Responses.Coins.Coins;
 import com.membattle.API.SupportClasses.Responses.Game.PairLikes.PairLikes;
 import com.membattle.API.SupportClasses.Responses.Game.PairMem.PairMem;
 import com.membattle.R;
@@ -49,9 +52,11 @@ public class Game extends android.app.Fragment {
     private int id1 = 1, id2 = 2;
     //private Socket socket;
     Socket socket = null;
+    private SharedPreferences mSettings;
 
     @Override
     public void onResume() {
+
         super.onResume();
         try {
             socket = IO.socket("https://api.mems.fun/");
@@ -79,6 +84,7 @@ public class Game extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mHandler = new Handler();
+        mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         //new RefreshAction(getActivity());
         View v = inflater.inflate(R.layout.battlefragment, container, false);
         clock = (ImageView) v.findViewById(R.id.battle_clockim);
@@ -163,6 +169,9 @@ public class Game extends android.app.Fragment {
                     case "@@ws/PAIR_WINNER" :
                         showlikes(args[0]+"");
                         break;
+                    case "@@ws/ADD_COIN" :
+                        addCoins(args[0]+"");
+                        break;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -175,7 +184,20 @@ public class Game extends android.app.Fragment {
             Log.i("game", "onError  " + args[0]);
         }
     };
-
+    void addCoins(final String args) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                addCoinsOnUI(args);
+            }
+        });
+    }
+    void addCoinsOnUI(String args) {
+        Coins coins = gson.fromJson(args, Coins.class);
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putInt("coins", Integer.parseInt(coins.getData().getCoins()));
+        editor.apply();
+    }
     void onSetMemes(final String args) {
         mHandler.post(new Runnable() {
             @Override

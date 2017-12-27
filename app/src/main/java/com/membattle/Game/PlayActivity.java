@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.imangazaliev.circlemenu.CircleMenu;
 import com.imangazaliev.circlemenu.CircleMenuButton;
 import com.membattle.R;
+import com.membattle.RefreshAction;
 
 public class PlayActivity extends Activity {
     static CircleMenu circleMenu;
@@ -29,6 +30,11 @@ public class PlayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
+        try {
+            new RefreshAction(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         USER_ID = mSettings.getInt("id", 99);
         //mSocket.emit("CONNECT_TO_GAME", "{user_id:"+mSettings.getInt("id",999)+ ",game_id:number}");
