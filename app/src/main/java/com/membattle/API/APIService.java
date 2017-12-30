@@ -5,6 +5,7 @@ import com.membattle.API.SupportClasses.Responses.Rate.Rate;
 import com.membattle.API.SupportClasses.Responses.Exres;
 import com.membattle.API.SupportClasses.Requests.Id;
 import com.membattle.API.SupportClasses.Requests.RegistrationUser;
+import com.membattle.API.SupportClasses.Responses.ValidToken;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -30,5 +31,5 @@ public interface APIService {
     @POST("game/rating")
     Call<Rate> getrate(@Header("Authorization") String secret, @Body Id id);
     @GET("auth/secret")
-    Call<Exres> getsecret(@Header("Authorization") String secret);
+    Call<ValidToken> getsecret(@Header("Authorization") String secret);
 }
