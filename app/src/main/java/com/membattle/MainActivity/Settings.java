@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.membattle.SignInUp.LoginActivity;
 import com.membattle.R;
 import com.membattle.WidgetPlus.TextViewPlus;
