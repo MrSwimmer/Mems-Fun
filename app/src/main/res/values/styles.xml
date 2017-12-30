@@ -9,7 +9,7 @@
         <item name="android:textColorPrimaryInverse">@android:color/background_dark</item>
         <item name="android:windowBackground">@android:color/white</item>
 
-        <item name="android:textColorPrimary">@color/cadr_back_title</item>
+        <item name="android:textColorPrimary">@color/black</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
