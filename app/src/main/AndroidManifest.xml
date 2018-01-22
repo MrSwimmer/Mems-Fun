@@ -12,12 +12,12 @@
         android:roundIcon="@drawable/bez"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+
         <activity
             android:name=".Intro.Splash"
             android:screenOrientation="portrait">
@@ -39,11 +39,15 @@
             android:name=".Intro.FirstStartActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Game.PlayActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".Game.PlayActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainActivity.MainActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".TestMenu.TestMenu">
         </activity>
     </application>
 

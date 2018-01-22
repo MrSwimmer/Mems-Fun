@@ -47,8 +47,7 @@ public class Game extends android.app.Fragment {
     Chronometer mChronometer;
 
     int tick = 7;
-    boolean click = false;
-    boolean voice = true;
+    boolean click = true;
     private int id1 = 1, id2 = 2;
     //private Socket socket;
     Socket socket = null;
@@ -108,7 +107,7 @@ public class Game extends android.app.Fragment {
         slikes = (ImageView) v.findViewById(R.id.battle_imlikes);
         flikes.setImageResource(R.drawable.ic_like);
         slikes.setImageResource(R.drawable.ic_like);
-        timer.setText(7 + "");
+        timer.setText("Ожидание начала следующего раунда");
         likeonf = (ImageView) v.findViewById(R.id.battle_likeonf);
         likeons = (ImageView) v.findViewById(R.id.battle_likeons);
         likeonf.setImageResource(R.drawable.onimagelike);
@@ -142,6 +141,7 @@ public class Game extends android.app.Fragment {
         });
         return v;
     }
+
     private Emitter.Listener onConnect = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -160,17 +160,17 @@ public class Game extends android.app.Fragment {
                 String type = getJsonFromArgs(args[0]).getString("type");
                 Log.i("game", "type " + type);
                 switch (type) {
-                    case "@@ws/NEW_PAIR" :
-                        onSetMemes(args[0]+"");
+                    case "@@ws/NEW_PAIR":
+                        onSetMemes(args[0] + "");
                         break;
-                    case "@@ws/GET_MEM_PAIR_SUCCESS" :
-                        onSetMemes(args[0]+"");
+                    case "@@ws/GET_MEM_PAIR_SUCCESS":
+                        onSetMemesOnly(args[0] + "");
                         break;
-                    case "@@ws/PAIR_WINNER" :
-                        showlikes(args[0]+"");
+                    case "@@ws/PAIR_WINNER":
+                        showlikes(args[0] + "");
                         break;
-                    case "@@ws/ADD_COIN" :
-                        addCoins(args[0]+"");
+                    case "@@ws/ADD_COIN":
+                        addCoins(args[0] + "");
                         break;
                 }
             } catch (JSONException e) {
@@ -178,12 +178,33 @@ public class Game extends android.app.Fragment {
             }
         }
     };
+
+    private void onSetMemesOnly(final String s) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                setMemesOnlyOnUI(s);
+            }
+        });
+    }
+
+    private void setMemesOnlyOnUI(String s) {
+        hideTrash();
+        PairMem pairMem = gson.fromJson(s, PairMem.class);
+        String readyuril = pairMem.getData().getLeftMemeImg();
+        String readyurir = pairMem.getData().getRightMemeImg();
+        Log.i("game", readyuril + " " + readyurir);
+        setim(readyuril, first);
+        setim(readyurir, second);
+    }
+
     private Emitter.Listener onError = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             Log.i("game", "onError  " + args[0]);
         }
     };
+
     void addCoins(final String args) {
         mHandler.post(new Runnable() {
             @Override
@@ -192,12 +213,14 @@ public class Game extends android.app.Fragment {
             }
         });
     }
+
     void addCoinsOnUI(String args) {
         Coins coins = gson.fromJson(args, Coins.class);
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putInt("coins", Integer.parseInt(coins.getData().getCoins()));
         editor.apply();
     }
+
     void onSetMemes(final String args) {
         mHandler.post(new Runnable() {
             @Override
@@ -206,27 +229,29 @@ public class Game extends android.app.Fragment {
             }
         });
     }
-    void setMemesOnUI(String args){
-        hideTrash();
 
+    void setMemesOnUI(String args) {
+        hideTrash();
         startTick();
         click = false;
         PairMem pairMem = gson.fromJson(args, PairMem.class);
         String readyuril = pairMem.getData().getLeftMemeImg();
         String readyurir = pairMem.getData().getRightMemeImg();
-        Log.i("game", readyuril+" "+readyurir);
+        Log.i("game", readyuril + " " + readyurir);
         setim(readyuril, first);
         setim(readyurir, second);
 
     }
-    void setim(String url, ImageView imageView){
+
+    void setim(String url, ImageView imageView) {
         Picasso.with(getActivity())
                 .load(url)
                 .placeholder(R.color.white)
                 .error(R.color.white)
                 .into(imageView);
     }
-    void showLikesOnUI(int countf, int counts){
+
+    void showLikesOnUI(int countf, int counts) {
         after1.setVisibility(View.VISIBLE);
         after2.setVisibility(View.VISIBLE);
         countfirst.setText(countf + "");
@@ -234,11 +259,15 @@ public class Game extends android.app.Fragment {
         if (countf > counts) {
             winfirst.setText("Победитель!");
             winsecond.setText("");
-        } else {
+        } else if (countf < counts) {
             winsecond.setText("Победитель!");
+            winfirst.setText("");
+        } else {
+            winsecond.setText("");
             winfirst.setText("");
         }
     }
+
     void showlikes(String args) {
         PairLikes pairLikes = gson.fromJson(args, PairLikes.class);
         final int countf = Integer.parseInt(pairLikes.getData().getLeftLikes());

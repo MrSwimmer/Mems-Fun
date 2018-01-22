@@ -39,7 +39,7 @@ public class Settings extends android.app.Fragment{
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("О версии").setMessage("Что нового?\n1.Мемы\n2.Интерфейс\n3.Мемы\n4.Рейтинг!\nЧто ожидать в следующих версиях?\nМоре товаров в нашем Мемагазине, чтобы вы могли тратить свои мемоины!").setPositiveButton("Неплохо", new DialogInterface.OnClickListener() {
+                builder.setTitle("О версии").setMessage("Что нового?\nБагфикс\nЧто ожидать в следующих версиях?\nМоре товаров в нашем Мемагазине, чтобы вы могли тратить свои мемоины!").setPositiveButton("Неплохо", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

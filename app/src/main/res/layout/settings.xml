@@ -41,7 +41,7 @@
         android:autoText="false"
         android:background="@drawable/bottom_line"
         android:padding="12dp"
-        android:text="Что нового в версии 2.0?"
+        android:text="Что нового в версии 2.1?"
         android:textSize="24sp"
         app:customFont="@string/font_main"/>
 
@@ -65,7 +65,6 @@
         android:background="@drawable/bottom_line"
         android:padding="12dp"
         android:text="Рассказать друзьям"
-
         android:textSize="24sp"
         app:customFont="@string/font_main"/>
 

@@ -12,57 +12,20 @@
         android:id="@+id/play_cont"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </FrameLayout>
 
-    <com.imangazaliev.circlemenu.CircleMenu
-        android:id="@+id/play_circle_menu"
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="339dp">
-
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/play_circle_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/circle_first"
-            app:hintText="игра"
-            app:icon="@drawable/ic_game"
-            />
-
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/play_circle_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/circle_second"
-            app:hintText="назад"
-            app:icon="@drawable/ic_back"/>
-
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/play_circle_grid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/circle_third"
-            app:hintText="сетка"
-            app:icon="@drawable/ic_grid"/>
-
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/play_circle_help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/circle_fourth"
-            app:hintText="правила"
-            app:icon="@drawable/ic_help"/>
-
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/play_circle_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/circle_fifth"
-            app:hintText="рейтинг"
-            app:icon="@drawable/trophy"/>
-
-    </com.imangazaliev.circlemenu.CircleMenu>
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_9_1"
+        app:bmb_piecePlaceEnum="piecePlace_dot_9_1"/>
 </RelativeLayout>
