@@ -30,7 +30,7 @@
                 android:layout_marginRight="5dp"
                 app:srcCompat="@drawable/hourglass"/>
 
-            <com.membattle.WidgetPlus.TextViewPlus
+            <com.membattle.widget_plus.TextViewPlus
                 android:id="@+id/textcount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 android:background="@color/back_likes"
                 android:visibility="invisible">
 
-                <com.membattle.WidgetPlus.TextViewPlus
+                <com.membattle.widget_plus.TextViewPlus
                     android:id="@+id/battle_after_winner_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal">
 
-                    <com.membattle.WidgetPlus.TextViewPlus
+                    <com.membattle.widget_plus.TextViewPlus
                         android:id="@+id/battle_after_likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 android:background="@color/back_likes"
                 android:visibility="invisible">
 
-                <com.membattle.WidgetPlus.TextViewPlus
+                <com.membattle.widget_plus.TextViewPlus
                     android:id="@+id/battle_after_winner_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                     android:layout_marginTop="33dp"
                     android:orientation="horizontal">
 
-                    <com.membattle.WidgetPlus.TextViewPlus
+                    <com.membattle.widget_plus.TextViewPlus
                         android:id="@+id/battle_after_likes2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

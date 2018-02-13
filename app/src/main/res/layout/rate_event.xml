@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:padding="15dp">
 
-    <com.membattle.WidgetPlus.TextViewPlus
+    <com.membattle.widget_plus.TextViewPlus
         android:id="@+id/rate_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

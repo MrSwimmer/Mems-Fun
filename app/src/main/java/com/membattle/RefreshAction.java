@@ -3,21 +3,16 @@ package com.membattle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.membattle.API.APIService;
-import com.membattle.API.SupportClasses.Requests.Secret;
-import com.membattle.API.SupportClasses.Responses.Exres;
-import com.membattle.API.SupportClasses.Responses.ValidToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.membattle.api.APIService;
+import com.membattle.api.req.Secret;
+import com.membattle.api.res.Exres;
+import com.membattle.api.res.ValidToken;
 
 import java.io.IOException;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

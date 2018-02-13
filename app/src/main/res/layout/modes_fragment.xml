@@ -6,7 +6,7 @@
               android:background="@color/circle_menu_center_button_color_pressed"
               android:orientation="vertical">
 
-    <com.membattle.WidgetPlus.TextViewPlus
+    <com.membattle.widget_plus.TextViewPlus
         android:id="@+id/modes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

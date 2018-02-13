@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/circle_menu_center_button_color_pressed"
-    tools:context="com.membattle.Game.PlayActivity">
+    tools:context="com.membattle.game.PlayActivity">
 
     <FrameLayout
         android:id="@+id/play_cont"

@@ -23,7 +23,7 @@
             android:paddingTop="25dp"
             app:srcCompat="@drawable/logo_circlel"/>
 
-        <com.membattle.WidgetPlus.TextViewPlus
+        <com.membattle.widget_plus.TextViewPlus
             android:id="@+id/profileusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp">
 
-            <com.membattle.WidgetPlus.TextViewPlus
+            <com.membattle.widget_plus.TextViewPlus
                 android:id="@+id/profilecoins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

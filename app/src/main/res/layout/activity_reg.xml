@@ -12,7 +12,7 @@
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="8dp">
 
-    <com.membattle.WidgetPlus.TextViewPlus
+    <com.membattle.widget_plus.TextViewPlus
         app:customFont="@string/font_title"
         android:id="@+id/textReg"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.membattle.WidgetPlus.EditTextPlus
+        <com.membattle.widget_plus.EditTextPlus
             android:id="@+id/loginreg"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:textSize="24sp"
             android:theme="@style/Widget.AppCompat.EditText"/>
 
-        <com.membattle.WidgetPlus.EditTextPlus
+        <com.membattle.widget_plus.EditTextPlus
             android:id="@+id/reg_email"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:textSize="24sp"
             android:theme="@style/Widget.AppCompat.EditText"/>
 
-        <com.membattle.WidgetPlus.EditTextPlus
+        <com.membattle.widget_plus.EditTextPlus
             android:id="@+id/passreg"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:theme="@style/Widget.AppCompat.EditText"
             android:textSize="24sp"/>
 
-        <com.membattle.WidgetPlus.EditTextPlus
+        <com.membattle.widget_plus.EditTextPlus
             android:id="@+id/repeatpassreg"
             style="@android:style/Widget.Holo.EditText"
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.membattle.WidgetPlus.ButtonPlus
+            <com.membattle.widget_plus.ButtonPlus
                 android:id="@+id/butreg"
                 android:layout_width="140dp"
                 android:layout_height="34dp"
